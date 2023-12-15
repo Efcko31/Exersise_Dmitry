@@ -17,9 +17,7 @@ public class Laba3Ex2 {
         Assertions.assertEquals(7, test(new int[] {5, 6, 4, 7, 8, 0}));
         Assertions.assertEquals(3, test(new int[] {2, 4, 6, 1, 3, 5}));
         // ex - ожидаешь, ac - передаешь. Без Scanner.
-
     }
-
     private int test(int[] list_num){
         int answer = list_num[0];
         int minNum = list_num[0] + 1;

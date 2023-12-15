@@ -15,7 +15,7 @@ public class Laba3Ex1 {
         Assertions.assertEquals("", testEx1(0));
         Assertions.assertEquals("",testEx1(1));
         Assertions.assertEquals("61 ",testEx1(61));
-
+        Assertions.assertEquals("1279 ",testEx1(1279));
     }
 
     private String testEx1(int nubmer) {

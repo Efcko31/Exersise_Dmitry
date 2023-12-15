@@ -27,6 +27,4 @@ public class Laba3Ex4 {
         } else
             return "Является";
     }
-
-
 }
