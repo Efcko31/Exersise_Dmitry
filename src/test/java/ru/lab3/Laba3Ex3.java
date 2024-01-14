@@ -7,15 +7,15 @@ import org.junit.jupiter.api.Test;
 public class Laba3Ex3 {
     @Test
     void test(){
-        Assertions.assertEquals(7, test(275));
-        Assertions.assertEquals(0, test(0));
-        Assertions.assertEquals(7, test(752));
-        Assertions.assertEquals(7, test(7));
-        Assertions.assertEquals(9, test(987654321));
-        Assertions.assertEquals(9, test(123456789));
-        Assertions.assertEquals(9, test(123496785));
+        Assertions.assertEquals(7, Ex3(275));
+        Assertions.assertEquals(0, Ex3(0));
+        Assertions.assertEquals(7, Ex3(752));
+        Assertions.assertEquals(7, Ex3(7));
+        Assertions.assertEquals(9, Ex3(987654321));
+        Assertions.assertEquals(9, Ex3(123456789));
+        Assertions.assertEquals(9, Ex3(123496785));
     }
-    private int test(int number){
+    private int Ex3(int number){
         int maxNumber = 0;
         for(int i = 0; i < 10; i++){
             if(number != 0 && maxNumber < number % 10){

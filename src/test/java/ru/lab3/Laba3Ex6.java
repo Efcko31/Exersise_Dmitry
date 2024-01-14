@@ -8,15 +8,15 @@ public class Laba3Ex6 {
     //всех его делителей, меньших n).
     @Test
     void test(){
-        Assertions.assertEquals("Является", test(6));
-        Assertions.assertEquals("НЕ Является", test(0));
-        Assertions.assertEquals("Является", test(28));
-        Assertions.assertEquals("Является", test(496));
-        Assertions.assertEquals("Является", test(33550336));
-        Assertions.assertEquals("НЕ Является", test(666));
+        Assertions.assertEquals("Является", Ex6(6));
+        Assertions.assertEquals("НЕ Является", Ex6(0));
+        Assertions.assertEquals("Является", Ex6(28));
+        Assertions.assertEquals("Является", Ex6(496));
+        Assertions.assertEquals("Является", Ex6(33550336));
+        Assertions.assertEquals("НЕ Является", Ex6(666));
 
     }
-    private String test(int userNumb){
+    private String Ex6(int userNumb){
         int sumDivisors = userNumb - 1;
         int totalNum = 2;
         while(totalNum != userNumb) {

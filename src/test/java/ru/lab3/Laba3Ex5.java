@@ -12,16 +12,16 @@ public class Laba3Ex5 {
     @Test
     void test(){
 
-        Assertions.assertEquals("ДА", test(new int[] {3, 5}));
-        Assertions.assertEquals("ДА", test(new int[] {5, 3}));
-        Assertions.assertEquals("НЕТ", test(new int[] {0, 0}));
-        Assertions.assertEquals("НЕТ, введите 2 числа!", test(new int[] {0}));
-        Assertions.assertEquals("НЕТ, введите 2 числа!", test(new int[] {0, 0, 12}));
+        Assertions.assertEquals("ДА", Ex5(new int[] {3, 5}));
+        Assertions.assertEquals("ДА", Ex5(new int[] {5, 3}));
+        Assertions.assertEquals("НЕТ", Ex5(new int[] {0, 0}));
+        Assertions.assertEquals("НЕТ, введите 2 числа!", Ex5(new int[] {0}));
+        Assertions.assertEquals("НЕТ, введите 2 числа!", Ex5(new int[] {0, 0, 12}));
         //Assertions.assertEquals("НЕТ, введите 2 числа!", test(new int[] {j, f}));
         // Как проверить, что пользователь точно ввел числа?
 
     }
-    private String test(int[] userNumbers){
+    private String Ex5(int[] userNumbers){
         int f1 = 1, f2 = 1, f3 = f1 + f2;
         boolean flagNum = false;
         if(userNumbers.length == 2) {

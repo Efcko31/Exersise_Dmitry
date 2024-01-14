@@ -10,20 +10,21 @@ public class Laba3Ex14 {
 //    следующее за последним из отрицательных чисел.
 
     @Test
-    void testEx14(){
-        Assertions.assertEquals("5", testEx14(new int[] {1, 3, -1, 2, -4, 5}));
-        Assertions.assertEquals("2", testEx14(new int[] {1, 3, -1, 2, 0, -4, 5}));
-        Assertions.assertEquals("NOTHING", testEx14(new int[] {0, 3, -1, 2, -4, 5}));
-        Assertions.assertEquals("NOTHING", testEx14(new int[] {-1, 0, -1, 2, -4, 5}));
-        Assertions.assertEquals("NOTHING", testEx14(new int[] {8, 3, -1, 2, -4, -1}));
-        Assertions.assertEquals("NOTHING", testEx14(new int[] {-1, -10, -1, -2, -4, -5}));
+    void testEx14() {
+        Assertions.assertEquals("5", Ex14(new int[]{1, 3, -1, 2, -4, 5}));
+        Assertions.assertEquals("2", Ex14(new int[]{1, 3, -1, 2, 0, -4, 5}));
+        Assertions.assertEquals("NOTHING", Ex14(new int[]{0, 3, -1, 2, -4, 5}));
+        Assertions.assertEquals("NOTHING", Ex14(new int[]{-1, 0, -1, 2, -4, 5}));
+        Assertions.assertEquals("NOTHING", Ex14(new int[]{8, 3, -1, 2, -4, -1}));
+        Assertions.assertEquals("NOTHING", Ex14(new int[]{-1, -10, -1, -2, -4, -5}));
     }
 
-    private String testEx14(int[] UserNumber){
+    private String Ex14(int[] UserNumber) {
         boolean negative_flag = false;
         String answer_str = "NOTHING";
         int answer_int = 0;
-        for(int i=0; i<UserNumber.length; i++) {
+
+        for (int i = 0; i < UserNumber.length; i++) {
             if (UserNumber[i] == 0)
                 break;
             else if (negative_flag) {
@@ -34,10 +35,10 @@ public class Laba3Ex14 {
                 negative_flag = true;
             }
         }
-        if(answer_int <= 0){
+        if (answer_int <= 0) {
             answer_str = "NOTHING";
             return answer_str;
-        }else
+        } else
             return answer_str;
     }
 }

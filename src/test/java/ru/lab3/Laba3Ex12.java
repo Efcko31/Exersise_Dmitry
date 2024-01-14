@@ -8,15 +8,15 @@ public class Laba3Ex12 {
 //    Определить количество введённых нечётных чисел после последнего отрицательного.
     @Test
     void test(){
-        Assertions.assertEquals(3,test(new int[] {1, 2, -1, 3, 5, 7}));
-        Assertions.assertEquals(4,test(new int[] {1, 2, -1, 3, 5, 7, -6, 5, 7, 9, 11}));
-        Assertions.assertEquals(1,test(new int[] {1, 2, -1, 3, 0, 7}));
-        Assertions.assertEquals(0,test(new int[] {0, 2, -1, 3, 0, 7}));
-        Assertions.assertEquals(1,test(new int[] {-1, 2, -1, 3, 0, 7}));
-        Assertions.assertEquals(0,test(new int[] {1, 2, 1, 3, 10, -7}));
+        Assertions.assertEquals(3,Ex12(new int[] {1, 2, -1, 3, 5, 7}));
+        Assertions.assertEquals(4,Ex12(new int[] {1, 2, -1, 3, 5, 7, -6, 5, 7, 9, 11}));
+        Assertions.assertEquals(1,Ex12(new int[] {1, 2, -1, 3, 0, 7}));
+        Assertions.assertEquals(0,Ex12(new int[] {0, 2, -1, 3, 0, 7}));
+        Assertions.assertEquals(1,Ex12(new int[] {-1, 2, -1, 3, 0, 7}));
+        Assertions.assertEquals(0,Ex12(new int[] {1, 2, 1, 3, 10, -7}));
 
     }
-    private int test(int [] UserNumber){
+    private int Ex12(int [] UserNumber){
         int total = 0;
         boolean negativeFlag = false;
 

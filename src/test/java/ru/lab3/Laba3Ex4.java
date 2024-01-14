@@ -7,12 +7,12 @@ public class Laba3Ex4 {
     // Определить, является ли данное натуральное число простым числом
     @Test
     void test(){
-        Assertions.assertEquals("Является", test(17));
-        Assertions.assertEquals("Не является", test(12));
-        Assertions.assertEquals("Ни простое, Ни составное",test(0));
-        Assertions.assertEquals("Ни простое, Ни составное",test(1));
+        Assertions.assertEquals("Является", Ex4(17));
+        Assertions.assertEquals("Не является", Ex4(12));
+        Assertions.assertEquals("Ни простое, Ни составное",Ex4(0));
+        Assertions.assertEquals("Ни простое, Ни составное",Ex4(1));
     }
-    private String test(int user_number){
+    private String Ex4(int user_number){
         int totalNum = 0;
         for (int i = 2; i <= user_number / 2; i++){
             if(user_number % i == 0)
