@@ -8,26 +8,21 @@ public class Laba3Ex11 {
     //следующий за последним вхождением цифры.
     @Test
     void test() {
-        Assertions.assertEquals('*', Ex11(new char[]{'+', '1', '*'}));
-        Assertions.assertEquals(' ', Ex11(new char[]{'.', '1', '*'}));
-        Assertions.assertEquals('*', Ex11(new char[]{'+', '1', '2', '3', '*', '1', '.'}));
-        Assertions.assertEquals(' ', Ex11(new char[]{'7', '1', '2', '3', '5', '1', '2'}));
-        Assertions.assertEquals('%', Ex11(new char[]{'7', '1', '2', '3', '5', '1', '%'}));
-        Assertions.assertEquals(' ', Ex11(new char[]{'/', '1', '2', '3', '5', '1', '2'}));
-        Assertions.assertEquals('/', Ex11(new char[]{'/', '1', '-', '3', '/', '1', '.', '*'}));
+        Assertions.assertEquals('*', searchingCharacterAfterLastDigit(new char[]{'+', '1', '*'}));
+        Assertions.assertEquals('*', searchingCharacterAfterLastDigit(new char[]{'.', '1', '*'}));
+        Assertions.assertEquals('&', searchingCharacterAfterLastDigit(new char[]{'+', '1', '2', '3', '*', '1', '&'}));
+        Assertions.assertEquals(' ', searchingCharacterAfterLastDigit(new char[]{'7', '1', '2', '3', '5', '1', '2'}));
+        Assertions.assertEquals('%', searchingCharacterAfterLastDigit(new char[]{'7', '1', '2', '3', '5', '1', '%'}));
+        Assertions.assertEquals(' ', searchingCharacterAfterLastDigit(new char[]{'/', '1', '2', '3', '5', '1', '2'}));
+        Assertions.assertEquals('/', searchingCharacterAfterLastDigit(new char[]{'/', '1', '-', '3', '-', '1', '/', '*'}));
     }
 
-    private char Ex11(char[] UserNumber) {
+    private char searchingCharacterAfterLastDigit(char[] UserNumber) {
         char answer = ' ';
-        boolean flag = false;
-        for (int i = 0; i < UserNumber.length; i++) {
-            if (UserNumber[i] == '.')
-                break;
-            else if (Character.isDigit(UserNumber[i])) {
-                flag = true;
-            } else if (flag) {
-                answer = UserNumber[i];
-                flag = false;
+
+        for (int i = UserNumber.length - 1; i != 0  && answer == ' '; i--) {
+            if (Character.isDigit(UserNumber[i]) && !Character.isDigit(UserNumber[UserNumber.length - 1])) {
+                answer = UserNumber[i + 1];
             }
         }
         return answer;

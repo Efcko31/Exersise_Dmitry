@@ -11,34 +11,22 @@ public class Laba3Ex14 {
 
     @Test
     void testEx14() {
-        Assertions.assertEquals("5", Ex14(new int[]{1, 3, -1, 2, -4, 5}));
-        Assertions.assertEquals("2", Ex14(new int[]{1, 3, -1, 2, 0, -4, 5}));
-        Assertions.assertEquals("NOTHING", Ex14(new int[]{0, 3, -1, 2, -4, 5}));
-        Assertions.assertEquals("NOTHING", Ex14(new int[]{-1, 0, -1, 2, -4, 5}));
-        Assertions.assertEquals("NOTHING", Ex14(new int[]{8, 3, -1, 2, -4, -1}));
-        Assertions.assertEquals("NOTHING", Ex14(new int[]{-1, -10, -1, -2, -4, -5}));
+        Assertions.assertEquals("5", findingNumberAfterLastNegative(new int[]{1, 3, -1, 2, -4, 5}));
+        Assertions.assertEquals("2", findingNumberAfterLastNegative(new int[]{1, 3, -1, 2,}));
+        Assertions.assertEquals("5", findingNumberAfterLastNegative(new int[]{10, 3, -1, 2, -4, 5}));
+        Assertions.assertEquals("4", findingNumberAfterLastNegative(new int[]{-1, 10, -1, -2, 4, 5}));
+        Assertions.assertEquals("NOTHING", findingNumberAfterLastNegative(new int[]{8, 3, -1, 2, -4, -1}));
+        Assertions.assertEquals("NOTHING", findingNumberAfterLastNegative(new int[]{-1, -10, -1, -2, -4, -5}));
     }
 
-    private String Ex14(int[] UserNumber) {
-        boolean negative_flag = false;
+    private String findingNumberAfterLastNegative(int[] UserNumber) {
         String answer_str = "NOTHING";
-        int answer_int = 0;
 
-        for (int i = 0; i < UserNumber.length; i++) {
-            if (UserNumber[i] == 0)
-                break;
-            else if (negative_flag) {
-                answer_str = Integer.toString(UserNumber[i]);
-                negative_flag = false;
-                answer_int = UserNumber[i];
-            } else if (UserNumber[i] < 0) {
-                negative_flag = true;
+        for (int i = UserNumber.length - 1; i != 0  && answer_str.equals("NOTHING"); i--) {
+            if (UserNumber[i] < 0 && UserNumber[UserNumber.length - 1] > 0) {
+                answer_str = Integer.toString(UserNumber[i + 1]);
             }
         }
-        if (answer_int <= 0) {
-            answer_str = "NOTHING";
-            return answer_str;
-        } else
-            return answer_str;
+        return answer_str;
     }
 }

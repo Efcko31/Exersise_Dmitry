@@ -11,15 +11,15 @@ public class Laba3Ex13 {
 
     @Test
     void test() {
-        Assertions.assertEquals("13*10^4", Ex13(130000));
-        Assertions.assertEquals("2345*10^2", Ex13(234500));
-        Assertions.assertEquals("1*10^6", Ex13(1000000));
-        Assertions.assertEquals("1*10^0", Ex13(1));
-        Assertions.assertEquals("202*10^3", Ex13(202000));
-        Assertions.assertEquals("1*10^1", Ex13(10));
+        Assertions.assertEquals("13*10^4", definesNumberZerosAndOutputNumber(130000));
+        Assertions.assertEquals("2345*10^2", definesNumberZerosAndOutputNumber(234500));
+        Assertions.assertEquals("1*10^6", definesNumberZerosAndOutputNumber(1000000));
+        Assertions.assertEquals("1*10^0", definesNumberZerosAndOutputNumber(1));
+        Assertions.assertEquals("202*10^3", definesNumberZerosAndOutputNumber(202000));
+        Assertions.assertEquals("1*10^1", definesNumberZerosAndOutputNumber(10));
     }
 
-    private String Ex13(int userNumber) {
+    private String definesNumberZerosAndOutputNumber(int userNumber) {
         int total_zero = 0;
         String answer = "";
 

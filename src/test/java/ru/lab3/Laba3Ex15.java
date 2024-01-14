@@ -8,12 +8,12 @@ public class Laba3Ex15 {
 // Найти сумму цифр числа n.
     @Test
     void testEx15(){
-        Assertions.assertEquals(10, testEx15(1234));
-        Assertions.assertEquals(30, testEx15(918273));
-        Assertions.assertEquals(0, testEx15(0));
-        Assertions.assertEquals(1, testEx15(100000));
+        Assertions.assertEquals(10, sumDigitsNumber(1234));
+        Assertions.assertEquals(30, sumDigitsNumber(918273));
+        Assertions.assertEquals(0, sumDigitsNumber(0));
+        Assertions.assertEquals(1, sumDigitsNumber(100000));
     }
-    private int testEx15(int UserNum){
+    private int sumDigitsNumber(int UserNum){
         int answer = 0;
         while(UserNum >= 9){
             answer += UserNum % 10;
