@@ -3,7 +3,7 @@ package ru.lab4;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class Laba4Ex14 {
+public class Laba4Ex14SortBubble {
     //Если возможно, то упорядочить данную последовательность целых чисел по возрастанию.
     @Test
     void test() {

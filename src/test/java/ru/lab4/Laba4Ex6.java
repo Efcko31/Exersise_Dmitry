@@ -21,25 +21,30 @@ public class Laba4Ex6 {
     private String determinesPresenceArithmeticProgression(int[] listNumber) {
         boolean arifmeticProgressFlag = true;
 
-        for (int i = 1; i < listNumber.length; i++) {
-            int currentNumber = listNumber[i];
-            int j = i;
-            while (j > 0 && listNumber[j - 1] > currentNumber) {
-                listNumber[j] = listNumber[j - 1];
-                j--;
-            }
-            listNumber[j] = currentNumber;
-        }
+        for (int i = 0; i < listNumber.length; i++) {
+            if (arifmeticProgressFlag) {
+                int indexMinNumber = searchMinimumNumber(listNumber, i);
+                int numberForReplace = listNumber[i];
+                listNumber[i] = listNumber[indexMinNumber];
+                listNumber[indexMinNumber] = numberForReplace;
 
-        for (int step = 1; step < listNumber.length; step++) {
-
-            int difference = listNumber[1] - listNumber[0];
-
-            if (arifmeticProgressFlag && listNumber[step] - listNumber[step - 1] != difference) {
-                arifmeticProgressFlag = false;
+                int difference = listNumber[1] - listNumber[0];
+                if (i > 0 && listNumber[i] - listNumber[i - 1] != difference) {
+                    arifmeticProgressFlag = false;
+                }
             }
         }
-
         return arifmeticProgressFlag ? POSITIVE : NEGATIVE;
+    }
+
+    private static int searchMinimumNumber(int[] numberArray, int step) {
+        int minValue = numberArray[step], minIndex = step;
+        for (int i = step; i < numberArray.length; i++) {
+            if (minValue > numberArray[i]) {
+                minIndex = i;
+                minValue = numberArray[i];
+            }
+        }
+        return minIndex;
     }
 }

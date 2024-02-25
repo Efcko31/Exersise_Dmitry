@@ -6,24 +6,22 @@ import org.junit.jupiter.api.Test;
 public class Laba4Ex12 {
     // Если члены данной последовательности не упорядочены по возрастанию, то удалить
     //все последующие вхождения каждого числа.
-    private static final String NEGATIVE = "нет";
-    private static final String POSITIVE = "да";
     @Test
     void test(){
-        Assertions.assertEquals(NEGATIVE, checkingForOrder(new int[]{0, 1, 2, 3, 6, 5}));
-        Assertions.assertEquals(NEGATIVE, checkingForOrder(new int[]{0, 1, 4, 3, 5, 6}));
-        Assertions.assertEquals(POSITIVE, checkingForOrder(new int[]{0, 1}));
+        Assertions.assertArrayEquals(new int[] {1, 2, 3, 6, 0}, checkForOrder(new int[]{1, 2, 3, 6, 5}));
+        Assertions.assertArrayEquals(new int[] {1, 4, 0, 0, 0}, checkForOrder(new int[]{1, 4, 3, 5, 6}));
+        Assertions.assertArrayEquals(new int[] {1, 2}, checkForOrder(new int[]{1, 2}));
 
     }
 
-    private String checkingForOrder(int[] numberArray) {
+    private int[] checkForOrder(int[] numberArray) {
         boolean flagCheckingForOrder = true;
         for (int i = 1; i < numberArray.length; i++) {
-            if (flagCheckingForOrder && (numberArray[i] < numberArray[i - 1])){
-                flagCheckingForOrder = false;
+            if (numberArray[i] <= numberArray[i - 1] | numberArray[i - 1] == 0) {
+                numberArray[i] = 0;
             }
         }
-        return flagCheckingForOrder ? POSITIVE : NEGATIVE;
+        return numberArray;
     }
 
 }

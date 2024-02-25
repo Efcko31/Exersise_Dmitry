@@ -13,44 +13,36 @@ public class Laba4Ex15 {
     }
 
     private int[] CheckingForNumbersAndSorting(int[] numberArray) {
-        int x = 3, y = 6, z = 8;
-        boolean flagOtherNumbers = false;
+        int x = 3, y = 6, z = 8, checkArrayLenght = 0;
+        int[] checkArray = new int[numberArray.length];
+        int[] answerArray = new int[]{};
 
-        for (int i : numberArray) {
-            if (!flagOtherNumbers) {
-                if (i == x | i == y | i == z) {
-                    flagOtherNumbers = false;
-                } else {
-                    flagOtherNumbers = true;
+        for (int i = 0; i < numberArray.length; i++) {
+            if (numberArray[i] == x | numberArray[i] == y | numberArray[i] == z) {
+                checkArray[checkArrayLenght] = numberArray[i];
+                checkArrayLenght++;
+                answerArray = sortingByBubble(checkArray);
+            } else {
+                answerArray =  numberArray;
+                i = numberArray.length;
+            }
+        }
+        return answerArray;
+    }
+
+    private static int[] sortingByBubble(int[] numberArray) {
+        boolean flagStopSort = false;
+        while (!flagStopSort) {
+            flagStopSort = true;
+            for (int i = 1; i < numberArray.length; i++) {
+                int numberForReplace = numberArray[i];
+                if ((numberArray[i] > numberArray[i - 1]) && numberArray[i] != 0) {
+                    numberArray[i] = numberArray[i - 1];
+                    numberArray[i - 1] = numberForReplace;
+                    flagStopSort = false;
                 }
             }
         }
-        if (flagOtherNumbers) {
-            return numberArray;
-        } else {
-            return sortingByChoice(numberArray);
-        }
-    }
-
-    private static int[] sortingByChoice(int[] numberArray) {
-        for (int step = 0; step < numberArray.length; step++) {
-            int index = max(numberArray, step);
-
-            int numberForReplace = numberArray[step];
-            numberArray[step] = numberArray[index];
-            numberArray[index] = numberForReplace;
-        }
         return numberArray;
-    }
-
-    private static int max(int[] array, int start) {
-        int maxIndex = start, maxValue = array[start];
-        for (int i = start; i < array.length; i++) {
-            if (maxValue < array[i]) {
-                maxIndex = i;
-                maxValue = array[i];
-            }
-        }
-        return maxIndex;
     }
 }

@@ -9,48 +9,38 @@ public class Laba4Ex11 {
     //между первым и последним отрицательными членами данной последовательности.
     @Test
     void test() {
-        Assertions.assertArrayEquals(new int[]{-2, 9, 7, 6, 4, 3, 2, -1}, decreasingSequenceBetweenNegativeNumbers(new int[]{9, 3, -2, 7, 6, 4, -1, 2}));
-        Assertions.assertArrayEquals(new int[]{-2, 6, 4, 3, 2, -3, -6, -10}, decreasingSequenceBetweenNegativeNumbers(new int[]{2, -2, 6, -3, -6, -10, 3, 4}));
-        Assertions.assertArrayEquals(new int[]{-9, -1, -2, -3, -4, -6, -7, -8}, decreasingSequenceBetweenNegativeNumbers(new int[]{-9, -3, -2, -7, -6, -4, -1, -8}));
-        Assertions.assertArrayEquals(new int[]{-3, -2}, decreasingSequenceBetweenNegativeNumbers(new int[]{-3, -2}));
+        Assertions.assertArrayEquals(new int[]{9, 3, -2, 7, 6, 4, -1, 2}, decreasSequenceBetweenNegativeNumbers(new int[]{9, 3, -2, 4, 7, 6, -1, 2}));
+        Assertions.assertArrayEquals(new int[]{-2, 6, -2, -3, -6, -10, 3, 4}, decreasSequenceBetweenNegativeNumbers(new int[]{-2, -2, 6, -3, -6, -10, 3, 4}));
+        Assertions.assertArrayEquals(new int[]{-2, 6, 3, -2, -3, -6, -10, -4}, decreasSequenceBetweenNegativeNumbers(new int[]{-2, -2, 6, -3, -6, -10, 3, -4}));
+
     }
 
-    private int[] decreasingSequenceBetweenNegativeNumbers(int[] numberArray) {
-        int firstNegativeNumber = 0, indexNumberArray = 0, lastNegativeNumber = 0, indexlastNegativeNumber = 0;
+    private int[] decreasSequenceBetweenNegativeNumbers(int[] numberArray) {
+        int indexFirstNegativeNumber = 0, firstNegativeNumber = 0, indexNumberArray = 0, lastNegativeNumber = 0, indexlastNegativeNumber = 0;
 
-        while (indexNumberArray < numberArray.length) {
-            if (firstNegativeNumber == 0 && numberArray[indexNumberArray] < 0) {
-                firstNegativeNumber = numberArray[indexNumberArray];
-                numberArray[indexNumberArray] = numberArray[0];
-                numberArray[0] = firstNegativeNumber;
-                indexNumberArray++;
-            } else if (numberArray[indexNumberArray] < 0) {
-                lastNegativeNumber = numberArray[indexNumberArray];
-                indexlastNegativeNumber = indexNumberArray;
-                indexNumberArray++;
-            } else {
-                indexNumberArray++;
-            }
-            if (lastNegativeNumber != 0 && indexNumberArray == numberArray.length) {
-                numberArray[indexlastNegativeNumber] = numberArray[numberArray.length - 1];
-                numberArray[numberArray.length - 1] = lastNegativeNumber;
+        for (int j = 0; j < numberArray.length; j++) {
+            if (numberArray[j] < 0 && firstNegativeNumber == 0) {
+                indexFirstNegativeNumber = j + 1;
+                firstNegativeNumber = numberArray[j];
+            } else if (numberArray[j] < 0) {
+                lastNegativeNumber = numberArray[j];
+                indexlastNegativeNumber = j;
             }
         }
 
+        for (int i = indexFirstNegativeNumber; i < numberArray.length - 1; i++) {
+            int indexMaxNumber = searchMaximumValue(numberArray, i, indexlastNegativeNumber);
 
-        for (int step = 1; step < numberArray.length - 1; step++) {
-            int indexMinNumber = max(numberArray, step);
-
-            int numberReplace = numberArray[step];
-            numberArray[step] = numberArray[indexMinNumber];
-            numberArray[indexMinNumber] = numberReplace;
+            int numberReplace = numberArray[i];
+            numberArray[i] = numberArray[indexMaxNumber];
+            numberArray[indexMaxNumber] = numberReplace;
         }
         return numberArray;
     }
 
-    private static int max(int[] array, int start) {
+    private static int searchMaximumValue(int[] array, int start, int stop) {
         int maxIndex = start, maxValue = array[start];
-        for (int j = start; j < array.length - 1; j++) {
+        for (int j = start; j < stop; j++) {
             if (maxValue < array[j]) {
                 maxValue = array[j];
                 maxIndex = j;

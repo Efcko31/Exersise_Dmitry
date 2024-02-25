@@ -8,32 +8,33 @@ public class Laba4Ex3 {
     //часть последовательности до последнего вхождения x
     @Test
     void test() {
-        Assertions.assertArrayEquals(new int[]{9, 3, 7, 6, 4, 2}, sortingToNumber(new int[]{9, 3, 7, 6, 4, 2}));
-        Assertions.assertArrayEquals(new int[]{3, 4, 6, 7, 9, 1, 2}, sortingToNumber(new int[]{9, 3, 7, 6, 4, 1, 2}));
-        Assertions.assertArrayEquals(new int[]{1, 3, 5, 4, 2, 9, 7}, sortingToNumber(new int[]{1, 3, 5, 4, 2, 9, 7}));
+        Assertions.assertArrayEquals(new int[]{9, 3, 7, 6, 4, 2}, sortToNumber(new int[]{9, 3, 7, 6, 4, 2}));
+        Assertions.assertArrayEquals(new int[]{3, 4, 6, 7, 9, 1, 2}, sortToNumber(new int[]{9, 3, 7, 6, 4, 1, 2}));
+        Assertions.assertArrayEquals(new int[]{1, 3, 5, 4, 2, 9, 7}, sortToNumber(new int[]{1, 3, 5, 4, 2, 9, 7}));
     }
-
-    private int[] sortingToNumber(int[] listNumber) {
+    private int[] sortToNumber(int[] listNumber) {
         int x = 1;
-        int indexX = 0;
+        int lastEntranceX = 0;
 
-        for (int i = 0; i < listNumber.length; i++) {
+        for (int i = listNumber.length - 1; i > 0; i--) {
             if (listNumber[i] == x) {
-                indexX = i;
+                lastEntranceX = i;
+                i = 0;
             }
         }
-        for (int step = 0; step < listNumber.length; step++) {
-            int indexMinimum = min(listNumber, step, indexX);
-
-            int numberForReplace = listNumber[step];
-            listNumber[step] = listNumber[indexMinimum];
-            listNumber[indexMinimum] = numberForReplace;
-
-        }
+        sortByChoise(listNumber, lastEntranceX);
         return listNumber;
     }
-
-    private static int min(int[] numberArray, int start, int finish) {
+    private static int[] sortByChoise(int[] numberArray, int lastEntranceX) {
+        for (int i = 0; i < numberArray.length; i++) {
+            int indexMinimum = searchMinimumValue(numberArray, i, lastEntranceX);
+            int numberForReplace = numberArray[i];
+            numberArray[i] = numberArray[indexMinimum];
+            numberArray[indexMinimum] = numberForReplace;
+        }
+        return numberArray;
+    }
+    private static int searchMinimumValue(int[] numberArray, int start, int finish) {
         int minIndex = start, minValue = numberArray[start];
         for (int j = start; j < finish; j++) {
             if (minValue > numberArray[j]) {
