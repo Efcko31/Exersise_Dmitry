@@ -8,12 +8,13 @@ public class Laba4Ex15 {
 
     @Test
     void test() {
-        Assertions.assertArrayEquals(new int[]{8, 6, 3}, CheckingForNumbersAndSorting(new int[]{3, 8, 6}));
-        Assertions.assertArrayEquals(new int[]{3, 8, 6, 4}, CheckingForNumbersAndSorting(new int[]{3, 8, 6, 4}));
+        Assertions.assertArrayEquals(new int[]{8, 6, 3}, CheckingForNumbersAndSorting(new int[]{3, 8, 6}, 3, 6, 8));
+        Assertions.assertArrayEquals(new int[]{8, 6, 6, 3, 3}, CheckingForNumbersAndSorting(new int[]{3, 3, 8, 6, 6}, 3, 6, 8));
+        Assertions.assertArrayEquals(new int[]{3, 8, 6, 4}, CheckingForNumbersAndSorting(new int[]{3, 8, 6, 4}, 3, 6, 8));
     }
 
-    private int[] CheckingForNumbersAndSorting(int[] numberArray) {
-        int x = 3, y = 6, z = 8, checkArrayLenght = 0;
+    private int[] CheckingForNumbersAndSorting(int[] numberArray, int x, int y, int z) {
+        int checkArrayLenght = 0;
         int[] checkArray = new int[numberArray.length];
         int[] answerArray = new int[]{};
 
@@ -23,8 +24,7 @@ public class Laba4Ex15 {
                 checkArrayLenght++;
                 answerArray = sortingByBubble(checkArray);
             } else {
-                answerArray =  numberArray;
-                i = numberArray.length;
+                return numberArray;
             }
         }
         return answerArray;

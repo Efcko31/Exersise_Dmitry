@@ -3,6 +3,8 @@ package ru.lab4;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static java.lang.Boolean.TRUE;
+
 public class Laba4Ex6 {
 
     //Определить, можно ли, переставив члены данной целочисленной последовательности, получить арифметическую прогрессию.
@@ -11,30 +13,29 @@ public class Laba4Ex6 {
 
     @Test
     void test() {
-        Assertions.assertEquals(POSITIVE, determinesPresenceArithmeticProgression(new int[]{9, 3, 12, 6, 15}));
-        Assertions.assertEquals(NEGATIVE, determinesPresenceArithmeticProgression(new int[]{9, 3, 7, 6, 4, 2}));
-        Assertions.assertEquals(NEGATIVE, determinesPresenceArithmeticProgression(new int[]{9, 3, 12, 6, 15, 16}));
-        Assertions.assertEquals(POSITIVE, determinesPresenceArithmeticProgression(new int[]{3, 6, 9, 12, 15}));
-        Assertions.assertEquals(NEGATIVE, determinesPresenceArithmeticProgression(new int[]{1, 2, 3, 4, 15}));
+        Assertions.assertTrue(determinesPresenceArithmeticProgression(new int[]{9, 3, 12, 6, 15}));
+        Assertions.assertFalse(determinesPresenceArithmeticProgression(new int[]{9, 3, 7, 6, 4, 2}));
+        Assertions.assertFalse(determinesPresenceArithmeticProgression(new int[]{9, 3, 12, 6, 15, 16}));
+        Assertions.assertTrue(determinesPresenceArithmeticProgression(new int[]{3, 6, 9, 12, 15}));
+        Assertions.assertFalse(determinesPresenceArithmeticProgression(new int[]{1, 2, 3, 4, 15}));
     }
 
-    private String determinesPresenceArithmeticProgression(int[] listNumber) {
+    private boolean determinesPresenceArithmeticProgression(int[] listNumber) {
         boolean arifmeticProgressFlag = true;
 
-        for (int i = 0; i < listNumber.length; i++) {
-            if (arifmeticProgressFlag) {
-                int indexMinNumber = searchMinimumNumber(listNumber, i);
-                int numberForReplace = listNumber[i];
-                listNumber[i] = listNumber[indexMinNumber];
-                listNumber[indexMinNumber] = numberForReplace;
+        for (int i = 0; i < listNumber.length && arifmeticProgressFlag; i++) {
+            int indexMinNumber = searchMinimumNumber(listNumber, i);
+            int numberForReplace = listNumber[i];
+            listNumber[i] = listNumber[indexMinNumber];
+            listNumber[indexMinNumber] = numberForReplace;
 
-                int difference = listNumber[1] - listNumber[0];
-                if (i > 0 && listNumber[i] - listNumber[i - 1] != difference) {
-                    arifmeticProgressFlag = false;
-                }
+            int difference = listNumber[1] - listNumber[0];
+            if (i > 0 && listNumber[i] - listNumber[i - 1] != difference) {
+                arifmeticProgressFlag = false;
             }
+
         }
-        return arifmeticProgressFlag ? POSITIVE : NEGATIVE;
+        return arifmeticProgressFlag;
     }
 
     private static int searchMinimumNumber(int[] numberArray, int step) {

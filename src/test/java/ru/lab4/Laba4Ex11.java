@@ -7,28 +7,30 @@ public class Laba4Ex11 {
     //Дана последовательность целых чисел. Получить упорядоченную по невозрастанию
     //последовательность, состоящую из членов данной последовательности, заключённых
     //между первым и последним отрицательными членами данной последовательности.
+    // Последний отрицательный ИСКАТЬ С КОНЦА
     @Test
     void test() {
         Assertions.assertArrayEquals(new int[]{9, 3, -2, 7, 6, 4, -1, 2}, decreasSequenceBetweenNegativeNumbers(new int[]{9, 3, -2, 4, 7, 6, -1, 2}));
         Assertions.assertArrayEquals(new int[]{-2, 6, -2, -3, -6, -10, 3, 4}, decreasSequenceBetweenNegativeNumbers(new int[]{-2, -2, 6, -3, -6, -10, 3, 4}));
         Assertions.assertArrayEquals(new int[]{-2, 6, 3, -2, -3, -6, -10, -4}, decreasSequenceBetweenNegativeNumbers(new int[]{-2, -2, 6, -3, -6, -10, 3, -4}));
-
     }
 
     private int[] decreasSequenceBetweenNegativeNumbers(int[] numberArray) {
-        int indexFirstNegativeNumber = 0, firstNegativeNumber = 0, indexNumberArray = 0, lastNegativeNumber = 0, indexlastNegativeNumber = 0;
+        int indexFirstNegativeNumber = -1,
+                indexlastNegativeNumber = -1;
 
-        for (int j = 0; j < numberArray.length; j++) {
-            if (numberArray[j] < 0 && firstNegativeNumber == 0) {
-                indexFirstNegativeNumber = j + 1;
-                firstNegativeNumber = numberArray[j];
-            } else if (numberArray[j] < 0) {
-                lastNegativeNumber = numberArray[j];
-                indexlastNegativeNumber = j;
+        for (int i = 0; i < numberArray.length && indexFirstNegativeNumber == -1; i++){
+            if(numberArray[i] < 0){
+                indexFirstNegativeNumber = i;
+            }
+        }
+        for (int i = numberArray.length -1; i > 0 && indexlastNegativeNumber == -1; i--){
+            if(numberArray[i] < 0){
+                indexlastNegativeNumber = i;
             }
         }
 
-        for (int i = indexFirstNegativeNumber; i < numberArray.length - 1; i++) {
+        for (int i = indexFirstNegativeNumber + 1; i < numberArray.length - 1; i++) {
             int indexMaxNumber = searchMaximumValue(numberArray, i, indexlastNegativeNumber);
 
             int numberReplace = numberArray[i];
