@@ -76,9 +76,6 @@ public class Laba5Ex2 {
     }
 
     private int searchIndexStringWithMaxElement(int[][] matrixArray) {
-        //todo , почему перемнные опять инициализированы в строку?
-        //todo  матрица уже инициализорована, почему бы сразе не дать max element  как матрица[0][0]
-        //todo indexStringWithMaxElement иницилиазировать индексом первой строки
         int maxElement = matrixArray[0][0];
         int indexStringWithMaxElement = 0;
 
@@ -93,12 +90,10 @@ public class Laba5Ex2 {
         return indexStringWithMaxElement;
     }
 
-    //todo replacementAccordingCondition - какое условие? откуда сторонний чел его знает
     private int[][] swapPenultimateColumnWithStringByIndex(int[][] matrixArray, int indexStringWithMaxelement) {
         for (int i = 0; i < matrixArray.length; i++) {
             for (int j = 0; j < matrixArray[i].length; j++) {
                 if (i == indexStringWithMaxelement) {
-                    //todo почему бы обмен не сделать методом?
                     swapTwoCellsInMatrix(matrixArray, i, j);
                 }
             }

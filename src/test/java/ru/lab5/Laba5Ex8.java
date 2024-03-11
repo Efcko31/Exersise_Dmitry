@@ -14,8 +14,8 @@ public class Laba5Ex8 {
     @SneakyThrows
     @Test
     public void test() {
-        assertThrows(WrongMatrixSizeException.class, () -> sortsSumElementsInAscendingOrder(new int[][]{}));
-        assertThrows(WrongMatrixSizeException.class, () -> sortsSumElementsInAscendingOrder(new int[][]{
+        assertThrows(WrongMatrixSizeException.class, () -> sortsSumElementsInAscendingOrderByInsertion(new int[][]{}));
+        assertThrows(WrongMatrixSizeException.class, () -> sortsSumElementsInAscendingOrderByInsertion(new int[][]{
                 {1, 2, 3, 4, 5},
                 {6, 7, 8, 9, 10}
         }));
@@ -24,7 +24,7 @@ public class Laba5Ex8 {
                         {1, 2, 3},
                         {4, 5, 6},
                         {7, 8, 9}},
-                sortsSumElementsInAscendingOrder(new int[][]{
+                sortsSumElementsInAscendingOrderByInsertion(new int[][]{
                         {7, 8, 9},
                         {4, 5, 6},
                         {1, 2, 3}}));
@@ -34,7 +34,7 @@ public class Laba5Ex8 {
                         {4, 5, 8, 3},
                         {4, 5, 6, 10},
                         {7, 8, 9, 7}},
-                sortsSumElementsInAscendingOrder(new int[][]{
+                sortsSumElementsInAscendingOrderByInsertion(new int[][]{
                         {4, 5, 8, 3},//20
                         {7, 8, 9, 7},//31
                         {4, 5, 6, 10},//25
@@ -43,7 +43,7 @@ public class Laba5Ex8 {
         assertArrayEquals(new int[][]{
                         {1, 9},
                         {7, 8}},
-                sortsSumElementsInAscendingOrder(new int[][]{
+                sortsSumElementsInAscendingOrderByInsertion(new int[][]{
                         {7, 8},
                         {1, 9}}));
 
@@ -51,7 +51,7 @@ public class Laba5Ex8 {
                         {3, 3, 3},
                         {3, 3, 3},
                         {3, 3, 3}},
-                sortsSumElementsInAscendingOrder(new int[][]{
+                sortsSumElementsInAscendingOrderByInsertion(new int[][]{
                         {3, 3, 3},
                         {3, 3, 3},
                         {3, 3, 3}}));
@@ -62,7 +62,7 @@ public class Laba5Ex8 {
             throw new WrongMatrixSizeException("Матрица не удовлетворяет условиям задачи!");
         }
     }
-    private int[][] sortsSumElementsInAscendingOrder(int[][] matrixArray) throws WrongMatrixSizeException { //todo я бы дописал по какому принципу сортировка
+    private int[][] sortsSumElementsInAscendingOrderByInsertion(int[][] matrixArray) throws WrongMatrixSizeException { //todo я бы дописал по какому принципу сортировка
         try {
             checkMatrixIsSquad(matrixArray);
         } catch (WrongMatrixSizeException e) {
@@ -74,7 +74,7 @@ public class Laba5Ex8 {
         return sortRowMatrixArrayByInsertion(matrixArray, sumElementRow(matrixArray));
     }
 
-    private int[] sumElementRow(int[][] matrixArray) { //todo метеод должеен возвращать сумму одной строки, а не массив сумм
+    private int[] sumElementRow(int[][] matrixArray) {
         int[] arraySumElementString = new int[matrixArray.length];
         for (int i = 0; i < matrixArray.length; i++) {
             int sumElement = 0;

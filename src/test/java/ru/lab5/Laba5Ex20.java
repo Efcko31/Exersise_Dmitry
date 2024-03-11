@@ -11,7 +11,7 @@ public class Laba5Ex20 {
     //Дана прямоугольная матрица. Упорядочить столбцы матрицы по убыванию минимальных элементов столбцов.
     @SneakyThrows
     @Test
-    public void test() {  //todo мало тестов
+    public void test() {
         assertThrows(WrongMatrixSizeException.class, () -> sortsColumnsInDescendingOrderSmallerElements(new int[][]{}));
 
         assertThrows(WrongMatrixSizeException.class, () -> sortsColumnsInDescendingOrderSmallerElements(new int[][]{
@@ -47,6 +47,15 @@ public class Laba5Ex20 {
                         {5, 5, 5, 1, 9},
                         {1, 5, 1, 5, 1},
                         {7, 1, 7, 7, 5}}));
+
+        assertArrayEquals(new int[][]{
+                        {5, 0, 0, 0, 0},
+                        {1, 0, 0, 0, 0},
+                        {7, 0, 0, 0, 0}},
+                sortsColumnsInDescendingOrderSmallerElements(new int[][]{
+                        {5, 0, 0, 0, 0},
+                        {1, 0, 0, 0, 0},
+                        {7, 0, 0, 0, 0}}));
     }
 
     private void checkMatrixForTaskConditions(int[][] matrixArray) throws WrongMatrixSizeException {
@@ -83,7 +92,7 @@ public class Laba5Ex20 {
     private int[][] sortsColumnsMatrixArrayInDescendingOrderByChoice(int[][] matrixArray, int[] minElemInColumn) { // по чему сортиурем?
         for (int i = 0; i < matrixArray[0].length; i++) {
             int maxIndexColumnInMatrixArray = searchMaxElement(minElemInColumn, i);
-            changesElemetnsBetweenEachOther(minElemInColumn, maxIndexColumnInMatrixArray, i);
+            changesElementsBetweenEachOther(minElemInColumn, maxIndexColumnInMatrixArray, i);
 
             for (int j = 0; j < matrixArray.length; j++) {
                 changesColumnsBetweenEachOther(matrixArray, maxIndexColumnInMatrixArray, i, j);
@@ -112,7 +121,7 @@ public class Laba5Ex20 {
 
     }
 
-    private void changesElemetnsBetweenEachOther(int[] minElemInColumn, int maxIndexColumnInMatrixArray, int row) {
+    private void changesElementsBetweenEachOther(int[] minElemInColumn, int maxIndexColumnInMatrixArray, int row) {
         int numberForReplace = minElemInColumn[row];
         minElemInColumn[row] = minElemInColumn[maxIndexColumnInMatrixArray];
         minElemInColumn[maxIndexColumnInMatrixArray] = numberForReplace;
