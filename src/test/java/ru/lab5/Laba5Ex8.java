@@ -62,7 +62,7 @@ public class Laba5Ex8 {
             throw new WrongMatrixSizeException("Матрица не удовлетворяет условиям задачи!");
         }
     }
-    private int[][] sortsSumElementsInAscendingOrderByInsertion(int[][] matrixArray) throws WrongMatrixSizeException { //todo я бы дописал по какому принципу сортировка
+    private int[][] sortsSumElementsInAscendingOrderByInsertion(int[][] matrixArray) throws WrongMatrixSizeException {
         try {
             checkMatrixIsSquad(matrixArray);
         } catch (WrongMatrixSizeException e) {

@@ -8,7 +8,7 @@ import ru.lab5.exception.EmptyMatrixExclusion;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class Laba5Ex16 { //todo переделать все
+public class Laba5Ex16 {
     //Дан массив целочисленных матриц. Вывести матрицы, имеющие наибольшее число нулевых строк.
     @SneakyThrows
     @Test
