@@ -1,13 +1,26 @@
 package ru.lab5;
 
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import ru.lab5.exception.WrongMatrixSizeException;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class Laba5Ex8 {
     //Дана квадратная матрица. Упорядочить её строки по неубыванию сумм элементов строк.
+    // Переделать так, чтобы каждая суммированная строка становилась на свое место без массива сумм строки
+    @SneakyThrows
     @Test
     public void test() {
-        Assertions.assertArrayEquals(new int[][]{
+        assertThrows(WrongMatrixSizeException.class, () -> sortsSumElementsInAscendingOrder(new int[][]{}));
+        assertThrows(WrongMatrixSizeException.class, () -> sortsSumElementsInAscendingOrder(new int[][]{
+                {1, 2, 3, 4, 5},
+                {6, 7, 8, 9, 10}
+        }));
+
+        assertArrayEquals(new int[][]{
                         {1, 2, 3},
                         {4, 5, 6},
                         {7, 8, 9}},
@@ -15,7 +28,8 @@ public class Laba5Ex8 {
                         {7, 8, 9},
                         {4, 5, 6},
                         {1, 2, 3}}));
-        Assertions.assertArrayEquals(new int[][]{
+
+        assertArrayEquals(new int[][]{
                         {1, 2, 3, 5},
                         {4, 5, 8, 3},
                         {4, 5, 6, 10},
@@ -26,14 +40,14 @@ public class Laba5Ex8 {
                         {4, 5, 6, 10},//25
                         {1, 2, 3, 5}}));//11
 
-        Assertions.assertArrayEquals(new int[][]{
+        assertArrayEquals(new int[][]{
                         {1, 9},
                         {7, 8}},
                 sortsSumElementsInAscendingOrder(new int[][]{
                         {7, 8},
                         {1, 9}}));
 
-        Assertions.assertArrayEquals(new int[][]{
+        assertArrayEquals(new int[][]{
                         {3, 3, 3},
                         {3, 3, 3},
                         {3, 3, 3}},
@@ -43,12 +57,24 @@ public class Laba5Ex8 {
                         {3, 3, 3}}));
     }
 
-    private static int[][] sortsSumElementsInAscendingOrder(int[][] matrixArray) {
-
-        return sortByInsertion(matrixArray, sumElementString(matrixArray));
+    private void checkMatrixIsSquad(int[][] matrixArray) throws WrongMatrixSizeException {
+        if (matrixArray.length == 0 || matrixArray.length != matrixArray[0].length) {
+            throw new WrongMatrixSizeException("Матрица не удовлетворяет условиям задачи!");
+        }
+    }
+    private int[][] sortsSumElementsInAscendingOrder(int[][] matrixArray) throws WrongMatrixSizeException { //todo я бы дописал по какому принципу сортировка
+        try {
+            checkMatrixIsSquad(matrixArray);
+        } catch (WrongMatrixSizeException e) {
+            System.out.println(e.getMessage());
+            throw e;
+        } catch (IndexOutOfBoundsException e) {
+            throw new RuntimeException();
+        }
+        return sortRowMatrixArrayByInsertion(matrixArray, sumElementRow(matrixArray));
     }
 
-    private static int[] sumElementString(int[][] matrixArray) {
+    private int[] sumElementRow(int[][] matrixArray) { //todo метеод должеен возвращать сумму одной строки, а не массив сумм
         int[] arraySumElementString = new int[matrixArray.length];
         for (int i = 0; i < matrixArray.length; i++) {
             int sumElement = 0;
@@ -60,18 +86,18 @@ public class Laba5Ex8 {
         return arraySumElementString;
     }
 
-    private static int[][] sortByInsertion(int[][] matrixArray, int[] arraySumElementString) {
+    private int[][] sortRowMatrixArrayByInsertion(int[][] matrixArray, int[] arraySumElementString) {
         for (int i = 0; i < arraySumElementString.length; i++) {
-            int elemForReaplace = arraySumElementString[i];
-            int[] elemForReaplaceForMatrix = matrixArray[i];
+            int elemForReplace = arraySumElementString[i];
+            int[] elemForReplaceForMatrix = matrixArray[i];
             int j = i;
-            while (j > 0 && arraySumElementString[j - 1] > elemForReaplace) {
+            while (j > 0 && arraySumElementString[j - 1] > elemForReplace) {
                 arraySumElementString[j] = arraySumElementString[j - 1];
                 matrixArray[j] = matrixArray[j - 1];
                 j--;
             }
-            arraySumElementString[j] = elemForReaplace;
-            matrixArray[j] = elemForReaplaceForMatrix;
+            arraySumElementString[j] = elemForReplace;
+            matrixArray[j] = elemForReplaceForMatrix;
         }
         return matrixArray;
     }
