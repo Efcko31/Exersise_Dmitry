@@ -61,15 +61,10 @@ public class Laba5Ex2 {
     }
 
 
-    private int[][] replacesPenultimateColumnFirstRowWithMaximumElement(int[][] matrixArray) throws WrongMatrixSizeException {
-        try {
+    private int[][] replacesPenultimateColumnFirstRowWithMaximumElement(int[][] matrixArray) {
+
             checkMatrixIsSquare(matrixArray);
-        } catch (WrongMatrixSizeException e) {
-            System.out.println(e.getMessage());
-            throw e;
-        } catch (IndexOutOfBoundsException e) {
-            throw new RuntimeException(e);
-        }
+
 
         return swapPenultimateColumnWithStringByIndex(matrixArray,
                 searchIndexStringWithMaxElement(matrixArray));

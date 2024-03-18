@@ -14,11 +14,11 @@ public class Laba5Ex13 {
     public void test() {
         assertThrows(EmptyMatrixExclusion.class, () -> sortsRowsInDescendingOrderFirstElementEachRowUseInsertionSorting(new int[][]{}));
 
-        assertArrayEquals(new int[][] {
+        assertArrayEquals(new int[][]{
                         {7, 8, 9, 4},
                         {4, 5, 6, 8},
                         {1, 2, 3, -6}},
-                sortsRowsInDescendingOrderFirstElementEachRowUseInsertionSorting(new int[][] {
+                sortsRowsInDescendingOrderFirstElementEachRowUseInsertionSorting(new int[][]{
                         {1, 2, 3, -6},
                         {4, 5, 6, 8},
                         {7, 8, 9, 4}}));
@@ -37,12 +37,12 @@ public class Laba5Ex13 {
 
     private void checkMatrixForTaskConditions(int[][] matrixArray) throws EmptyMatrixExclusion {
         if (matrixArray.length == 0) {
-        throw new EmptyMatrixExclusion("Матрица - пуста!");
+            throw new EmptyMatrixExclusion("Матрица - пуста!");
         }
     }
 
     private int[][] sortsRowsInDescendingOrderFirstElementEachRowUseInsertionSorting(int[][] matrixArray)
-            throws EmptyMatrixExclusion{
+            throws EmptyMatrixExclusion {
         try {
             checkMatrixForTaskConditions(matrixArray);
         } catch (EmptyMatrixExclusion e) {
@@ -63,6 +63,6 @@ public class Laba5Ex13 {
             }
             matrixArray[j] = stringForReplace;
         }
-    return matrixArray;
+        return matrixArray;
     }
 }

@@ -101,7 +101,7 @@ public class Laba5Ex27 {
         for (int i = 0; i < matrixArray.length; i++) {
             for (int j = 0; j < matrixArray[i].length; j++) {
                 if (i > 0 && (matrixArray[i][j] == maxElem | matrixArray[i][j] == minElem)) {
-                    j = matrixArray[i].length;
+                    j += matrixArray[i].length;
                     i = matrixArray.length - 1;
                     indexMaxElem = 0;
                     indexMinElem = 0;

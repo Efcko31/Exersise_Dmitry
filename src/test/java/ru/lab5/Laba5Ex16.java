@@ -79,11 +79,10 @@ public class Laba5Ex16 {
     private int[][][] searchingMatricesWithLargestNumberZeros(int[][][] matrixArray) throws EmptyMatrixExclusion {
         try {
             checkMatrixForTaskConditions(matrixArray);
-        } catch (EmptyMatrixExclusion e) {
+        }
+        catch (EmptyMatrixExclusion e) {
             System.out.println(e.getMessage());
             throw e;
-        } catch (IndexOutOfBoundsException e) {
-            throw new RuntimeException(e);
         }
 
         int[][][] MatrixArrayForAnswer = new int[matrixArray.length][][];
