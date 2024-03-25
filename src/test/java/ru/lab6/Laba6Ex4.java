@@ -1,6 +1,5 @@
 package ru.lab6;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -36,7 +35,7 @@ public class Laba6Ex4 {
     }
 
     private String removesWordsContainingCharactersFromCondition(String string, String symbols) {
-        String stringWithoutPunctuationMarks = string.replaceAll("[^a-zA-Zа-яА-я]", " ");
+        String stringWithoutPunctuationMarks = string.replaceAll("[^a-zA-Zа-яА-Я]", " ");
         String[] arrayString = stringWithoutPunctuationMarks.split("\\s+");
         String[] arraySymbols = symbols.split("");
 
