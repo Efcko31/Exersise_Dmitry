@@ -1,11 +1,10 @@
 package ru.lab6;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class aba6Ex10 {
+public class Laba6Ex10 {
     //Определить, входит ли в данную строку каждая буква данного слова.
     private static final String NEGATIVE = "No";
 
