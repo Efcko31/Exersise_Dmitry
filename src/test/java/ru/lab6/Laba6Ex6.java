@@ -21,12 +21,12 @@ public class Laba6Ex6 {
     }
 
     private String replacesThisWithThe(String string) {
-        String[] stringArray = string.replaceAll("[^A-Za-zА-Яа-я]", " ").split(" ");
+        String[] stringArray = string.replaceAll("[^A-Za-zА-Яа-я ]", "").split(" ");
 
-        return checkingEveryWordinSentence(stringArray, string);
+        return checkingEveryWordingSentence(stringArray, string);
     }
 
-    private String checkingEveryWordinSentence(String[] stringArray, String string) {
+    private String checkingEveryWordingSentence(String[] stringArray, String string) {
         for (int i = 0; i < stringArray.length; i++) {
             if (stringArray[i].equalsIgnoreCase("this")) {
                 string = string.replaceAll(stringArray[i], "the");

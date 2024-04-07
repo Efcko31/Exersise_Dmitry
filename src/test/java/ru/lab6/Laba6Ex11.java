@@ -30,7 +30,7 @@ public class Laba6Ex11 {
     }
 
     private String moveNumbersBeginningLineInReverseOrder(String string){
-        String[] stringArray = string.replaceAll("[^A-Za-zА-Яа-я0-9]", " ").split(" ");
+        String[] stringArray = string.replaceAll("[^A-Za-zА-Яа-я0-9 ]", "").split(" ");
 
         string = goThroughWords(stringArray, string);
     return string;
@@ -38,14 +38,15 @@ public class Laba6Ex11 {
 
     private String goThroughWords(String[] stringArray, String string) {
         for (int i = 0; i < stringArray.length; i++) {
-            StringBuilder wordForMove = new StringBuilder(stringArray[i]);
-            string = string.replaceAll(stringArray[i], moveNumbersBeginningWord(stringArray[i], wordForMove));
+
+            string = string.replaceAll(stringArray[i], moveNumbersBeginningWord(stringArray[i]));
         }
     return string;
     }
 
-    private String moveNumbersBeginningWord(String word, StringBuilder wordForMove) {
+    private String moveNumbersBeginningWord(String word) {
         char[] wordArray = word.toCharArray();
+        StringBuilder wordForMove = new StringBuilder(word);
         for (int i = 0; i < wordArray.length; i++) {
             if (Character.isDigit(wordArray[i])) {
                 wordForMove.deleteCharAt(i);

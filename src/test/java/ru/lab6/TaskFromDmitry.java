@@ -2,7 +2,7 @@ package ru.lab6;
 
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
-import ru.lab5.exception.EmptyMatrixExclusion;
+import ru.lab6.EmptyMatrixExclusionForLaba6;
 
 import java.util.Arrays;
 import java.util.stream.IntStream;
@@ -16,7 +16,7 @@ public class TaskFromDmitry {
     @SneakyThrows
     @Test
     public void test() {
-        assertThrows(EmptyMatrixExclusion.class, () ->
+        assertThrows(EmptyMatrixExclusionForLaba6.class, () ->
                 showsRepeatedRowsAndNumberTheirRepetitionsInMatrix(new int[][][]{}));
 
         assertEquals(" Строка: [1, 2, 3, 4], повторяется 5 раз. ",
@@ -46,16 +46,16 @@ public class TaskFromDmitry {
 
     }
 
-    private void checkMatrixForTaskConditions(int[][][] matrixArray) throws EmptyMatrixExclusion {
+    private void checkMatrixForTaskConditions(int[][][] matrixArray) throws EmptyMatrixExclusionForLaba6 {
         if (matrixArray.length == 0) {
-            throw new EmptyMatrixExclusion("Матрица - пуста!");
+            throw new EmptyMatrixExclusionForLaba6("Матрица - пуста!");
         }
     }
 
-    private String showsRepeatedRowsAndNumberTheirRepetitionsInMatrix(int[][][] matrixArray) throws EmptyMatrixExclusion {
+    private String showsRepeatedRowsAndNumberTheirRepetitionsInMatrix(int[][][] matrixArray) throws EmptyMatrixExclusionForLaba6 {
         try {
             checkMatrixForTaskConditions(matrixArray);
-        } catch (EmptyMatrixExclusion e) {
+        } catch (EmptyMatrixExclusionForLaba6 e) {
             System.out.println(e.getMessage());
             throw e;
         }
@@ -89,12 +89,13 @@ public class TaskFromDmitry {
         StringBuilder answerBuilder = new StringBuilder(answer);
         for (int i = 0; i < rowsMatrixArray.length; i += 2) {
             if (rowsMatrixArray[i + 1][0] > 1) {
-                answerBuilder.append("Строка: ").append(Arrays.toString(rowsMatrixArray[i])).append(", повторяется ").append(rowsMatrixArray[i + 1][0]);
-                //String answer = String.format("Строка: %s повторяется %d раз(а).", Arrays.toString(rowsMatrixArray[i]), rowsMatrixArray[i + 1][0]);
+                String messageConstructor = String.format("Строка: %s, повторяется %d ",
+                        Arrays.toString(rowsMatrixArray[i]), rowsMatrixArray[i + 1][0]);
+                answerBuilder.append(messageConstructor);
                 if (rowsMatrixArray[i + 1][0] > 4) {
-                    answerBuilder.append(" раз. ");
+                    answerBuilder.append("раз. ");
                 } else {
-                    answerBuilder.append(" раза. ");
+                    answerBuilder.append("раза. ");
                 }
             }
         }

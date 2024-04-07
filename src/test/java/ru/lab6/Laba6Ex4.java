@@ -37,34 +37,13 @@ public class Laba6Ex4 {
     private String removesWordsContainingCharactersFromCondition(String string, String symbols) {
         String stringWithoutPunctuationMarks = string.replaceAll("[^a-zA-Zа-яА-Я]", " ");
         String[] arrayString = stringWithoutPunctuationMarks.split("\\s+");
-        String[] arraySymbols = symbols.split("");
 
         for (int i = 0; i < arrayString.length; i++) {
-            String[] arrayWord = arrayString[i].split("");
-            if(parseWordIntoCharactersCompare(arrayWord, arraySymbols)) {
+            if(arrayString[i].toLowerCase().contains(symbols.toLowerCase())) {
                 string = string.replaceAll(arrayString[i], "");
                 string = string.replaceAll("[\\s]{2,}", " ");
             }
         }
     return string;
-    }
-
-    private boolean parseWordIntoCharactersCompare(String[] arrayWord, String[] arraySymbols) {
-        int indexArraySymbols = 0;
-        boolean availabilityFlag = false;
-
-        for (int i = 0; i < arrayWord.length; i++) {
-            if(arrayWord[i].equalsIgnoreCase(arraySymbols[indexArraySymbols])) {
-                indexArraySymbols++;
-            } else {
-                indexArraySymbols = 0;
-            }
-
-            if (indexArraySymbols == arraySymbols.length) {
-               availabilityFlag = true;
-               return availabilityFlag;
-            }
-        }
-    return availabilityFlag;
     }
 }

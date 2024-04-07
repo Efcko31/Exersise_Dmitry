@@ -21,21 +21,19 @@ public class Laba6Ex14 {
 
     private String searchForLastWordFirstLineInSecondLine(String firstString, String secondString) {
         String[] firstStringArray = firstString.replaceAll("[^A-Za-zА-Яа-я]", " ").split(" ");
-        String[] secondStringArray = secondString.replaceAll("[^A-Za-zа-яА-Я]", " ").split(" ");
         String lastWord = "Нет слова";
 
-
-    return comparingWordSentences(firstStringArray, secondStringArray, lastWord);
+        return comparingWordSentences(firstStringArray, lastWord, secondString);
     }
 
-    private String comparingWordSentences(String[] firstStringArray, String[] secondStringArray, String lastWord) {
-        for (int i = 0; i < firstStringArray.length && firstStringArray[i].split("").length > 1; i++) {
-            for ( int j = 0; j < secondStringArray.length; j++) {
-                if (firstStringArray[i].equalsIgnoreCase(secondStringArray[j])) {
-                    lastWord = firstStringArray[i];
-                }
+    private String comparingWordSentences(String[] firstStringArray, String lastWord, String secondString) {
+        for (int i = firstStringArray.length - 1; i > -1 && firstStringArray[i].split("").length > 1; i--) {
+            if (secondString.toLowerCase().contains(firstStringArray[i].toLowerCase())) {
+                lastWord = firstStringArray[i];
+                return lastWord;
             }
+
         }
-    return  lastWord;
+        return lastWord;
     }
 }

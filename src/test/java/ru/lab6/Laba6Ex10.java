@@ -35,26 +35,16 @@ public class Laba6Ex10 {
     }
 
     private String checkingForPresenceLettersFromWordInSentence(String string, String word) {
-        String[] stringArray = string.replaceAll("[^A-Za-zА-Яа-я]", " ").split("");
-        String[] wordArray = word.replaceAll("[^A-Za-zА-Яа-я]", " ").split("");
+        String[] wordArray = word.split("");
         int matchCounter = 0;
 
-        return checkingLetters(stringArray, wordArray, matchCounter) == wordArray.length ? POSITIVE : NEGATIVE;
+        return checkingLetters(matchCounter, wordArray, string) == wordArray.length ? POSITIVE : NEGATIVE;
     }
 
-    private int checkingLetters(String[] stringArray, String[] wordArray, int matchCounter) {
+    private int checkingLetters(int matchCounter, String[] wordArray, String string) {
         for (int i = 0; i < wordArray.length; i++){
-            for (int j = 0; j < stringArray.length; j++) {
-                if (wordArray[i].equalsIgnoreCase(stringArray[j])) {
-                    matchCounter++;
-                    j = wordArray.length;
-                }
-                if (matchCounter == wordArray.length) {
-                    return matchCounter;
-                }
-            }
-            if (matchCounter != i + 1) {
-                return matchCounter;
+            if (string.toLowerCase().contains(wordArray[i].toLowerCase())) {
+                matchCounter++;
             }
         }
         return matchCounter;
