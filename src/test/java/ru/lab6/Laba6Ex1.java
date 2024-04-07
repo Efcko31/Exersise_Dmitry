@@ -61,6 +61,6 @@ public class Laba6Ex1 {
                 }
             }
         }
-    return wordForAnswer;
+        return wordForAnswer;
     }
 }

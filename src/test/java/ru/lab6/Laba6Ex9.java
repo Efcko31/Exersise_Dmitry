@@ -35,7 +35,7 @@ public class Laba6Ex9 {
         StringBuilder stringBuilder = new StringBuilder(string);
         int offsetIndex = 1;
         for (int i = 0; i < stringArray.length; i++) {
-            if (stringArray[i].equalsIgnoreCase(symbol1) && i != stringArray.length - 1 && !stringArray[i + 1].equals(symbol2)){
+            if (stringArray[i].equalsIgnoreCase(symbol1) && i != stringArray.length - 1 && !stringArray[i + 1].equals(symbol2)) {
                 stringBuilder.insert(i + offsetIndex, symbol2);
                 offsetIndex++;
             } else if (stringArray[i].equals(symbol1) && i == stringArray.length - 1) {

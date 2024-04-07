@@ -39,11 +39,11 @@ public class Laba6Ex4 {
         String[] arrayString = stringWithoutPunctuationMarks.split("\\s+");
 
         for (int i = 0; i < arrayString.length; i++) {
-            if(arrayString[i].toLowerCase().contains(symbols.toLowerCase())) {
+            if (arrayString[i].toLowerCase().contains(symbols.toLowerCase())) {
                 string = string.replaceAll(arrayString[i], "");
                 string = string.replaceAll("[\\s]{2,}", " ");
             }
         }
-    return string;
+        return string;
     }
 }

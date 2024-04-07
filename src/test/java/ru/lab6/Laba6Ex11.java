@@ -8,7 +8,7 @@ public class Laba6Ex11 {
     // Преобразовать строку таким образом, чтобы цифры каждого слова были перенесены
     //в начало слова и изменить порядок следования цифр в слове на обратный.
     @Test
-    public void test(){
+    public void test() {
         assertEquals("1раз, 2два, 3три", moveNumbersBeginningLineInReverseOrder(
                 "раз1, два2, три3"));
 
@@ -29,11 +29,11 @@ public class Laba6Ex11 {
 
     }
 
-    private String moveNumbersBeginningLineInReverseOrder(String string){
+    private String moveNumbersBeginningLineInReverseOrder(String string) {
         String[] stringArray = string.replaceAll("[^A-Za-zА-Яа-я0-9 ]", "").split(" ");
 
         string = goThroughWords(stringArray, string);
-    return string;
+        return string;
     }
 
     private String goThroughWords(String[] stringArray, String string) {
@@ -41,7 +41,7 @@ public class Laba6Ex11 {
 
             string = string.replaceAll(stringArray[i], moveNumbersBeginningWord(stringArray[i]));
         }
-    return string;
+        return string;
     }
 
     private String moveNumbersBeginningWord(String word) {
@@ -54,6 +54,6 @@ public class Laba6Ex11 {
             }
         }
         word = wordForMove.toString();
-    return word;
+        return word;
     }
 }

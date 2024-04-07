@@ -10,15 +10,15 @@ public class Laba6Ex22 {
 
     @Test
     public void test() {
-        assertArrayEquals(new String[] {"дела?", "как", "Привет,"}, outputsWordsSentenceInReverseOrderOneAtTime(
+        assertArrayEquals(new String[]{"дела?", "как", "Привет,"}, outputsWordsSentenceInReverseOrderOneAtTime(
                 "Привет, как дела?"));
 
-        assertArrayEquals(new String[] {"абаба", "Боба", "Ааа"}, outputsWordsSentenceInReverseOrderOneAtTime("Ааа Боба абаба"));
+        assertArrayEquals(new String[]{"абаба", "Боба", "Ааа"}, outputsWordsSentenceInReverseOrderOneAtTime("Ааа Боба абаба"));
 
-        assertArrayEquals(new String[] {"дела?", "как", "Привет,"}, outputsWordsSentenceInReverseOrderOneAtTime(
+        assertArrayEquals(new String[]{"дела?", "как", "Привет,"}, outputsWordsSentenceInReverseOrderOneAtTime(
                 "Привет, как дела?"));
 
-        assertArrayEquals(new String[] {"настроение?", "твоё", "как", "нового?", "Что", "дела?", "как", "Привет,"},
+        assertArrayEquals(new String[]{"настроение?", "твоё", "как", "нового?", "Что", "дела?", "как", "Привет,"},
                 outputsWordsSentenceInReverseOrderOneAtTime("Привет, как дела? Что нового? как твоё настроение?"));
     }
 

@@ -24,12 +24,11 @@ public class Laba6Ex10 {
                 "ДиРижАБАль - АГА!", "хуй"));
 
         assertEquals(POSITIVE, checkingForPresenceLettersFromWordInSentence("Дебыльноё чувство, " +
-                "что как будто могу и хочу сломать свой код и вродё как и знаю где может подвести, но не Фижу",
+                        "что как будто могу и хочу сломать свой код и вродё как и знаю где может подвести, но не Фижу",
                 "Ёбаный Фонарь"));
 
         assertEquals(POSITIVE, checkingForPresenceLettersFromWordInSentence("Хы - хы, я наше брешь и ЗаСАтаол",
                 "Сало"));
-
 
 
     }
@@ -42,7 +41,7 @@ public class Laba6Ex10 {
     }
 
     private int checkingLetters(int matchCounter, String[] wordArray, String string) {
-        for (int i = 0; i < wordArray.length; i++){
+        for (int i = 0; i < wordArray.length; i++) {
             if (string.toLowerCase().contains(wordArray[i].toLowerCase())) {
                 matchCounter++;
             }

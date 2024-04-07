@@ -33,6 +33,6 @@ public class Laba6Ex6 {
 
             }
         }
-    return string;
+        return string;
     }
 }
