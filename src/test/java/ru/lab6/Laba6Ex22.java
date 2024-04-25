@@ -1,8 +1,5 @@
 package ru.lab6;
-
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class Laba6Ex22 {
@@ -22,14 +19,14 @@ public class Laba6Ex22 {
                 outputsWordsSentenceInReverseOrderOneAtTime("Привет, как дела? Что нового? как твоё настроение?"));
     }
 
-    private String[] outputsWordsSentenceInReverseOrderOneAtTime(String string) {
-        String[] stringArray = string.split(" ");
+    private String[] outputsWordsSentenceInReverseOrderOneAtTime(String sentence) {
+        String[] sentenceArray = sentence.split(" ");
         String stringForReverse;
-        for (int i = 0; i < stringArray.length / 2; i++) {
-            stringForReverse = stringArray[i];
-            stringArray[i] = stringArray[stringArray.length - i - 1];
-            stringArray[stringArray.length - i - 1] = stringForReverse;
+        for (int i = 0; i < sentenceArray.length / 2; i++) {
+            stringForReverse = sentenceArray[i];
+            sentenceArray[i] = sentenceArray[sentenceArray.length - i - 1];
+            sentenceArray[sentenceArray.length - i - 1] = stringForReverse;
         }
-        return stringArray;
+        return sentenceArray;
     }
 }

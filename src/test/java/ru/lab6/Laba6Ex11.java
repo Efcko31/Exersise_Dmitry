@@ -1,5 +1,6 @@
 package ru.lab6;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -7,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class Laba6Ex11 {
     // Преобразовать строку таким образом, чтобы цифры каждого слова были перенесены
     //в начало слова и изменить порядок следования цифр в слове на обратный.
+    //StringUtils + реегулчрныее выражения
     @Test
     public void test() {
         assertEquals("1раз, 2два, 3три", moveNumbersBeginningLineInReverseOrder(
@@ -21,7 +23,7 @@ public class Laba6Ex11 {
         assertEquals("3218Одни 4 98765числа", moveNumbersBeginningLineInReverseOrder(
                 "8О1д2н3и 4 ч5и6с7л8а9"));
 
-        assertEquals(" 8ил ", moveNumbersBeginningLineInReverseOrder(
+        assertEquals("8ил", moveNumbersBeginningLineInReverseOrder(
                 " и8л "));
 
         assertEquals("", moveNumbersBeginningLineInReverseOrder(
@@ -29,31 +31,13 @@ public class Laba6Ex11 {
 
     }
 
-    private String moveNumbersBeginningLineInReverseOrder(String string) {
-        String[] stringArray = string.replaceAll("[^A-Za-zА-Яа-я0-9 ]", "").split(" ");
-
-        string = goThroughWords(stringArray, string);
-        return string;
-    }
-
-    private String goThroughWords(String[] stringArray, String string) {
-        for (int i = 0; i < stringArray.length; i++) {
-
-            string = string.replaceAll(stringArray[i], moveNumbersBeginningWord(stringArray[i]));
+    private String moveNumbersBeginningLineInReverseOrder(String sentence) {
+        String[] sentenceArray = sentence.split(" ");
+        StringBuilder sentenceBuilder = new StringBuilder();
+        for (int i = 0; i < sentenceArray.length; i++) {
+            sentenceBuilder.append(new StringBuilder(StringUtils.getDigits(sentenceArray[i])).reverse()).
+                    append(sentenceArray[i].replaceAll("[\\d]", "")).append(" ");
         }
-        return string;
-    }
-
-    private String moveNumbersBeginningWord(String word) {
-        char[] wordArray = word.toCharArray();
-        StringBuilder wordForMove = new StringBuilder(word);
-        for (int i = 0; i < wordArray.length; i++) {
-            if (Character.isDigit(wordArray[i])) {
-                wordForMove.deleteCharAt(i);
-                wordForMove.insert(0, wordArray[i]);
-            }
-        }
-        word = wordForMove.toString();
-        return word;
+        return StringUtils.normalizeSpace(sentenceBuilder.toString());
     }
 }

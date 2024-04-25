@@ -2,9 +2,6 @@ package ru.lab6;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -36,31 +33,15 @@ public class Laba6Ex1 {
     }
 
     private String findWordPrecedingFirstOccurrenceCommonWordS2AndS1InS1(String s1, String s2) { //возвращать boolean
-
         s1 = s1.replaceAll("[^a-zA-Zа-яА-Я ]", "");
-        s2 = s2.replaceAll("[^a-zA-Zа-яА-Я ]", "");
-        String[] stringArray = (s1 + " ** " + s2).split("\\s+");
-        String wordForAnswer = null;
+        s2 = s2.toLowerCase().replaceAll("[^a-zA-Zа-яА-Я ]", "");
+        var s1Array = s1.split("\\s+");
 
-        return searchForSameWords(stringArray, wordForAnswer);
-    }
-
-    private String searchForSameWords(String[] stringArray, String wordForAnswer) {
-        for (int i = 0; i < stringArray.length; i++) {
-            if (stringArray[i].equals("**")) {
-                return wordForAnswer;
-            }
-            for (int j = stringArray.length - 1; j != 0 && !stringArray[j].equals("**"); j--) {
-                if (i > 0 && stringArray[i].equalsIgnoreCase(stringArray[j])) {
-                    wordForAnswer = stringArray[i - 1]; // return wordForAnswer = stringArray[i - 1]; - пишет что never used.
-                    i = stringArray.length - 1;
-                    j = stringArray.length - 1;
-                } else if (i == 0 && stringArray[i].equalsIgnoreCase(stringArray[j])) {
-                    i = stringArray.length - 1;
-                    j = stringArray.length - 1;
-                }
+        for (int i = 0; i < s1Array.length; i++) {
+            if (s2.contains(s1Array[i].toLowerCase())) {
+                return i - 1 < 0 ? null : s1Array[i - 1];
             }
         }
-        return wordForAnswer;
+        return null;
     }
 }
