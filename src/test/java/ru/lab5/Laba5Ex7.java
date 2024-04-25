@@ -61,7 +61,7 @@ public class Laba5Ex7 {
         try {
             checkMatrixForTaskConditions(matrixArray);
         } catch (EmptyMatrixExclusion e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
             throw e;
         } catch (IndexOutOfBoundsException e) {
             throw new RuntimeException(e);
