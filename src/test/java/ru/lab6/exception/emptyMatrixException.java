@@ -1,6 +1,7 @@
 package ru.lab6.exception;
 
-public class emptyMatrixException extends Exception {
+laba6
+public class emptyMatrixException extends Exception{
     public emptyMatrixException(String message) {
         super(message);
     }
