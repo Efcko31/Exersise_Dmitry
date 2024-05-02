@@ -32,6 +32,7 @@ public class Laba7Ex5 {
 
     private int convertNumberIntoAnOctalSystemCalculation(int number) {
         StringBuilder sentenceWithNumbers = new StringBuilder();
+
         for (int i = number; i > 0; i /= 8) {
             sentenceWithNumbers.append(i % 8);
         }
@@ -43,9 +44,8 @@ public class Laba7Ex5 {
 
     private int convertNumberIntoAnOctalSystemCalculationByRecursion(int number) {
         StringBuilder sentenceWithNumbers = new StringBuilder();
-        int i = number;
 
-        return convertNumber(sentenceWithNumbers, i);
+        return convertNumber(sentenceWithNumbers, number);
     }
 
     private int convertNumber(StringBuilder sentenceWithNumbers, int i) {
