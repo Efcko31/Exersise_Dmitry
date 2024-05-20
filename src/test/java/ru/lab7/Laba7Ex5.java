@@ -2,59 +2,71 @@ package ru.lab7;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class Laba7Ex5 {
     //Вывести данное натуральное число в восьмеричном виде.
     @Test
-    void test() {
+    void test()  {
+        assertEquals(10, convertNumberIntoAnOctalSystemCalculation(8));
+        assertEquals(10, convertNumberIntoAnOctalSystemCalculationByRecursion(new StringBuilder(), 8));
+
         assertEquals(226, convertNumberIntoAnOctalSystemCalculation(150));
+        assertEquals(226, convertNumberIntoAnOctalSystemCalculationByRecursion(new StringBuilder(), 150));
 
         assertEquals(36132, convertNumberIntoAnOctalSystemCalculation(15450));
+        assertEquals(36132, convertNumberIntoAnOctalSystemCalculationByRecursion
+                (new StringBuilder(), 15450));
 
-        assertEquals(0, convertNumberIntoAnOctalSystemCalculation(0));
+        assertThrows(NullPointerException.class, () -> convertNumberIntoAnOctalSystemCalculation(0));
+        assertThrows(NullPointerException.class, () -> convertNumberIntoAnOctalSystemCalculationByRecursion
+                (new StringBuilder(), 0));
 
-        assertEquals(46113177, convertNumberIntoAnOctalSystemCalculation(9999999));
+        assertThrows(NullPointerException.class, () -> convertNumberIntoAnOctalSystemCalculation(0));
+        assertThrows(NullPointerException.class, () -> convertNumberIntoAnOctalSystemCalculationByRecursion
+                (new StringBuilder(), 0));
 
         assertEquals(1, convertNumberIntoAnOctalSystemCalculation(1));
+        assertEquals(1, convertNumberIntoAnOctalSystemCalculationByRecursion(new StringBuilder(), 1));
 
+        assertEquals(46113177, convertNumberIntoAnOctalSystemCalculation(9999999));
+        assertEquals(46113177, convertNumberIntoAnOctalSystemCalculationByRecursion
+                (new StringBuilder(), 9999999));
 
-        assertEquals(226, convertNumberIntoAnOctalSystemCalculationByRecursion(150));
-
-        assertEquals(0, convertNumberIntoAnOctalSystemCalculationByRecursion(0));
-
-        assertEquals(36132, convertNumberIntoAnOctalSystemCalculationByRecursion(15450));
-
-        assertEquals(10, convertNumberIntoAnOctalSystemCalculationByRecursion(8));
-
-        assertEquals(1, convertNumberIntoAnOctalSystemCalculationByRecursion(1));
     }
 
     private int convertNumberIntoAnOctalSystemCalculation(int number) {
-        StringBuilder sentenceWithNumbers = new StringBuilder();
-        for (int i = number; i > 0; i /= 8) {
-            sentenceWithNumbers.append(i % 8);
+        try {
+            if (number == 0) {
+                throw new NullPointerException("Число не должно равняться нулю!");
+            }
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+            throw e;
         }
 
-        return sentenceWithNumbers.isEmpty() ? Integer.parseInt(sentenceWithNumbers.append(0).toString()) :
-                Integer.parseInt(sentenceWithNumbers.reverse().toString());
+        StringBuilder sentenceWithNumbers = new StringBuilder().append(number % 8);
+        for (int i = number / 8; i > 0; i /= 8) {
+            sentenceWithNumbers.insert(0, i % 8);
+        }
+
+        return Integer.parseInt(sentenceWithNumbers.toString());
     }
 
 
-    private int convertNumberIntoAnOctalSystemCalculationByRecursion(int number) {
-        StringBuilder sentenceWithNumbers = new StringBuilder();
-
-        return convertNumber(sentenceWithNumbers, number);
-    }
-
-    private int convertNumber(StringBuilder sentenceWithNumbers, int i) {
-        if (i <= 0) {
-            return sentenceWithNumbers.isEmpty() ? Integer.parseInt(sentenceWithNumbers.append(0).toString()) :
-                    Integer.parseInt(sentenceWithNumbers.reverse().toString());
+    private int convertNumberIntoAnOctalSystemCalculationByRecursion(StringBuilder sentenceWithNumbers, int number)
+            throws NullPointerException {
+        try {
+            if (number == 0) {
+                throw new NullPointerException("Число не должно равняться нулю!");
+            }
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+            throw e;
         }
-
-        sentenceWithNumbers.append(i % 8);
-        i /= 8;
-        return convertNumber(sentenceWithNumbers, i);
+        sentenceWithNumbers.insert(0,number % 8);
+        number /= 8;
+        return number == 0 ? Integer.parseInt(sentenceWithNumbers.toString()) :
+                convertNumberIntoAnOctalSystemCalculationByRecursion(sentenceWithNumbers, number);
     }
 }

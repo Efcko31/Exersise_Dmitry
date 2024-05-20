@@ -2,7 +2,6 @@ package ru.lab7;
 
 import org.junit.jupiter.api.Test;
 
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -13,45 +12,44 @@ public class Laba7Ex6 {
     @Test
     void test() {
         assertTrue(isWordPalindrome("Аппа"));
+        assertTrue(isWordPalindromeByRecursion("Аппа", 0));
 
         assertFalse(isWordPalindrome("Машина"));
+        assertFalse(isWordPalindromeByRecursion("Машина", 0));
 
         assertTrue(isWordPalindrome("Апокопа"));
+        assertTrue(isWordPalindromeByRecursion("Апокопа", 0));
 
         assertFalse(isWordPalindrome("йцукенгшщапролд"));
+        assertFalse(isWordPalindromeByRecursion("йцукенгшщапролд", 0));
 
         assertTrue(isWordPalindrome(""));
+        assertTrue(isWordPalindromeByRecursion("", 0));
 
-
-        assertTrue(isWordPalindromeByRecursion("Аппа"));
-
-        assertFalse(isWordPalindromeByRecursion("йцукенгшщапролд"));
-
-        assertTrue(isWordPalindromeByRecursion(""));
     }
 
     private boolean isWordPalindrome(String sentence) {
-        StringBuilder sentenceBuilder = new StringBuilder(sentence).reverse();
-        return sentenceBuilder.toString().equalsIgnoreCase(sentence);
-    }
+        //return sentence.equalsIgnoreCase(StringUtils.reverse(sentence));
+        String[] sentenceArray = sentence.toLowerCase().split("");
 
-    private boolean isWordPalindromeByRecursion(String sentence) {
-        String[] sentenceArray = sentence.split("");
-        StringBuilder sentenceBuilder = new StringBuilder();
-        int i = sentenceArray.length - 1;
-
-        return reverseSentence(sentenceArray, sentenceBuilder, i).equalsIgnoreCase(sentence);
-    }
-
-    private String reverseSentence(String[] sentenceArray, StringBuilder sentenceBuilder, int i) {
-        if (i < 0) {
-            return sentenceBuilder.toString();
+        for (int i = 0; i < sentenceArray.length; i++) {
+            if (!sentenceArray[i].equals(sentenceArray[sentenceArray.length - 1 - i])) {
+                return false;
+            }
         }
 
-        sentenceBuilder.append(sentenceArray[i]);
-        i--;
-
-        return reverseSentence(sentenceArray, sentenceBuilder, i);
+        return true;
     }
 
+    private boolean isWordPalindromeByRecursion(String sentence, int i) {
+        String[] sentenceArray = sentence.toLowerCase().split("");
+
+        if (!sentenceArray[i].equals(sentenceArray[sentenceArray.length - 1 - i])) {
+            return false;
+        }
+
+        i++;
+
+        return i >= sentenceArray.length || isWordPalindromeByRecursion(sentence, i);
+    }
 }
