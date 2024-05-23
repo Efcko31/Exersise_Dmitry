@@ -11,7 +11,7 @@ public class Laba7Ex4 {
     Найти произведение введённых нечётных чисел. */
 
     @Test
-    void test() throws WrongSequenceSizeException {
+    void test() {
         assertEquals(15, findProductNumbers(new int[]{1, 2, 3, 4, 5}));
         assertEquals(15, findProductNumbersByRecursion(new int[]{1, 2, 3, 4, 5}, 0, 1));
 

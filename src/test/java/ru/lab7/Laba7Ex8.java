@@ -47,16 +47,8 @@ public class Laba7Ex8 {
             if (numbersArray[i] == x) {
                 return i + 1;
             }
-            try { // todo помоему какая-то дичь.
-                if (i == numbersArray.length - 1) {
-                    throw new NumberIsMissingException("Число не найдено!");
-                }
-            } catch (NumberIsMissingException e) {
-                System.out.println(e.getMessage());
-                throw e;
-            }
         }
-        return 0;// exception
+        throw new NumberIsMissingException("Число не найдено!");
     }
 
     private int findIndexNumberXByRecursion(int[] numbersArray, int x, int i) throws Exception {
