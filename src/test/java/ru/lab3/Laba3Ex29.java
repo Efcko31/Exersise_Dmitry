@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 public class Laba3Ex29 {
 
     @Test
-        // это Ты мне как пример делал это задание если что
+
     void into7Countingsystem(){
         String result = into7CountingSystem(0);
         Assertions.assertEquals("0", result);

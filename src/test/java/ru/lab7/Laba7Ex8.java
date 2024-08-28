@@ -1,12 +1,11 @@
 package ru.lab7;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
+import ru.lab7.exception.NumberIsMissingException;
+import ru.lab7.exception.WrongSequenceSizeException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class Laba7Ex8 {
     /* Дана упорядоченная по убыванию последовательность целых чисел. Определить,
@@ -14,49 +13,60 @@ public class Laba7Ex8 {
        этого члена. */
 
     @Test
-    void test() {
-        assertEquals(4, findIndexNumberX(new int[]{1, 4, 2, 3, 6, 9}, 6));
+    void test() throws Exception {
+        assertEquals(2, findIndexNumberX(new int[]{9, 6, 5, 3, 2, 1}, 6));
+        assertEquals(2, findIndexNumberXByRecursion(new int[]{9, 6, 5, 3, 2, 1}, 6, 0));
 
-        assertEquals(-1, findIndexNumberX(new int[]{1, 4, 2, 3, 7, 9}, 6));
+        assertThrows(NumberIsMissingException.class, () -> findIndexNumberX(new int[]{9, 7, 4, 3, 2, 1}, 6));
+        assertThrows(NumberIsMissingException.class, () -> findIndexNumberXByRecursion
+                (new int[]{9, 7, 4, 3, 2, 1}, 6, 0));
 
-        assertEquals(-1, findIndexNumberX(new int[]{1}, 6));
+        assertThrows(WrongSequenceSizeException.class, () -> findIndexNumberX(new int[]{6}, 6));
+        assertThrows(WrongSequenceSizeException.class, () -> findIndexNumberXByRecursion(new int[]{6}, 6, 0));
 
-        assertEquals(-1, findIndexNumberX(new int[]{1, 2, 3, 4, 7, 9}, 6));
+        assertThrows(WrongSequenceSizeException.class, () -> findIndexNumberX(new int[]{}, 6));
+        assertThrows(WrongSequenceSizeException.class, () -> findIndexNumberXByRecursion(new int[]{}, 6, 0));
 
-        assertEquals(-1, findIndexNumberX(new int[]{1, 2, 3, 4, 5, 9}, 6));
+        assertEquals(3, findIndexNumberX(new int[]{1, 3, 4, 2, 7, 5, 6}, 4));
+        assertEquals(3, findIndexNumberXByRecursion(new int[]{1, 3, 4, 2, 7, 5, 6}, 4, 0));
 
-        assertEquals(2, findIndexNumberX(new int[]{1, 3, 4, 2, 7, 5, 6}, 4));
 
-
-        assertEquals(4, findIndexNumberXByRecursion(new int[]{1, 4, 2, 3, 6, 9}, 6, 0));
-
-        assertEquals(-1, findIndexNumberXByRecursion(new int[]{1, 4, 2, 3, 8, 9}, 6, 0));
-
-        assertEquals(0, findIndexNumberXByRecursion(new int[]{6}, 6, 0));
-
-        assertEquals(-1, findIndexNumberXByRecursion(new int[]{}, 6, 0));
-
-        assertEquals(2, findIndexNumberXByRecursion(new int[]{1, 3, 4, 2, 7, 5, 6}, 4, 0));
     }
 
-    private int findIndexNumberX(int[] numbersArray, int x) {
+    private int findIndexNumberX(int[] numbersArray, int x) throws Exception {
+        try {
+            if (numbersArray.length <= 1) {
+                throw new WrongSequenceSizeException("Последовательность должна содержать минимум 2 числа!");
+            }
+        } catch (WrongSequenceSizeException e) {
+            System.out.println(e.getMessage());
+            throw e;
+        }
+
         for (int i = 0; i < numbersArray.length; i++) {
             if (numbersArray[i] == x) {
-                return i;
+                return i + 1;
             }
         }
-    return -1;
+        throw new NumberIsMissingException("Число не найдено!");
     }
 
-    private int findIndexNumberXByRecursion(int[] numberArray, int x, int i) {
-        if (i == numberArray.length) {
-            return -1;
+    private int findIndexNumberXByRecursion(int[] numbersArray, int x, int i) throws Exception {
+        try {
+            if (numbersArray.length <= 1) {
+                throw new WrongSequenceSizeException("Последовательность должна содержать минимум 2 числа!");
+            } else if (i == numbersArray.length) {
+                throw new NumberIsMissingException("Число не найдено!");
+            }
+        } catch (WrongSequenceSizeException | NumberIsMissingException e) {
+            System.out.println(e.getMessage());
+            throw e;
         }
 
-        if (numberArray[i] == x) {
-            return i;
+        if (numbersArray[i] == x) {
+            return i + 1;
         }
         i++;
-    return findIndexNumberXByRecursion(numberArray, x, i);
+        return findIndexNumberXByRecursion(numbersArray, x, i);
     }
 }

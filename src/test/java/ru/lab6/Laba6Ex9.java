@@ -9,8 +9,8 @@ public class Laba6Ex9 {
     //был вставлен символ c2, если c2 не следует за c1 в исходной строке.
     @Test
     public void test() {
-        assertEquals("Жа&ра& на& улице, ну просто пипец!", insertCharacterC1AfterC2ItNotThere(
-                "Жара& на улице, ну просто пипец!", "а", "&"));
+        assertEquals("Жа&ра& на& улице, ну просто ужа&с!", insertCharacterC1AfterC2ItNotThere(
+                "Жара& на улице, ну просто ужас!", "а", "&"));
 
         assertEquals("А*бра*ка*дра*риба*ра*дуприба*ра*!", insertCharacterC1AfterC2ItNotThere(
                 "Абракадрарибарадуприбара!", "а", "*"));

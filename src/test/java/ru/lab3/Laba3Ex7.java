@@ -14,7 +14,7 @@ public class Laba3Ex7 {
         Assertions.assertEquals(0, theMaximumLengthOfIdenticalCharactersInRow(new String[]{".", ".", "7", "7", ".", "&", "&", "&"}));
         Assertions.assertEquals(2, theMaximumLengthOfIdenticalCharactersInRow(new String[]{")(((((((", "(", "*", "3", "*", "*", ".", "&"}));
         Assertions.assertEquals(3, theMaximumLengthOfIdenticalCharactersInRow(new String[]{"**", "**", "**", "7", ".", "&", "&", "&"}));
-        // Является ли почледний тест ошибкой? Стоило ли делать массив в типе Char?
+
 
     }
 

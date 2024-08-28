@@ -10,20 +10,20 @@ public class Laba6Ex10 {
 
     public void test() {
         assertTrue(checkingForPresenceLettersFromWordInSentence("Хорошо на свете жить!",
-                "рожа"));
+                "жаро"));
 
-        assertTrue(checkingForPresenceLettersFromWordInSentence("жир, БаБы", "жижа"));
+        assertTrue(checkingForPresenceLettersFromWordInSentence("жир, аоБы", "жижа"));
 
-        assertFalse(checkingForPresenceLettersFromWordInSentence("жир, БаБу", "жу-Жу жУ-Жуы"));
+        assertFalse(checkingForPresenceLettersFromWordInSentence("жир, БаБуин", "жу-Жу жУ-Жуы"));
 
         assertFalse(checkingForPresenceLettersFromWordInSentence("Машина Форд - лучше " +
-                "ДиРижАБАль - АГА!", "жуй"));
+                "ДиРижАБАль - машиНа!", "вой"));
 
-        assertTrue(checkingForPresenceLettersFromWordInSentence("Дебыльноё чувство, " +
+        assertTrue(checkingForPresenceLettersFromWordInSentence("Странное чувство, " +
                         "что как будто могу и хочу сломать свой код и вродё как и знаю где может подвести, но не Фижу",
-                "Ёбаный Фонарь"));
+                "Аптека Фонарь"));
 
-        assertTrue(checkingForPresenceLettersFromWordInSentence("Хы - хы, я наше брешь и ЗаСАтаол",
+        assertTrue(checkingForPresenceLettersFromWordInSentence(" Хе-хе, я нашелс брешь и залотал ее",
                 "Сало"));
 
     }
