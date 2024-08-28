@@ -17,8 +17,7 @@ public class Laba3Ex5 {
         Assertions.assertEquals("НЕТ", adjacentNumbersOfTheFibonacciSequence(new int[]{0, 0}));
         Assertions.assertEquals("НЕТ, введите 2 числа!", adjacentNumbersOfTheFibonacciSequence(new int[]{0}));
         Assertions.assertEquals("НЕТ, введите 2 числа!", adjacentNumbersOfTheFibonacciSequence(new int[]{0, 0, 12}));
-        //Assertions.assertEquals("НЕТ, введите 2 числа!", test(new int[] {j, f}));
-        // Как проверить, что пользователь точно ввел числа?
+
 
     }
 

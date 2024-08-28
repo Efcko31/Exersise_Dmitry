@@ -60,7 +60,7 @@ public class Laba4Ex19 {
         return minIndex;
     }
 
-    private static int[] sortByChoice(int[] numberArray) {
+    private static void sortByChoice(int[] numberArray) {
         for (int i = 0; i < numberArray.length; i++) {
             int minIndexNumberArray = searchMinimumValue(numberArray, i);
 
@@ -68,6 +68,5 @@ public class Laba4Ex19 {
             numberArray[i] = numberArray[minIndexNumberArray];
             numberArray[minIndexNumberArray] = numberReplace;
         }
-        return numberArray;
     }
 }

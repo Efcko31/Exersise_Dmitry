@@ -15,7 +15,6 @@ public class Laba4Ex12 {
     }
 
     private int[] checkForOrder(int[] numberArray) {
-        boolean flagCheckingForOrder = true;
         for (int i = 1; i < numberArray.length; i++) {
             if (numberArray[i] <= numberArray[i - 1] | numberArray[i - 1] == 0) {
                 numberArray[i] = 0;

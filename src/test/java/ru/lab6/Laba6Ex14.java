@@ -10,12 +10,12 @@ public class Laba6Ex14 {
 
     @Test
     public void test() {
-        assertEquals("жопа", searchForLastWordFirstLineInSecondLine("полная жопа везде", "всюду ЖопА и мрак"));
+        assertEquals("хлеб", searchForLastWordFirstLineInSecondLine("страница хлеб везде", "всюду ХлеБ и мрак"));
 
         assertEquals("Нет слова", searchForLastWordFirstLineInSecondLine("Поезд - поезд и пол",
                 "Пазик - пазик и лава"));
 
-        assertEquals("пол", searchForLastWordFirstLineInSecondLine("жопа-ЖоПа-пол", "жопа-жопа-пОл"));
+        assertEquals("пол", searchForLastWordFirstLineInSecondLine("лава-ЛаВа-пол", "лава-лава-пОл"));
 
     }
 
