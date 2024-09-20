@@ -4,14 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
 public class Grizzly extends Bear {
 
-    public Grizzly(String name, String gender, Integer age, Integer weight, String color, ArrayList<String> diet, String description) {
-        super(name, gender, age, weight, color, diet, description);
+    public Grizzly(String name, String gender, Integer age, Integer weight, String color, ArrayList<String> diet, String note) {
+        super(name, gender, age, weight, color, diet, note);
     }
 
     @Override
@@ -28,11 +27,8 @@ public class Grizzly extends Bear {
 
     @Override
     public String getDescription() {
-        return String.format("Кличка: %s;\nПол: %s;\nВозраст: %d;\nВес: %d;\nОкрас: %s;\nОписание: %s.\n",
-                name, gender, age, weight, color, description);
+        return String.format("\nПол: %s;\nВозраст: %d;\nВес: %d;\nОкрас: %s;\nОписание: %s.\n",
+                 gender, age, weight, color, note);
     }
 
-    public void addDiet(String... food) {
-        diet.addAll(List.of(food));
-    }
 }

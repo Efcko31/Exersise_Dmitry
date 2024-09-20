@@ -11,14 +11,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class TestAnimal {
-    ArrayList<Animal> animals = new ArrayList<>();
-    Veterinarian vet = new Veterinarian(
+    ArrayList<Animal> animals;
+    Veterinarian veterinarian = new Veterinarian(
             "Михаил",
             "Федоров",
             "Иванов",
             32,
-            LocalDate.of(1992,12,24) );
-    MaineCoon animal1 = new MaineCoon(
+            LocalDate.of(1992, 12, 24));
+    MaineCoon maineCoon = new MaineCoon(
             "Барсик",
             "м",
             2,
@@ -26,7 +26,7 @@ public class TestAnimal {
             "бурый",
             new ArrayList<>(),
             "Покладистый, аккуратный, агрессии не наблюдается. На прививки реагирует нормально");
-    Poodle animal2 = new Poodle(
+    Poodle poodle = new Poodle(
             "Тузик",
             "ж",
             1,
@@ -34,7 +34,7 @@ public class TestAnimal {
             "белый",
             new ArrayList<>(),
             "Покладистый, аккуратный, агрессии не наблюдается. На прививки реагирует нормально");
-    Grizzly animal3 = new Grizzly(
+    Grizzly grizzly = new Grizzly(
             "Миша",
             "м",
             5,
@@ -46,13 +46,26 @@ public class TestAnimal {
 
     @Test
     public void test() {
-        AnimalUtil.addAnimalsToList(animals, animal1, animal2, animal3);
-        animal1.addDiet("Мягкий корм", "Сухой корм", "Молоко");
-        animal2.addDiet("Сухой корм", "Курица отварная", "Комплекс витаминов");
-        animal3.addDiet("Конина свежая", "Свинина свежая", "Мед");
+        animals = new ArrayList<>();
+        animals.add(maineCoon);
+        animals.add(poodle);
+        animals.add(grizzly);
+
+        maineCoon.getDiet().add("Мягкий корм");
+        maineCoon.getDiet().add("Сухой корм");
+        maineCoon.getDiet().add("Молоко");
+
+        poodle.getDiet().add("Сухой корм");
+        poodle.getDiet().add("Курица отварная");
+        poodle.getDiet().add("Комплекс витаминов");
+
+        grizzly.getDiet().add("Конина свежая");
+        grizzly.getDiet().add("Свинина свежая");
+        grizzly.getDiet().add("Мед");
 
         for (Animal animal : animals) {
-            vet.treatAnimal(animal);
+            System.out.println(animal.getName());
+            veterinarian.treatAnimal(animal);
         }
         for (Animal animal : animals) {
             animal.eat();

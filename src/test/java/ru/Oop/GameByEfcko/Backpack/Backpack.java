@@ -1,15 +1,14 @@
-package ru.Oop.GameByEfcko.Weapon;
+package ru.Oop.GameByEfcko.Backpack;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Weapon {
+public abstract class Backpack {
     protected String name;
-    protected Integer minDamage;
-    protected Integer maxDamage;
-
+    protected ArrayList<Object> volume;
 }

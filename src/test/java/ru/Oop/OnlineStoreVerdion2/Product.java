@@ -1,4 +1,4 @@
-package ru.Oop.Product;
+package ru.Oop.OnlineStoreVerdion2;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Product {
-    protected String name;
-    protected Double price;
-    protected Double rating;
+    private String name;
+    private Double price;
+    private Double rating;
 }
