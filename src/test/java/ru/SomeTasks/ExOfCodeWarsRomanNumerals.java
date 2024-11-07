@@ -1,47 +1,46 @@
 package ru.SomeTasks;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class RomanNumerals {
+public class ExOfCodeWarsRomanNumerals {
     @Test
     void test() {
-        Assertions.assertEquals("II", convertRomanNumerals(2));
-        Assertions.assertEquals("IV", convertRomanNumerals(4));
-        Assertions.assertEquals("VII", convertRomanNumerals(7));
-        Assertions.assertEquals("IX", convertRomanNumerals(9));
-        Assertions.assertEquals("", convertRomanNumerals(0));
+        assertEquals("II", convertRomanNumerals(2));
+        assertEquals("IV", convertRomanNumerals(4));
+        assertEquals("VII", convertRomanNumerals(7));
+        assertEquals("IX", convertRomanNumerals(9));
+        assertEquals("", convertRomanNumerals(0));
 
-        Assertions.assertEquals("XXIII", convertRomanNumerals(23));
-        Assertions.assertEquals("XLVIII", convertRomanNumerals(48));
-        Assertions.assertEquals("LXXIX", convertRomanNumerals(79));
-        Assertions.assertEquals("XCIV", convertRomanNumerals(94));
-        Assertions.assertEquals("LXX", convertRomanNumerals(70));
+        assertEquals("XXIII", convertRomanNumerals(23));
+        assertEquals("XLVIII", convertRomanNumerals(48));
+        assertEquals("LXXIX", convertRomanNumerals(79));
+        assertEquals("XCIV", convertRomanNumerals(94));
+        assertEquals("LXX", convertRomanNumerals(70));
 
-        Assertions.assertEquals("CCXXXIV", convertRomanNumerals(234));
-        Assertions.assertEquals("CDLXXVII", convertRomanNumerals(477));
-        Assertions.assertEquals("DCCLXXVII", convertRomanNumerals(777));
-        Assertions.assertEquals("CMXXVIII", convertRomanNumerals(928));
-        Assertions.assertEquals("CI", convertRomanNumerals(101));
+        assertEquals("CCXXXIV", convertRomanNumerals(234));
+        assertEquals("CDLXXVII", convertRomanNumerals(477));
+        assertEquals("DCCLXXVII", convertRomanNumerals(777));
+        assertEquals("CMXXVIII", convertRomanNumerals(928));
+        assertEquals("CI", convertRomanNumerals(101));
 
-        Assertions.assertEquals("MCCXXXIV", convertRomanNumerals(1234));
-        Assertions.assertEquals("MXXVIII", convertRomanNumerals(1028));
-        Assertions.assertEquals("MCDVII", convertRomanNumerals(1407));
+        assertEquals("MCCXXXIV", convertRomanNumerals(1234));
+        assertEquals("MXXVIII", convertRomanNumerals(1028));
+        assertEquals("MCDVII", convertRomanNumerals(1407));
+        assertEquals("M", convertRomanNumerals(1000));
     }
 
-    public String convertRomanNumerals(Integer number) {
+    public String convertRomanNumerals(int n) {
         StringBuilder answer = new StringBuilder("");
-        if (number > 1000) {
-            thousands(answer, number);
-        } else if (number > 100) {
-            hundreds(answer, number);
-        } else if (number > 10) {
-            tens(answer, number);
+        if (n >= 1000) {
+            thousands(answer, n);
+        } else if (n > 100) {
+            hundreds(answer, n);
+        } else if (n > 10) {
+            tens(answer, n);
         } else {
-            units(answer, number);
+            units(answer, n);
         }
         return answer.toString();
     }
