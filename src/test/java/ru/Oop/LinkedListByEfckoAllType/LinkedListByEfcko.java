@@ -39,7 +39,7 @@ public class LinkedListByEfcko<E> {
         }
     }
 
-    public boolean addAll(LinkedListByEfcko<? extends E> elements) { //todo
+    public boolean addAll(LinkedListByEfcko<? extends E> elements) { //
         boolean modified = false;
         LinkedListByEfcko<?> clone = elements.clone();
         add(clone.head);
@@ -221,7 +221,7 @@ public class LinkedListByEfcko<E> {
     }
 
 //    public void sort() {
-//        todo
+//
 //    }
 
     private void checkForIndexInRangeToAdd(int index) {
