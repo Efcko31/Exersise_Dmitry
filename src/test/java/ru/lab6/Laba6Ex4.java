@@ -34,8 +34,7 @@ public class Laba6Ex4 {
     }
 
     private String removesWordsContainingCharactersFromCondition(String string, String symbols) {
-        String stringWithoutPunctuationMarks = string.replaceAll("[^a-zA-Zа-яА-Я]", " ");
-        String[] arrayString = stringWithoutPunctuationMarks.split(" ");
+        String[] arrayString = string.replaceAll("[^a-zA-Zа-яА-Я]", " ").split(" ");
         var symbolsLower = symbols.toLowerCase();
 
         for (int i = 0; i < arrayString.length; i++) {

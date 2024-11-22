@@ -9,11 +9,16 @@ public class Laba4Ex4 {
     // Сначала сортировать числа отрицательные, затем, начиная с последнего вхождения отричательного числа - отсортировать положительные.
     @Test
     void test() {
-        Assertions.assertArrayEquals(new int[]{-7, -9, 2, 3, 4, 5, 6}, sortNegativeDescendingOrderAndPositiveAscendingOrder(new int[]{3, -9, 5, -7, 2, 4, 6}));
-        Assertions.assertArrayEquals(new int[]{-9, 2, 3, 4, 6, 7}, sortNegativeDescendingOrderAndPositiveAscendingOrder(new int[]{-9, 3, 7, 6, 4, 2}));
-        Assertions.assertArrayEquals(new int[]{-3, -4, -6, -7, -9, 2}, sortNegativeDescendingOrderAndPositiveAscendingOrder(new int[]{-9, -3, -7, -6, -4, 2}));
-        Assertions.assertArrayEquals(new int[]{2, 3, 4, 6, 7, 9}, sortNegativeDescendingOrderAndPositiveAscendingOrder(new int[]{9, 3, 7, 6, 4, 2}));
-        Assertions.assertArrayEquals(new int[]{-6, -7, -8, -9, 1, 2, 3, 4, 5}, sortNegativeDescendingOrderAndPositiveAscendingOrder(new int[]{1, -8, 4, -6, 5, -9, 3, 2, -7}));
+        Assertions.assertArrayEquals(new int[]{-7, -9, 2, 3, 4, 5, 6},
+                sortNegativeDescendingOrderAndPositiveAscendingOrder(new int[]{3, -9, 5, -7, 2, 4, 6}));
+        Assertions.assertArrayEquals(new int[]{-9, 2, 3, 4, 6, 7},
+                sortNegativeDescendingOrderAndPositiveAscendingOrder(new int[]{-9, 3, 7, 6, 4, 2}));
+        Assertions.assertArrayEquals(new int[]{-3, -4, -6, -7, -9, 2},
+                sortNegativeDescendingOrderAndPositiveAscendingOrder(new int[]{-9, -3, -7, -6, -4, 2}));
+        Assertions.assertArrayEquals(new int[]{2, 3, 4, 6, 7, 9},
+                sortNegativeDescendingOrderAndPositiveAscendingOrder(new int[]{9, 3, 7, 6, 4, 2}));
+        Assertions.assertArrayEquals(new int[]{-6, -7, -8, -9, 1, 2, 3, 4, 5},
+                sortNegativeDescendingOrderAndPositiveAscendingOrder(new int[]{1, -8, 4, -6, 5, -9, 3, 2, -7}));
     }
 
     private int[] sortNegativeDescendingOrderAndPositiveAscendingOrder(int[] listNumber) {

@@ -1,13 +1,13 @@
 package ru.Oop.Laba4;
 
 import org.junit.jupiter.api.Test;
-import ru.Oop.LinkedListByEfckoAllType.ElementByEfcko;
-import ru.Oop.LinkedListByEfckoAllType.LinkedListByEfcko;
+import ru.Oop.LinkedListByEfckoAllType.Integer.ElementByEfckoTypeInteger;
+import ru.Oop.LinkedListByEfckoAllType.Integer.LinkedListByEckoTypeInteger;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class Exercise1UsingLinkedListByEfcko {
+public class Exercise1UsingLinkedListByEckoTypeInteger {
     /*Дана последовательность целых чисел. Вывести упорядоченную по возрастанию
 последовательность, состоящую из чисел данной последовательности, стоящих на
 нечётных местах и встречающихся в ней только один раз.*/
@@ -30,8 +30,8 @@ public class Exercise1UsingLinkedListByEfcko {
     public Integer[] sortsNumbersInAscendingOrderStandingInOddPlaces(Integer[] numbers) throws NullPointerException {
         try {
             Laba4Util.checkArrayIsEmpty(numbers);
-            LinkedListByEfcko<Integer> numbersDuplicateList = new LinkedListByEfcko<>();
-            LinkedListByEfcko<Integer> listForAnswer = new LinkedListByEfcko<>();
+            LinkedListByEckoTypeInteger numbersDuplicateList = new LinkedListByEckoTypeInteger();
+            LinkedListByEckoTypeInteger listForAnswer = new LinkedListByEckoTypeInteger();
 
             return removesDuplicatesAndOddIndexes(numbersDuplicateList, listForAnswer, numbers);
         } catch (NullPointerException e) {
@@ -41,43 +41,65 @@ public class Exercise1UsingLinkedListByEfcko {
     }
 
 
-    public LinkedListByEfcko<Integer> insertingAnElementByValue(LinkedListByEfcko<Integer> numbersList) {
-        for( int i = 0; i < numbersList.size(); i++) {
-            int x = numbersList.get(i);
+    public LinkedListByEckoTypeInteger insertingAnElementByValue(LinkedListByEckoTypeInteger numbersList) {
+        for (int i = 0; i < numbersList.size(); i++) {
+            Integer x = numbersList.get(i);
             int j = i;
-            while (j > 0 &&  numbersList.get(j - 1) > x) {
+            while (j > 0 && numbersList.get(j - 1) > x) {
                 numbersList.set(j, numbersList.get(j - 1));
                 --j;
             }
             numbersList.set(j, x);
         }
-    return numbersList;
+        return numbersList;
     }
 
-    public Integer[] removesDuplicatesAndOddIndexes(LinkedListByEfcko<Integer> numbersDuplicateList,
-                                               LinkedListByEfcko<Integer> listForAnswer,
-                                               Integer[] numbers) {
+    public Integer[] removesDuplicatesAndOddIndexes(LinkedListByEckoTypeInteger numbersDuplicateList,
+                                                    LinkedListByEckoTypeInteger listForAnswer,
+                                                    Integer[] numbers) {
 
         for (int i = 0; i < numbers.length; i++) {
-            if (!listForAnswer.contains(numbers[i])){
-                if (i % 2 != 0 & !numbersDuplicateList.contains(numbers[i])) {
-                    listForAnswer.add(new ElementByEfcko<>(numbers[i]));
+            if (!containsElem(listForAnswer, numbers[i])) {
+                if (i % 2 != 0 & !containsElem(numbersDuplicateList, numbers[i])) {
+                    listForAnswer.add(numbers[i]);
                 } else {
-                    numbersDuplicateList.add(new ElementByEfcko<>(numbers[i]));
+                    numbersDuplicateList.add(numbers[i]);
                 }
             } else {
-                listForAnswer.remove(listForAnswer.indexOf(numbers[i]));
-                numbersDuplicateList.add(new ElementByEfcko<>(numbers[i]));
+                listForAnswer.remove(searchIndexElement(listForAnswer, numbers[i]));
+                numbersDuplicateList.add(numbers[i]);
             }
         }
         return transfersDataFromListToArray(insertingAnElementByValue(listForAnswer));
     }
 
-    public Integer[] transfersDataFromListToArray(LinkedListByEfcko<Integer> listForAnswer) {
+    public Integer[] transfersDataFromListToArray(LinkedListByEckoTypeInteger listForAnswer) {
         Integer[] answer = new Integer[listForAnswer.size()];
         for (int i = 0; i < listForAnswer.size(); i++) {
             answer[i] = listForAnswer.get(i);
         }
         return answer;
+    }
+
+    public boolean containsElem(LinkedListByEckoTypeInteger listForAnswer, int data) {
+        ElementByEfckoTypeInteger element =  listForAnswer.getHead();
+        for (int i = 0; i < listForAnswer.size() && element.getData() != null; i++) {
+            if (element.getData() == data) {
+                return true;
+            }
+            element = element.getNext();
+        }
+        return false;
+    }
+
+    public int searchIndexElement(LinkedListByEckoTypeInteger listForAnswer, int data) {
+        ElementByEfckoTypeInteger element = new ElementByEfckoTypeInteger(null, listForAnswer.getHead());
+        for (int i = 0; i < listForAnswer.size(); i++) {
+            if (element.getNext().getData() == data) {
+                return i;
+            }
+            element = element.getNext();
+        }
+        return -1;
     }
 }

@@ -3,17 +3,19 @@ package ru.lab3;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class Laba3Ex7 {
     //    С клавиатуры вводятся символы. Признак конца ввода — точка. Определить максимальную длину подпоследовательности
 //    одинаковых следующих друг за другом символов.
     @Test
     void test() {
-        Assertions.assertEquals(2, theMaximumLengthOfIdenticalCharactersInRow(new String[]{"7", "&", "7", "7", ".", "&", "&", "&"}));
-        Assertions.assertEquals(8, theMaximumLengthOfIdenticalCharactersInRow(new String[]{"0", "0", "0", "0", "0", "0", "0", "0"}));
-        Assertions.assertEquals(1, theMaximumLengthOfIdenticalCharactersInRow(new String[]{"*", ".", "7", "7", ".", "&", "&", "&"}));
-        Assertions.assertEquals(0, theMaximumLengthOfIdenticalCharactersInRow(new String[]{".", ".", "7", "7", ".", "&", "&", "&"}));
-        Assertions.assertEquals(2, theMaximumLengthOfIdenticalCharactersInRow(new String[]{")(((((((", "(", "*", "3", "*", "*", ".", "&"}));
-        Assertions.assertEquals(3, theMaximumLengthOfIdenticalCharactersInRow(new String[]{"**", "**", "**", "7", ".", "&", "&", "&"}));
+        assertEquals(2, theMaximumLengthOfIdenticalCharactersInRow(new String[]{"7", "&", "7", "7", ".", "&", "&", "&"}));
+        assertEquals(8, theMaximumLengthOfIdenticalCharactersInRow(new String[]{"0", "0", "0", "0", "0", "0", "0", "0"}));
+        assertEquals(1, theMaximumLengthOfIdenticalCharactersInRow(new String[]{"*", ".", "7", "7", ".", "&", "&", "&"}));
+        assertEquals(0, theMaximumLengthOfIdenticalCharactersInRow(new String[]{".", ".", "7", "7", ".", "&", "&", "&"}));
+        assertEquals(2, theMaximumLengthOfIdenticalCharactersInRow(new String[]{")(((((((", "(", "*", "3", "*", "*", ".", "&"}));
+        assertEquals(3, theMaximumLengthOfIdenticalCharactersInRow(new String[]{"**", "**", "**", "7", ".", "&", "&", "&"}));
 
 
     }

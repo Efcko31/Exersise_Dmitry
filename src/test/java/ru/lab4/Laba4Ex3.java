@@ -1,31 +1,43 @@
 package ru.lab4;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import ru.Oop.Laba4.Laba4Util;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class Laba4Ex3 {
     // Если число x встречается в последовательности, то упорядочить по невозрастанию
     //часть последовательности до последнего вхождения x
     @Test
     void test() {
-        Assertions.assertArrayEquals(new int[]{9, 3, 7, 6, 4, 2}, sortToNumber(new int[]{9, 3, 7, 6, 4, 2}));
-        Assertions.assertArrayEquals(new int[]{3, 4, 6, 7, 9, 1, 2}, sortToNumber(new int[]{9, 3, 7, 6, 4, 1, 2}));
-        Assertions.assertArrayEquals(new int[]{1, 3, 5, 4, 2, 9, 7}, sortToNumber(new int[]{1, 3, 5, 4, 2, 9, 7}));
+        assertArrayEquals(new Integer[]{9, 3, 7, 6, 4, 2}, sortToNumber(new Integer[]{9, 3, 7, 6, 4, 2}));
+        assertArrayEquals(new Integer[]{3, 4, 6, 7, 9, 1, 2}, sortToNumber(new Integer[]{9, 3, 7, 6, 4, 1, 2}));
+        assertArrayEquals(new Integer[]{1, 3, 5, 4, 2, 9, 7}, sortToNumber(new Integer[]{1, 3, 5, 4, 2, 9, 7}));
+        assertThrows(NullPointerException.class, () -> sortToNumber(new Integer[]{}));
     }
-    private int[] sortToNumber(int[] listNumber) {
-        int x = 1;
-        int lastEntranceX = 0;
 
-        for (int i = listNumber.length - 1; i > 0; i--) {
-            if (listNumber[i] == x) {
-                lastEntranceX = i;
-                i = 0;
+    private Integer[] sortToNumber(Integer[] listNumber) {
+        try {
+            Laba4Util.checkArrayIsEmpty(listNumber);
+            int x = 1;
+            int lastEntranceX = 0;
+
+            for (int i = listNumber.length - 1; i > 0; i--) {
+                if (listNumber[i] == x) {
+                    lastEntranceX = i;
+                    i = 0;
+                }
             }
+            sortByChoise(listNumber, lastEntranceX);
+            return listNumber;
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+            throw e;
         }
-        sortByChoise(listNumber, lastEntranceX);
-        return listNumber;
     }
-    private static int[] sortByChoise(int[] numberArray, int lastEntranceX) {
+
+    private static Integer[] sortByChoise(Integer[] numberArray, Integer lastEntranceX) {
         for (int i = 0; i < numberArray.length; i++) {
             int indexMinimum = searchMinimumValue(numberArray, i, lastEntranceX);
             int numberForReplace = numberArray[i];
@@ -34,7 +46,8 @@ public class Laba4Ex3 {
         }
         return numberArray;
     }
-    private static int searchMinimumValue(int[] numberArray, int start, int finish) {
+
+    private static Integer searchMinimumValue(Integer[] numberArray, int start, int finish) {
         int minIndex = start, minValue = numberArray[start];
         for (int j = start; j < finish; j++) {
             if (minValue > numberArray[j]) {

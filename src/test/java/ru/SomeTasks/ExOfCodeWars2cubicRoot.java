@@ -17,19 +17,32 @@ public class ExOfCodeWars2cubicRoot {
         assertEquals(-1, findNb(1613039195003040001L));
         assertEquals(-1, findNb(2078065436661612226L));
         assertEquals(-1, findNb(1768256963550315226L));
-        assertEquals(-1, findNb(2195012314679186025L));
+        assertEquals(54434, findNb(2195012314679186025L));
+        assertEquals(54894, findNb(2270154126080394225L));
     }
 
     public long findNb(long m) {
-        int summ = 0;
-        double sqrt = Math.sqrt(m);
-        for (int i = 1; i < sqrt / 2; i++) {
-            summ += i;
-            if (summ == sqrt && m - (long) (sqrt * sqrt) == 0) {
-                return i;
-            }
+        long sum = 1;
+        long n = 2;
+        while (sum < m) {
+            sum = sum + n * n * n;
+            n++;
+        }
+        if (sum == m) {
+            return n - 1;
+        } else {
+            return -1;
         }
 
-        return -1;
+//        int summ = 0;
+//        double sqrt = Math.sqrt(m);
+//        for (int i = 1; i < sqrt / 2; i++) {
+//            summ += i;
+//            if (summ == sqrt && m - (long) (sqrt * sqrt) == 0) {
+//                return i;
+//            }
+//        }
+//
+//        return -1;
     }
 }

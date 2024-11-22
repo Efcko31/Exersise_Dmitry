@@ -1,4 +1,4 @@
-package ru.Oop.LinkedListByEfckoAllType;
+package ru.Oop.LinkedListByEfckoAllType.Integer;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ElementByEfcko<E> {
-    protected E data;
-    protected ElementByEfcko<?> next;
+public class ElementByEfckoTypeInteger<E> {
+    protected Integer data;
+    protected ElementByEfckoTypeInteger<E> next;
 
-    public ElementByEfcko(E data) {
+    public ElementByEfckoTypeInteger(Integer data) {
         this.data = data;
     }
 
@@ -21,7 +21,7 @@ public class ElementByEfcko<E> {
 
     @Override
     public String toString() {
-        return "" + data;
+        return data.toString();
     }
 }
 

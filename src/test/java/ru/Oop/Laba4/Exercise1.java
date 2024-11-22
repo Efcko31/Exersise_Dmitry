@@ -28,7 +28,6 @@ public class Exercise1 {
                 (new Integer[]{}));
     }
 
-
     public Integer[] sortsNumbersInAscendingOrderStandingInOddPlaces(Integer[] numbersArray) throws NullPointerException {
         try {
             Laba4Util.checkArrayIsEmpty(numbersArray);
@@ -43,6 +42,8 @@ public class Exercise1 {
             throw e;
         }
     }
+
+
 
     public void addingNumbersInOddPositionsArray(ArrayList<Integer> array, Integer[] numbersArray) {
         for (int i = 0; i < numbersArray.length; i++) {

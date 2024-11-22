@@ -2,7 +2,7 @@ package ru.SomeTasks.Decoder;
 
 
 public class MorseCode {
-    String[] morseCodeRussianAlphabet = {
+    static String[] morseCodeRussianAlphabet = new String[] {
             "а", ".-", "б", "-...",
             "в", ".--", "г", "--.",
             "д", "-..", "е", ".",
@@ -19,11 +19,11 @@ public class MorseCode {
             "ь", "-..-", "ы", "-.--",
             "э", "..--..", "ю", "..--", "я", ".-.-",};
 
-    String[] morseCodeNumbers = {
+    static String[] morseCodeNumbers = new String[] {
             "1", ".---", "2", "..---", "3", "...--", "4", "....-", "5", ".....",
             "6", "-....", "7", "--...", "8", "---..", "9", "----.", "0", "-----"};
 
-    String[] morseCodeEnglishAlphabet = {
+    static String[] morseCodeEnglishAlphabet = new String[]{
             "a", ".-", "b", "-...",
             "c", "-.-.", "d", "-..",
             "e", ".", "f", "..-.",
@@ -39,7 +39,7 @@ public class MorseCode {
             "y", "-..-", "z", "--.."
     };
 
-    String[] morseCodeCharacters = {
+    static String[] morseCodeCharacters = new String[]{
             ".", "......",
             ",", ".-.-.-",
             ":", "---...",
