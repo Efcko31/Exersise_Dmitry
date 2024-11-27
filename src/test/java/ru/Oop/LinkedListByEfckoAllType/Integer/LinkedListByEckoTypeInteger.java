@@ -72,7 +72,7 @@ public class LinkedListByEckoTypeInteger {
         return null;
     }
 
-    public Object set(int index, Integer element) {
+    public Integer set(int index, Integer element) {
         checkForIndexInRangeToRemoveOrGet(index);
         ElementByEfckoTypeInteger<Integer> x = elementByEfcko(index);
         Integer OldVal = x.getData();
@@ -104,9 +104,31 @@ public class LinkedListByEckoTypeInteger {
         return null;
     }
 
-//    public void sort() { todo
-//
-//    }
+    public void sortNaturalOrder() {
+        for (int i = 0; i < size(); i++) {
+            Integer x = get(i);
+            int j = i;
+            while (j > 0 && get(j - 1) > x) {
+                set(j, get(j - 1));
+                --j;
+            }
+            set(j, x);
+        }
+        //return numbersList;
+    }
+
+    public void sortReverseOrder() {
+        for (int i = 0; i < size(); i++) {
+            Integer x = get(i);
+            int j = i;
+            while (j > 0 && get(j - 1) < x) {
+                set(j, get(j - 1));
+                --j;
+            }
+            set(j, x);
+        }
+        //return numbersList;
+    }
 
     private void checkForIndexInRangeToAdd(int index) {
         if (index < 0 || index > size) {
@@ -119,25 +141,25 @@ public class LinkedListByEckoTypeInteger {
             throw new IndexOutOfBoundsException(getMESSAGE());
         }
     }
-    //    public int indexOf(Integer data) {
-//        int index = 0;
-//        if (data == null) {
-//            for (ElementByEfckoTypeInteger<?> e = head; e != null; e = e.next) {
-//                if (e.data == null) {
-//                    return index;
-//                }
-//                index++;
-//            }
-//        } else {
-//            for (ElementByEfckoTypeInteger<?> e = head; e != null; e = e.next) {
-//                if (data.equals(e.data)) {
-//                    return index;
-//                }
-//                index++;
-//            }
-//        }
-//        return -1;
-//    }
+        public int indexOf(Integer data) {
+        int index = 0;
+        if (data == null) {
+            for (ElementByEfckoTypeInteger<?> e = head; e != null; e = e.next) {
+                if (e.data == null) {
+                    return index;
+                }
+                index++;
+            }
+        } else {
+            for (ElementByEfckoTypeInteger<?> e = head; e != null; e = e.next) {
+                if (data.equals(e.data)) {
+                    return index;
+                }
+                index++;
+            }
+        }
+        return -1;
+    }
 //
 //    public boolean contains(Integer data) {
 //        return indexOf(data) >= 0;

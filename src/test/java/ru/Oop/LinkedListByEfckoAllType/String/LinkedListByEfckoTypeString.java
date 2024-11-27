@@ -97,12 +97,31 @@ public class LinkedListByEfckoTypeString {
                     element.next = removeElement.next;
                     removeElement.next = null;
                     size--;
-                    return element.data;
+                    return removeElement.data;
                 }
                 element = element.next;
             }
         }
         return null;
+    }
+    public int indexOf(String data) {
+        int index = 0;
+        if (data == null) {
+            for (ElementByEfckoTypeString<String> e = head; e != null; e = e.next) {
+                if (e.data == null) {
+                    return index;
+                }
+                index++;
+            }
+        } else {
+            for (ElementByEfckoTypeString<String> e = head; e != null; e = e.next) {
+                if (data.equals(e.data)) {
+                    return index;
+                }
+                index++;
+            }
+        }
+        return -1;
     }
 
 
@@ -127,25 +146,7 @@ public class LinkedListByEfckoTypeString {
 //    private String outOfBoundMassage(int index) {
 //        return String.format("Указанный индекс: %d выходит за размер массива: %d", index, size);
 //    }
-//    public int indexOf(String data) {
-//        int index = 0;
-//        if (data == null) {
-//            for (ElementByEfckoTypeString<String> e = head; e != null; e = e.next) {
-//                if (e.data == null) {
-//                    return index;
-//                }
-//                index++;
-//            }
-//        } else {
-//            for (ElementByEfckoTypeString<String> e = head; e != null; e = e.next) {
-//                if (data.equals(e.data)) {
-//                    return index;
-//                }
-//                index++;
-//            }
-//        }
-//        return -1;
-//    }
+
 //
 //    public boolean contains(String data) {
 //        return indexOf(data) >= 0;

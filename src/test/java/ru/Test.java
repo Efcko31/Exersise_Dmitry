@@ -26,6 +26,8 @@ public class Test {
         list.addAll(listForAdd);
         print(list);
 
+
+
     }
 
     public static void print(List list) {
