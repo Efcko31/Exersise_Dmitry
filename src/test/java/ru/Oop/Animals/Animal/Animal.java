@@ -8,6 +8,7 @@ import java.util.ArrayList;
 @AllArgsConstructor
 @NoArgsConstructor
 public abstract class Animal {
+    protected String breed;
     protected String name;
     protected String gender;
     protected Integer age;

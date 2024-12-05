@@ -6,25 +6,23 @@ import lombok.Setter;
 @Getter
 @Setter
 public class LinkedListByEckoTypeInteger {
-    private ElementByEfckoTypeInteger<Integer> head;
+    private ElementByEfckoTypeInteger head;
     private int size = 0;
-    private final String MESSAGE = String.format("Указанный индекс выходит за размер массива: %d", size);
-
+    private final String MESSAGE = "Указанный индекс выходит за размер массива: %d";
 
     public int size() {
         return size;
     }
-
 
     public boolean add(Integer data) {
         add(size(), data);
         return true;
     }
 
-    public void add(int index, Integer data) throws IndexOutOfBoundsException { //вопрос с clone
+    public void add(int index, Integer data) throws IndexOutOfBoundsException {
         checkForIndexInRangeToAdd(index);
-        ElementByEfckoTypeInteger<Integer> addElement = new ElementByEfckoTypeInteger<>(data);
-        ElementByEfckoTypeInteger<Integer> element = head;
+        ElementByEfckoTypeInteger addElement = new ElementByEfckoTypeInteger(data);
+        ElementByEfckoTypeInteger element = head;
 
         if (head == null || index == 0) {
             addElement.next = head;
@@ -47,10 +45,9 @@ public class LinkedListByEckoTypeInteger {
         }
     }
 
-
-    public ElementByEfckoTypeInteger<Integer> elementByEfcko(int index) { //аналог node
-        checkForIndexInRangeToRemoveOrGet(index);
-        ElementByEfckoTypeInteger<Integer> element = head;
+    public ElementByEfckoTypeInteger getElement(int index) { //аналог node ГДЕ ГЛАГОЛ в методе, что он делает???
+        checkForIndexInRangeToAdd(index);
+        ElementByEfckoTypeInteger element = head;
         for (int i = -1; i < index; i++) {
             if (i + 1 == index) {
                 return element;
@@ -59,10 +56,10 @@ public class LinkedListByEckoTypeInteger {
         }
         return null;
     }
-    
+
     public Integer get(int index) {
-        checkForIndexInRangeToRemoveOrGet(index);
-        ElementByEfckoTypeInteger<Integer> element = head;
+        checkForIndexInRangeToAdd(index);
+        ElementByEfckoTypeInteger element = head;
         for (int i = -1; i < index; i++) {
             if (i + 1 == index) {
                 return element.data;
@@ -73,16 +70,16 @@ public class LinkedListByEckoTypeInteger {
     }
 
     public Integer set(int index, Integer element) {
-        checkForIndexInRangeToRemoveOrGet(index);
-        ElementByEfckoTypeInteger<Integer> x = elementByEfcko(index);
+        checkForIndexInRangeToAdd(index);
+        ElementByEfckoTypeInteger x = getElement(index);
         Integer OldVal = x.getData();
         x.setData(element);
         return OldVal;
     }
 
     public Integer remove(int index) {
-        checkForIndexInRangeToRemoveOrGet(index);
-        ElementByEfckoTypeInteger<Integer> element = head;
+        checkForIndexInRangeToAdd(index);
+        ElementByEfckoTypeInteger element = head;
 
         if (index == 0) {
             head = element.next;
@@ -92,11 +89,11 @@ public class LinkedListByEckoTypeInteger {
         } else {
             for (int i = 0; i < index; i++) {
                 if (i + 1 == index) {
-                    ElementByEfckoTypeInteger<Integer> removeElement = element.next;
+                    ElementByEfckoTypeInteger removeElement = element.next;
                     element.next = removeElement.next;
                     removeElement.next = null;
                     size--;
-                    return element.data;
+                    return removeElement.data;
                 }
                 element = element.next;
             }
@@ -114,7 +111,6 @@ public class LinkedListByEckoTypeInteger {
             }
             set(j, x);
         }
-        //return numbersList;
     }
 
     public void sortReverseOrder() {
@@ -127,31 +123,19 @@ public class LinkedListByEckoTypeInteger {
             }
             set(j, x);
         }
-        //return numbersList;
     }
 
-    private void checkForIndexInRangeToAdd(int index) {
-        if (index < 0 || index > size) {
-            throw new IndexOutOfBoundsException(getMESSAGE());
-        }
-    }
-
-    public void checkForIndexInRangeToRemoveOrGet(int index) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException(getMESSAGE());
-        }
-    }
-        public int indexOf(Integer data) {
+    public int indexOf(Integer data) {
         int index = 0;
         if (data == null) {
-            for (ElementByEfckoTypeInteger<?> e = head; e != null; e = e.next) {
+            for (ElementByEfckoTypeInteger e = head; e != null; e = e.next) {
                 if (e.data == null) {
                     return index;
                 }
                 index++;
             }
         } else {
-            for (ElementByEfckoTypeInteger<?> e = head; e != null; e = e.next) {
+            for (ElementByEfckoTypeInteger e = head; e != null; e = e.next) {
                 if (data.equals(e.data)) {
                     return index;
                 }
@@ -159,6 +143,12 @@ public class LinkedListByEckoTypeInteger {
             }
         }
         return -1;
+    }
+
+    private void checkForIndexInRangeToAdd(int index) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException(String.format(MESSAGE, size));
+        }
     }
 //
 //    public boolean contains(Integer data) {
@@ -253,7 +243,7 @@ public class LinkedListByEckoTypeInteger {
 //        }
 //        return !(elem1.hasNext() || elem2.hasNext());
 //    }
-    
+
 //        public void clear() {
 //            ElementByEfcko<?> it = head;
 //            ElementByEfcko<?> next = it.next;
@@ -279,7 +269,7 @@ public class LinkedListByEckoTypeInteger {
 //            next.data = null;
 //            size--;
 //        }
-    
+
 //    public boolean isEmpty() {
 //        return head == null;
 //    }

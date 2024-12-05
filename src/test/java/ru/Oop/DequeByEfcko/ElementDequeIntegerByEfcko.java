@@ -1,17 +1,19 @@
-package ru.Oop.LinkedListByEfckoAllType.Integer;
+package ru.Oop.DequeByEfcko;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ElementByEfckoTypeInteger {
+public class ElementDequeIntegerByEfcko<E> {
     protected Integer data;
-    protected ElementByEfckoTypeInteger next;
+    protected ElementDequeIntegerByEfcko<E> next;
+    protected ElementDequeIntegerByEfcko<E> prev;
 
-    public ElementByEfckoTypeInteger(Integer data) {
+    public ElementDequeIntegerByEfcko(Integer data) {
         this.data = data;
     }
 
@@ -19,9 +21,12 @@ public class ElementByEfckoTypeInteger {
         return next != null;
     }
 
+    public boolean hasPrevious() {
+        return prev != null;
+    }
+
     @Override
     public String toString() {
         return data.toString();
     }
 }
-

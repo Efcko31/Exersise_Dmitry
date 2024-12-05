@@ -125,8 +125,17 @@ public class LinkedListByEfckoTypeString {
     }
 
 
-//    public void sort() { todo
-//
+//    public void sortNaturalOrder() {
+//        for (int i = 0; i < size(); i++) {
+//            String x = get(i);
+//            int j = i;
+//            while (j > 0 && get(j - 1) > x) {
+//                set(j, get(j - 1));
+//                --j;
+//            }
+//            set(j, x);
+//        }
+//        //return numbersList;
 //    }
 
     private void checkForIndexInRangeToAdd(int index) {

@@ -1,15 +1,14 @@
-package ru.Oop.Animals.Animal.Cats;
+package ru.Oop.Animals.Animal.TheFelineFamily;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import ru.Oop.Animals.Animal.Animal;
 
 import java.util.ArrayList;
+@Data
 
-@Getter
-@Setter
-public class MaineCoon extends Cat {
-    public MaineCoon(String name, String gender, Integer age, Integer weight, String color, ArrayList<String> diet, String note) {
-        super(name, gender, age, weight, color, diet, note);
+public class Cat extends Animal {
+    public Cat(String breed, String name, String gender, Integer age, Integer weight, String color, ArrayList<String> diet, String note) {
+        super(breed, name, gender, age, weight, color, diet, note);
     }
 
     @Override
@@ -27,7 +26,6 @@ public class MaineCoon extends Cat {
     @Override
     public String getDescription() {
         return String.format("\nПол: %s;\nВозраст: %d;\nВес: %d;\nОкрас: %s;\nПримечание: %s.\n",
-                 gender, age, weight, color, note);
+                gender, age, weight, color, note);
     }
-
 }

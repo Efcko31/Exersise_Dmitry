@@ -1,16 +1,12 @@
-package ru.Oop.Animals.Animal.Others;
+package ru.Oop.Animals.Animal.OthersAnimals;
 
-import lombok.Getter;
-import lombok.Setter;
+import ru.Oop.Animals.Animal.Animal;
 
 import java.util.ArrayList;
 
-@Getter
-@Setter
-public class Grizzly extends Bear {
-
-    public Grizzly(String name, String gender, Integer age, Integer weight, String color, ArrayList<String> diet, String note) {
-        super(name, gender, age, weight, color, diet, note);
+public class Bear extends Animal {
+    public Bear(String breed, String name, String gender, Integer age, Integer weight, String color, ArrayList<String> diet, String note) {
+        super(breed, name, gender, age, weight, color, diet, note);
     }
 
     @Override
@@ -28,7 +24,6 @@ public class Grizzly extends Bear {
     @Override
     public String getDescription() {
         return String.format("\nПол: %s;\nВозраст: %d;\nВес: %d;\nОкрас: %s;\nОписание: %s.\n",
-                 gender, age, weight, color, note);
+                gender, age, weight, color, note);
     }
-
 }

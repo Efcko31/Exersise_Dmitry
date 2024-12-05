@@ -1,7 +1,6 @@
 package ru;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Test {
     public static void main(String[] args) {
@@ -26,7 +25,7 @@ public class Test {
         list.addAll(listForAdd);
         print(list);
 
-
+        ArrayDeque<Integer> a = new ArrayDeque<>();
 
     }
 

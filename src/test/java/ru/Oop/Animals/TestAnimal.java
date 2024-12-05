@@ -1,9 +1,9 @@
 package ru.Oop.Animals;
 
 import ru.Oop.Animals.Animal.Animal;
-import ru.Oop.Animals.Animal.Cats.MaineCoon;
-import ru.Oop.Animals.Animal.Dogs.Poodle;
-import ru.Oop.Animals.Animal.Others.Grizzly;
+import ru.Oop.Animals.Animal.TheFelineFamily.MaineCoon;
+import ru.Oop.Animals.Animal.TheCanineFamily.Poodle;
+import ru.Oop.Animals.Animal.OthersAnimals.Grizzly;
 import ru.Oop.Animals.Profesion.Veterinarian;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +18,7 @@ public class TestAnimal {
             "Иванов",
             32,
             LocalDate.of(1992, 12, 24));
-    MaineCoon maineCoon = new MaineCoon(
+    MaineCoon maineCoon = new MaineCoon("Мэйнкун",
             "Барсик",
             "м",
             2,
@@ -26,7 +26,7 @@ public class TestAnimal {
             "бурый",
             new ArrayList<>(),
             "Покладистый, аккуратный, агрессии не наблюдается. На прививки реагирует нормально");
-    Poodle poodle = new Poodle(
+    Poodle poodle = new Poodle("Пудель",
             "Тузик",
             "ж",
             1,
@@ -34,7 +34,7 @@ public class TestAnimal {
             "белый",
             new ArrayList<>(),
             "Покладистый, аккуратный, агрессии не наблюдается. На прививки реагирует нормально");
-    Grizzly grizzly = new Grizzly(
+    Grizzly grizzly = new Grizzly("Гризли",
             "Миша",
             "м",
             5,
