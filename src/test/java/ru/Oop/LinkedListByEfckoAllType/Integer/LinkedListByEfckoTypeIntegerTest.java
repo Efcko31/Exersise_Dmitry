@@ -21,20 +21,17 @@ public class LinkedListByEfckoTypeIntegerTest {
 
     @Test
     void checkReceiptAnItemFromLinkedList() {
-        assertEquals(1, testGet(new Integer[]{1, 2, 3, 4, 5}, 0));
-        assertEquals(5, testGet(new Integer[]{1, 2, 3, 4, 5}, 4));
-        assertEquals(3, testGet(new Integer[]{1, 2, 3, 4, 5}, 2));
-        assertThrows(IndexOutOfBoundsException.class, () -> testGet(new Integer[]{1, 2, 3, 4, 5}, 12));
-        assertThrows(IndexOutOfBoundsException.class, () -> testGet(new Integer[]{1, 2, 3, 4, 5}, -12));
+        assertEquals(1, getAnItemFromList(new Integer[]{1, 2, 3, 4, 5}, 0));
+        assertEquals(5, getAnItemFromList(new Integer[]{1, 2, 3, 4, 5}, 4));
+        assertEquals(3, getAnItemFromList(new Integer[]{1, 2, 3, 4, 5}, 2));
+        assertThrows(IndexOutOfBoundsException.class, () -> getAnItemFromList(new Integer[]{1, 2, 3, 4, 5}, 12));
+        assertThrows(IndexOutOfBoundsException.class, () -> getAnItemFromList(new Integer[]{1, 2, 3, 4, 5}, -12));
     }
-    public Integer testGet(Integer[] numbers, int indexGet) {
-        try {
+    public Integer getAnItemFromList(Integer[] numbers, int indexGet) throws RuntimeException{
+
             LinkedListByEckoTypeInteger list1 = new LinkedListByEckoTypeInteger();
             addList(list1, numbers);
             return list1.get(indexGet);
-        } catch (IndexOutOfBoundsException e) {
-            throw e;
-        }
     }
 
     @Test
@@ -94,14 +91,27 @@ public class LinkedListByEfckoTypeIntegerTest {
         assertEquals(-1, testIndexOf(new Integer[]{1, 2, 3, 4, 5}, 44));
         assertEquals(-1, testIndexOf(new Integer[]{1, 2, 3, 4, 5}, -5));
     }
-    public Integer testIndexOf(Integer[] numbers, int n) {
-        try {
+    public Integer testIndexOf(Integer[] numbers, int n) throws RuntimeException{
+
             LinkedListByEckoTypeInteger list1 = new LinkedListByEckoTypeInteger();
             addList(list1, numbers);
 
             return list1.indexOf(n);
-        } catch (IndexOutOfBoundsException e) {
-            throw e; // без обработки пробрасываешь наверх рантайм, зачем??? просто лишний код
+
+    }
+
+    public Integer[] toArrayInteger(LinkedListByEckoTypeInteger list) {
+        Integer[] answer = new Integer[list.size()];
+
+        for (int i = 0; i < list.size(); i++) {
+            answer[i] = list.get(i);
+        }
+        return answer;
+    }
+
+    public void addList(LinkedListByEckoTypeInteger list, Integer[] numbers) {
+        for (Integer n : numbers) {
+            list.add(n);
         }
     }
 
@@ -148,22 +158,6 @@ public class LinkedListByEfckoTypeIntegerTest {
 //        list1.sortReverseOrder();
 //        return toArrayInteger(list1);
 //    }
-
-    public Integer[] toArrayInteger(LinkedListByEckoTypeInteger list) {
-        Integer[] answer = new Integer[list.size()];
-
-        for (int i = 0; i < list.size(); i++) {
-            answer[i] = list.get(i);
-        }
-        return answer;
-    }
-
-    public void addList(LinkedListByEckoTypeInteger list, Integer[] numbers) {
-        for (Integer n : numbers) {
-            list.add(n);
-        }
-    }
-
 //    public static void print(LinkedListByEckoTypeInteger list) {
 //        for (int i = 0; i < list.size(); i++) {
 //            System.out.print(list.get(i) + " ");

@@ -1,5 +1,7 @@
 package ru.Oop.LinkedListByEfckoAllType.interfac;
 
+import java.util.Stack;
+
 public class LinkedListByEfckoTypeImpl<T> implements LinkedListByEfckoType<T> {
 
     private ElementByEfckoGeneric<T> head;
@@ -41,6 +43,12 @@ public class LinkedListByEfckoTypeImpl<T> implements LinkedListByEfckoType<T> {
                 element.next = addElement;
                 size++;
             }
+        }
+    }
+
+    public void addAll(T...  elements) {
+        for (T element : elements) {
+            add(element);
         }
     }
 
@@ -107,20 +115,13 @@ public class LinkedListByEfckoTypeImpl<T> implements LinkedListByEfckoType<T> {
     @Override
     public int indexOf(T data) {
         int index = 0;
-        if (data == null) {
-            for (ElementByEfckoGeneric<T> e = head; e != null; e = e.next) {
-                if (e.data == null) {
-                    return index;
-                }
-                index++;
+
+        for (ElementByEfckoGeneric<T> e = head; e != null; e = e.next) {
+            if (e.data == null && data == null ||
+                    e.data != null && e.data.equals(data)) {
+                return index;
             }
-        } else {
-            for (ElementByEfckoGeneric<T> e = head; e != null; e = e.next) {
-                if (data.equals(e.data)) {
-                    return index;
-                }
-                index++;
-            }
+            index++;
         }
         return -1;
     }
