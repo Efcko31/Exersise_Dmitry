@@ -2,9 +2,8 @@ package ru.Oop.Laba6;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
-import ru.Oop.LinkedListByEfckoAllType.Integer.ElementByEfckoTypeInteger;
-import ru.Oop.LinkedListByEfckoAllType.String.ElementByEfckoTypeString;
-import ru.Oop.LinkedListByEfckoAllType.String.LinkedListByEfckoTypeString;
+import ru.dto.ElementByEfckoTypeString;
+import ru.dto.LinkedListByEfckoTypeString;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

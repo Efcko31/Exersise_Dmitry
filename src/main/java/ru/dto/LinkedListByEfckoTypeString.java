@@ -1,7 +1,8 @@
-package ru.Oop.LinkedListByEfckoAllType.String;
+package ru.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+
 
 
 @Getter
@@ -18,31 +19,31 @@ public class LinkedListByEfckoTypeString {
 
 
     public boolean add(String data) {
-        add(size(), data);
+        add(size, data);
         return true;
     }
 
-    public void add(int index, String data) throws IndexOutOfBoundsException { //вопрос с clone
+    public void add(int index, String data) throws IndexOutOfBoundsException {
         checkForIndexInRangeToAdd(index);
         ElementByEfckoTypeString<String> addElement = new ElementByEfckoTypeString<>(data);
         ElementByEfckoTypeString<String> element = head;
 
         if (head == null || index == 0) {
-            addElement.next = head;
+            addElement.setNext(head);
             head = addElement;
             size++;
         } else {
             int i = 0;
             while (i + 1 != index) {
-                element = element.next;
+                element = element.getNext();
                 i++;
             }
             if (i == size - 1) {
-                element.next = addElement;
+                element.setNext(addElement);
                 size++;
             } else {
-                addElement.next = element.next;
-                element.next = addElement;
+                addElement.setNext(element.getNext());
+                element.setNext(addElement);
                 size++;
             }
         }
@@ -56,7 +57,7 @@ public class LinkedListByEfckoTypeString {
             if (i + 1 == index) {
                 return element;
             }
-            element = element.next;
+            element = element.getNext();
         }
         return null;
     }
@@ -66,9 +67,9 @@ public class LinkedListByEfckoTypeString {
         ElementByEfckoTypeString<String> element = head;
         for (int i = -1; i < index; i++) {
             if (i + 1 == index) {
-                return element.data;
+                return element.getData();
             }
-            element = element.next;
+            element = element.getNext();
         }
         return null;
     }
@@ -86,36 +87,37 @@ public class LinkedListByEfckoTypeString {
         ElementByEfckoTypeString<String> element = head;
 
         if (index == 0) {
-            head = element.next;
-            element.next = null;
+            head = element.getNext();
+            element.setNext(null);
             size--;
-            return element.data;
+            return element.getData();
         } else {
             for (int i = 0; i < index; i++) {
                 if (i + 1 == index) {
-                    ElementByEfckoTypeString<String> removeElement = element.next;
-                    element.next = removeElement.next;
-                    removeElement.next = null;
+                    ElementByEfckoTypeString<String> removeElement = element.getNext();
+                    element.setNext(removeElement.getNext());
+                    removeElement.setNext(null);
                     size--;
-                    return removeElement.data;
+                    return removeElement.getData();
                 }
-                element = element.next;
+                element = element.getNext();
             }
         }
         return null;
     }
+
     public int indexOf(String data) {
         int index = 0;
         if (data == null) {
-            for (ElementByEfckoTypeString<String> e = head; e != null; e = e.next) {
-                if (e.data == null) {
+            for (ElementByEfckoTypeString<String> e = head; e != null; e = e.getNext()) {
+                if (e.getData() == null) {
                     return index;
                 }
                 index++;
             }
         } else {
-            for (ElementByEfckoTypeString<String> e = head; e != null; e = e.next) {
-                if (data.equals(e.data)) {
+            for (ElementByEfckoTypeString<String> e = head; e != null; e = e.getNext()) {
+                if (data.equals(e.getData())) {
                     return index;
                 }
                 index++;
@@ -123,20 +125,6 @@ public class LinkedListByEfckoTypeString {
         }
         return -1;
     }
-
-
-//    public void sortNaturalOrder() {
-//        for (int i = 0; i < size(); i++) {
-//            String x = get(i);
-//            int j = i;
-//            while (j > 0 && get(j - 1) > x) {
-//                set(j, get(j - 1));
-//                --j;
-//            }
-//            set(j, x);
-//        }
-//        //return numbersList;
-//    }
 
     private void checkForIndexInRangeToAdd(int index) {
         if (index < 0 || index > size) {
@@ -152,6 +140,18 @@ public class LinkedListByEfckoTypeString {
         }
     }
 
+//    public void sortNaturalOrder() {
+//        for (int i = 0; i < size(); i++) {
+//            String x = get(i);
+//            int j = i;
+//            while (j > 0 && get(j - 1) > x) {
+//                set(j, get(j - 1));
+//                --j;
+//            }
+//            set(j, x);
+//        }
+//        //return numbersList;
+//    }
 //    private String outOfBoundMassage(int index) {
 //        return String.format("Указанный индекс: %d выходит за размер массива: %d", index, size);
 //    }

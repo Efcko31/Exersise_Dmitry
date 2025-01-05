@@ -1,4 +1,4 @@
-package ru.Oop.LinkedListByEfckoAllType.Integer;
+package ru.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ElementByEfckoTypeInteger {
-    protected Integer data;
+    protected Integer data; //todo protected????
     protected ElementByEfckoTypeInteger next;
 
     public ElementByEfckoTypeInteger(Integer data) {

@@ -1,11 +1,12 @@
-package ru.Oop.LinkedListByEfckoAllType.Integer;
+package ru.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
+
 @Getter
 @Setter
-public class LinkedListByEckoTypeInteger {
+public class LinkedListByEfckoTypeInteger {
     private ElementByEfckoTypeInteger head;
     private int size = 0;
     private final String MESSAGE = "Указанный индекс выходит за размер массива: %d";
@@ -15,7 +16,7 @@ public class LinkedListByEckoTypeInteger {
     }
 
     public boolean add(Integer data) {
-        add(size(), data);
+        add(size, data);
         return true;
     }
 
@@ -25,34 +26,34 @@ public class LinkedListByEckoTypeInteger {
         ElementByEfckoTypeInteger element = head;
 
         if (head == null || index == 0) {
-            addElement.next = head;
+            addElement.setNext(head);
             head = addElement;
             size++;
         } else {
             int i = 0;
             while (i + 1 != index) {
-                element = element.next;
+                element = element.getNext();
                 i++;
             }
             if (i == size - 1) {
-                element.next = addElement;
+                element.setNext(addElement);
                 size++;
             } else {
-                addElement.next = element.next;
-                element.next = addElement;
+                addElement.setNext(element.getNext());
+                element.setNext(addElement);
                 size++;
             }
         }
     }
 
-    public ElementByEfckoTypeInteger getElement(int index) { //аналог node ГДЕ ГЛАГОЛ в методе, что он делает???
+    public ElementByEfckoTypeInteger getElement(int index) {
         checkForIndexInRangeToAdd(index);
         ElementByEfckoTypeInteger element = head;
         for (int i = -1; i < index; i++) {
             if (i + 1 == index) {
                 return element;
             }
-            element = element.next;
+            element = element.getNext();
         }
         return null;
     }
@@ -62,9 +63,9 @@ public class LinkedListByEckoTypeInteger {
         ElementByEfckoTypeInteger element = head;
         for (int i = -1; i < index; i++) {
             if (i + 1 == index) {
-                return element.data;
+                return element.getData();
             }
-            element = element.next;
+            element = element.getNext();
         }
         return null;
     }
@@ -82,20 +83,20 @@ public class LinkedListByEckoTypeInteger {
         ElementByEfckoTypeInteger element = head;
 
         if (index == 0) {
-            head = element.next;
-            element.next = null;
+            head = element.getNext();
+            element.setNext(null);
             size--;
-            return element.data;
+            return element.getData();
         } else {
             for (int i = 0; i < index; i++) {
                 if (i + 1 == index) {
-                    ElementByEfckoTypeInteger removeElement = element.next;
-                    element.next = removeElement.next;
-                    removeElement.next = null;
+                    ElementByEfckoTypeInteger removeElement = element.getNext();
+                    element.setNext(removeElement.getNext());
+                    removeElement.setNext(null);
                     size--;
-                    return removeElement.data;
+                    return removeElement.getData();
                 }
-                element = element.next;
+                element = element.getNext();
             }
         }
         return null;
@@ -128,15 +129,15 @@ public class LinkedListByEckoTypeInteger {
     public int indexOf(Integer data) {
         int index = 0;
         if (data == null) {
-            for (ElementByEfckoTypeInteger e = head; e != null; e = e.next) {
-                if (e.data == null) {
+            for (ElementByEfckoTypeInteger e = head; e != null; e = e.getNext()) {
+                if (e.getData() == null) {
                     return index;
                 }
                 index++;
             }
         } else {
-            for (ElementByEfckoTypeInteger e = head; e != null; e = e.next) {
-                if (data.equals(e.data)) {
+            for (ElementByEfckoTypeInteger e = head; e != null; e = e.getNext()) {
+                if (data.equals(e.getData())) {
                     return index;
                 }
                 index++;

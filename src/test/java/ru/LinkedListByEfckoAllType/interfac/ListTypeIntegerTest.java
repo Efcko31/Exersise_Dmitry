@@ -1,11 +1,12 @@
-package ru.Oop.LinkedListByEfckoAllType.interfac;
+package ru.LinkedListByEfckoAllType.interfac;
 
 import org.junit.jupiter.api.Test;
+import ru.impl.LinkedListByEfckoTypeImpl;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestListTypeInteger {
+public class ListTypeIntegerTest { //todo rename
 
     @Test
     void checkAddAnElementToLinkedListByEfcko() {

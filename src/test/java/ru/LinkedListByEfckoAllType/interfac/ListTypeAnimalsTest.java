@@ -1,6 +1,7 @@
-package ru.Oop.LinkedListByEfckoAllType.interfac;
+package ru.LinkedListByEfckoAllType.interfac;
 
 import org.junit.jupiter.api.Test;
+import ru.impl.LinkedListByEfckoTypeImpl;
 import ru.Oop.Animals.Animal.Animal;
 import ru.Oop.Animals.Animal.OthersAnimals.Bear;
 import ru.Oop.Animals.Animal.TheFelineFamily.Felines;
@@ -11,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static ru.Oop.Animals.Animal.TheCanineFamily.Canines.*;
 import static ru.Oop.Animals.Animal.TheFelineFamily.Felines.*;
 
-public class TestListTypeAnimals {
+public class ListTypeAnimalsTest { //todo rename
     @Test
     void checkAddAnElementToLinkedListByEfckoTypeImpl() {
         assertArrayEquals(new String[]{"Барбариска", "Бусенка", "Барсик", "Миша", "Шарик", "Тузик"}, addElementsToArray());

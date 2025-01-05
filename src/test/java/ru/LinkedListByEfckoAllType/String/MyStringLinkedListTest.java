@@ -1,11 +1,13 @@
-package ru.Oop.LinkedListByEfckoAllType.interfac;
+package ru.LinkedListByEfckoAllType.String;
 
 import org.junit.jupiter.api.Test;
+import ru.dto.LinkedListByEfckoTypeString;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class TestListTypeString {
+public class MyStringLinkedListTest {
+
     @Test
     void checkAddAnElementToLinkedListByEfckoTypeImpl() {
         assertEquals("ТТТ Приветствую тебя ТТТ на новых голодных играх!",
@@ -13,7 +15,7 @@ public class TestListTypeString {
     }
 
     public String addElementsToArray(String string) {
-        LinkedListByEfckoTypeImpl<String> listStr = new LinkedListByEfckoTypeImpl<>();
+        LinkedListByEfckoTypeString listStr = new LinkedListByEfckoTypeString();
         stringToList(listStr, string.split(" "));
         listStr.add(0, "ТТТ");
         listStr.add(3, "ТТТ");
@@ -39,7 +41,7 @@ public class TestListTypeString {
 
     public String getAnItemFromList(String string, int index1, int index2) throws RuntimeException {
 
-        LinkedListByEfckoTypeImpl<String> listStr = new LinkedListByEfckoTypeImpl<>();
+        LinkedListByEfckoTypeString listStr = new LinkedListByEfckoTypeString();
         stringToList(listStr, string.split(" "));
         return String.format("%s %s;", listStr.get(index1), listStr.get(index2));
 
@@ -60,7 +62,7 @@ public class TestListTypeString {
     }
 
     public String replacesAnItemInListByIndex(String string, int setIndex, String replacementString) throws RuntimeException {
-        LinkedListByEfckoTypeImpl<String> listStr = new LinkedListByEfckoTypeImpl<>();
+        LinkedListByEfckoTypeString listStr = new LinkedListByEfckoTypeString();
         stringToList(listStr, string.split(" "));
         return String.format("Заменил это: %s, на это: %s",
                 listStr.set(setIndex, replacementString),
@@ -78,7 +80,7 @@ public class TestListTypeString {
     }
 
     public String removesAnItemFromTheListByIndex(String string, int removeIndex) throws RuntimeException {
-        LinkedListByEfckoTypeImpl<String> listStr = new LinkedListByEfckoTypeImpl<>();
+        LinkedListByEfckoTypeString listStr = new LinkedListByEfckoTypeString();
         stringToList(listStr, string.split(" "));
         return String.format("Удалил это: %s", listStr.remove(removeIndex));
     }
@@ -96,12 +98,12 @@ public class TestListTypeString {
     }
 
     public String testIndexOf(String string, String word) {
-        LinkedListByEfckoTypeImpl<String> listStr = new LinkedListByEfckoTypeImpl<>();
+        LinkedListByEfckoTypeString listStr = new LinkedListByEfckoTypeString();
         stringToList(listStr, string.split(" "));
         return String.format("Получил индекс слова хлеб: %d", listStr.indexOf(word));
     }
 
-    public void stringToList(LinkedListByEfckoTypeImpl<String> listStr, String[] strArray) {
+    public void stringToList(LinkedListByEfckoTypeString listStr, String[] strArray) {
         for (String s : strArray) {
             listStr.add(s);
         }

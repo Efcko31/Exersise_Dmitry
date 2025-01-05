@@ -1,4 +1,4 @@
-package ru.Oop.LinkedListByEfckoAllType.interfac;
+package ru.impl;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ElementByEfckoGeneric<T> {
-    protected T data;
-    protected ElementByEfckoGeneric<T> next;
+    private T data;
+    private ElementByEfckoGeneric<T> next;
 
     public ElementByEfckoGeneric(T data) {
         this.data = data;

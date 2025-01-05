@@ -1,6 +1,7 @@
-package ru.Oop.LinkedListByEfckoAllType.Integer;
+package ru.LinkedListByEfckoAllType.Integer;
 
 import org.junit.jupiter.api.Test;
+import ru.dto.LinkedListByEfckoTypeInteger;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,7 +12,7 @@ public class LinkedListByEfckoTypeIntegerTest {
     }
 
     public Integer[] addElementsToArray(Integer[] numbers) {
-        LinkedListByEckoTypeInteger list1 = new LinkedListByEckoTypeInteger();
+        LinkedListByEfckoTypeInteger list1 = new LinkedListByEfckoTypeInteger();
         addList(list1, numbers);
         list1.add(0, 99);
         list1.add(3, 77);
@@ -29,7 +30,7 @@ public class LinkedListByEfckoTypeIntegerTest {
     }
     public Integer getAnItemFromList(Integer[] numbers, int indexGet) throws RuntimeException{
 
-            LinkedListByEckoTypeInteger list1 = new LinkedListByEckoTypeInteger();
+            LinkedListByEfckoTypeInteger list1 = new LinkedListByEfckoTypeInteger();
             addList(list1, numbers);
             return list1.get(indexGet);
     }
@@ -46,7 +47,7 @@ public class LinkedListByEfckoTypeIntegerTest {
     }
     public Integer[] testSet(Integer[] numbers, int indexSet, int numberForSet) {
         try {
-            LinkedListByEckoTypeInteger list1 = new LinkedListByEckoTypeInteger();
+            LinkedListByEfckoTypeInteger list1 = new LinkedListByEfckoTypeInteger();
             addList(list1, numbers);
 
             Integer[] answer = new Integer[2];
@@ -71,7 +72,7 @@ public class LinkedListByEfckoTypeIntegerTest {
     }
     public Integer[] testRemove(Integer[] numbers, int indexRemove) {
         try {
-            LinkedListByEckoTypeInteger list1 = new LinkedListByEckoTypeInteger();
+            LinkedListByEfckoTypeInteger list1 = new LinkedListByEfckoTypeInteger();
             addList(list1, numbers);
             list1.remove(indexRemove);
 
@@ -93,14 +94,14 @@ public class LinkedListByEfckoTypeIntegerTest {
     }
     public Integer testIndexOf(Integer[] numbers, int n) throws RuntimeException{
 
-            LinkedListByEckoTypeInteger list1 = new LinkedListByEckoTypeInteger();
+            LinkedListByEfckoTypeInteger list1 = new LinkedListByEfckoTypeInteger();
             addList(list1, numbers);
 
             return list1.indexOf(n);
 
     }
 
-    public Integer[] toArrayInteger(LinkedListByEckoTypeInteger list) {
+    public Integer[] toArrayInteger(LinkedListByEfckoTypeInteger list) {
         Integer[] answer = new Integer[list.size()];
 
         for (int i = 0; i < list.size(); i++) {
@@ -109,7 +110,7 @@ public class LinkedListByEfckoTypeIntegerTest {
         return answer;
     }
 
-    public void addList(LinkedListByEckoTypeInteger list, Integer[] numbers) {
+    public void addList(LinkedListByEfckoTypeInteger list, Integer[] numbers) {
         for (Integer n : numbers) {
             list.add(n);
         }

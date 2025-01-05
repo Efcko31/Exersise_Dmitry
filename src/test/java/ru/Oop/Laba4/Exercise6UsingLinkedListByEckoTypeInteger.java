@@ -1,7 +1,7 @@
 package ru.Oop.Laba4;
 
 import org.junit.jupiter.api.Test;
-import ru.Oop.LinkedListByEfckoAllType.Integer.LinkedListByEckoTypeInteger;
+import ru.dto.LinkedListByEfckoTypeInteger;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,7 +23,7 @@ public class Exercise6UsingLinkedListByEckoTypeInteger {
     public boolean determinesWhetherAnArithmeticProgressionExistsInArray(Integer[] numbers) {
         try {
             Laba4Util.checkArrayIsEmpty(numbers);
-            LinkedListByEckoTypeInteger numbersArray = new LinkedListByEckoTypeInteger();
+            LinkedListByEfckoTypeInteger numbersArray = new LinkedListByEfckoTypeInteger();
             addToLinkedList(numbers, numbersArray);
             insertingAnElementByValue(numbersArray);
 
@@ -41,13 +41,13 @@ public class Exercise6UsingLinkedListByEckoTypeInteger {
         }
     }
 
-    public void addToLinkedList(Integer[] numbers, LinkedListByEckoTypeInteger numbersArray) {
+    public void addToLinkedList(Integer[] numbers, LinkedListByEfckoTypeInteger numbersArray) {
         for (Integer number : numbers) {
             numbersArray.add(number);
         }
     }
 
-    public void insertingAnElementByValue(LinkedListByEckoTypeInteger numbersList) {
+    public void insertingAnElementByValue(LinkedListByEfckoTypeInteger numbersList) {
         for (int i = 0; i < numbersList.size(); i++) {
             int x = numbersList.get(i);
             int j = i;

@@ -1,8 +1,8 @@
 package ru.Oop.Laba4;
 
 import org.junit.jupiter.api.Test;
-import ru.Oop.LinkedListByEfckoAllType.Integer.ElementByEfckoTypeInteger;
-import ru.Oop.LinkedListByEfckoAllType.Integer.LinkedListByEckoTypeInteger;
+import ru.dto.ElementByEfckoTypeInteger;
+import ru.dto.LinkedListByEfckoTypeInteger;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -24,7 +24,7 @@ public class Exercise3UsingLinkedListByEckoTypeInteger {
     public Integer[] checksForPresenceNumberX(Integer[] numbers, int x) {
         try {
             Laba4Util.checkArrayIsEmpty(numbers);
-            LinkedListByEckoTypeInteger numbersArray = new LinkedListByEckoTypeInteger();
+            LinkedListByEfckoTypeInteger numbersArray = new LinkedListByEfckoTypeInteger();
             addDataInLinkedListByEfcko(numbers, numbersArray);
 
             int indexX = searchLastIndexElement(numbersArray, x);
@@ -37,7 +37,7 @@ public class Exercise3UsingLinkedListByEckoTypeInteger {
         }
     }
 
-    public void insertingAnElementByValue(LinkedListByEckoTypeInteger numbersList, int stop) {
+    public void insertingAnElementByValue(LinkedListByEfckoTypeInteger numbersList, int stop) {
         for (int i = 0; i < stop; i++) {
             int x = numbersList.get(i);
             int j = i;
@@ -49,7 +49,7 @@ public class Exercise3UsingLinkedListByEckoTypeInteger {
         }
     }
 
-    public Integer[] transfersDataFromListToArray(LinkedListByEckoTypeInteger listForAnswer) {
+    public Integer[] transfersDataFromListToArray(LinkedListByEfckoTypeInteger listForAnswer) {
         Integer[] answer = new Integer[listForAnswer.size()];
         for (int i = 0; i < listForAnswer.size(); i++) {
             answer[i] = listForAnswer.get(i);
@@ -57,13 +57,13 @@ public class Exercise3UsingLinkedListByEckoTypeInteger {
         return answer;
     }
 
-    public void addDataInLinkedListByEfcko(Integer[] numbers, LinkedListByEckoTypeInteger numbersArray) {
+    public void addDataInLinkedListByEfcko(Integer[] numbers, LinkedListByEfckoTypeInteger numbersArray) {
         for (int i = 0; i < numbers.length; i++) {
             numbersArray.add(numbers[i]);
         }
     }
 
-    public int searchLastIndexElement(LinkedListByEckoTypeInteger numbersArray, int data) {
+    public int searchLastIndexElement(LinkedListByEfckoTypeInteger numbersArray, int data) {
         ElementByEfckoTypeInteger element = new ElementByEfckoTypeInteger(null, numbersArray.getHead());
         int index = -1;
         for (int i = 0; i < numbersArray.size(); i++) {

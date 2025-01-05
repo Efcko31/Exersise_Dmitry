@@ -1,4 +1,6 @@
-package ru.Oop.LinkedListByEfckoAllType.interfac;
+package ru.impl;
+
+import ru.impl.ElementByEfckoGeneric;
 
 public interface LinkedListByEfckoType <T> {
     int size();

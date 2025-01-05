@@ -1,8 +1,8 @@
 package ru.Oop.Laba4;
 
 import org.junit.jupiter.api.Test;
-import ru.Oop.LinkedListByEfckoAllType.Integer.ElementByEfckoTypeInteger;
-import ru.Oop.LinkedListByEfckoAllType.Integer.LinkedListByEckoTypeInteger;
+import ru.dto.ElementByEfckoTypeInteger;
+import ru.dto.LinkedListByEfckoTypeInteger;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -33,8 +33,8 @@ public class Exercise2UsingLinkedListByEckoTypeInteger {
     public Integer[] numberOccurrencesEachNumberInArray(Integer[] numbers) {
         try {
             Laba4Util.checkArrayIsEmpty(numbers);
-            LinkedListByEckoTypeInteger arrayWithValueWithoutRepetitions = new LinkedListByEckoTypeInteger();
-            LinkedListByEckoTypeInteger arrayNumberRepetitions = new LinkedListByEckoTypeInteger();
+            LinkedListByEfckoTypeInteger arrayWithValueWithoutRepetitions = new LinkedListByEfckoTypeInteger();
+            LinkedListByEfckoTypeInteger arrayNumberRepetitions = new LinkedListByEfckoTypeInteger();
             return writesNumberRepetitionsArray(numbers, arrayWithValueWithoutRepetitions, arrayNumberRepetitions);
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
@@ -43,8 +43,8 @@ public class Exercise2UsingLinkedListByEckoTypeInteger {
     }
 
     public Integer[] writesNumberRepetitionsArray(Integer[] numbers,
-                                                  LinkedListByEckoTypeInteger arrayWithValueWithoutRepetitions,
-                                                  LinkedListByEckoTypeInteger arrayNumberRepetitions) {
+                                                  LinkedListByEfckoTypeInteger arrayWithValueWithoutRepetitions,
+                                                  LinkedListByEfckoTypeInteger arrayNumberRepetitions) {
 
         for (int i = 0; i < numbers.length; i++) {
             try {
@@ -62,8 +62,8 @@ public class Exercise2UsingLinkedListByEckoTypeInteger {
         return addInArray(arrayWithValueWithoutRepetitions, arrayNumberRepetitions);
     }
 
-    public Integer[] addInArray(LinkedListByEckoTypeInteger arrayWithValueWithoutRepetitions,
-                                LinkedListByEckoTypeInteger arrayNumberRepetitions) {
+    public Integer[] addInArray(LinkedListByEfckoTypeInteger arrayWithValueWithoutRepetitions,
+                                LinkedListByEfckoTypeInteger arrayNumberRepetitions) {
         Integer[] arrayForAnswer = new Integer[arrayWithValueWithoutRepetitions.size() + arrayNumberRepetitions.size()];
         int j = 0;
         for (int i = 0; i < arrayForAnswer.length; i += 2) {
@@ -74,7 +74,7 @@ public class Exercise2UsingLinkedListByEckoTypeInteger {
         return arrayForAnswer;
     }
 
-    public boolean containsElem(LinkedListByEckoTypeInteger listForAnswer, int data) {
+    public boolean containsElem(LinkedListByEfckoTypeInteger listForAnswer, int data) {
         ElementByEfckoTypeInteger element = listForAnswer.getHead();
         for (int i = 0; i < listForAnswer.size() && element.getData() != null; i++) {
             if (element.getData() == data) {
@@ -85,7 +85,7 @@ public class Exercise2UsingLinkedListByEckoTypeInteger {
         return false;
     }
 
-    public int searchIndexElement(LinkedListByEckoTypeInteger listForAnswer, int data) {
+    public int searchIndexElement(LinkedListByEfckoTypeInteger listForAnswer, int data) {
         ElementByEfckoTypeInteger element = new ElementByEfckoTypeInteger(null, listForAnswer.getHead());
         for (int i = 0; i < listForAnswer.size(); i++) {
             if (element.getNext().getData() == data) {

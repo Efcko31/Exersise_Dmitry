@@ -1,12 +1,11 @@
-package ru.Oop.LinkedListByEfckoAllType.interfac;
+package ru.impl;
 
-import java.util.Stack;
 
 public class LinkedListByEfckoTypeImpl<T> implements LinkedListByEfckoType<T> {
 
     private ElementByEfckoGeneric<T> head;
     private int size = 0;
-    private final String MESSAGE = "Указанный индекс выходит за размер массива: %d"; // шаблон сообщения который можно переиспользовать
+    private final static String MESSAGE = "Указанный индекс выходит за размер массива: %d"; // шаблон сообщения который можно переиспользовать todo //почему нету static???
 
     @Override
     public int size() {
@@ -15,7 +14,7 @@ public class LinkedListByEfckoTypeImpl<T> implements LinkedListByEfckoType<T> {
 
     @Override
     public boolean add(T data) {
-        add(size(), data);
+        add(size, data);
         return true;
     }
 
@@ -26,29 +25,44 @@ public class LinkedListByEfckoTypeImpl<T> implements LinkedListByEfckoType<T> {
         ElementByEfckoGeneric<T> element = head;
 
         if (head == null || index == 0) {
-            addElement.next = head;
+            addElement.setNext(head);
             head = addElement;
             size++;
         } else {
             int i = 0;
             while (i + 1 != index) {
-                element = element.next;
+                element = element.getNext();
                 i++;
             }
             if (i == size - 1) {
-                element.next = addElement;
+                element.setNext(addElement);
                 size++;
             } else {
-                addElement.next = element.next;
-                element.next = addElement;
+                addElement.setNext(element.getNext());
+                element.setNext(addElement);
                 size++;
             }
         }
     }
 
-    public void addAll(T...  elements) {
-        for (T element : elements) {
-            add(element);
+    public void addAll(T... elements) {
+        ElementByEfckoGeneric<T> element = head;
+        int j = 0;
+
+        if (head != null) {
+            while (element.hasNext()) {
+                element = element.getNext();
+            }
+        } else {
+            head = new ElementByEfckoGeneric<>(elements[j]);
+            element = head;
+            j++;
+        }
+
+        for (int i = j; i < elements.length; i++) {
+            element.setNext(new ElementByEfckoGeneric<>(elements[i]));
+            element = element.getNext();
+            size++;
         }
     }
 
@@ -56,11 +70,11 @@ public class LinkedListByEfckoTypeImpl<T> implements LinkedListByEfckoType<T> {
     public ElementByEfckoGeneric<T> getElement(int index) {
         checkForIndexInRange(index);
         ElementByEfckoGeneric<T> element = head;
-        for (int i = -1; i < index; i++) {
-            if (i + 1 == index) {
+        for (int i = 0; i <= index; i++) {
+            if (i == index) {
                 return element;
             }
-            element = element.next;
+            element = element.getNext();
         }
         return null;
     }
@@ -69,11 +83,11 @@ public class LinkedListByEfckoTypeImpl<T> implements LinkedListByEfckoType<T> {
     public T get(int index) {
         checkForIndexInRange(index);
         ElementByEfckoGeneric<T> element = head;
-        for (int i = -1; i < index; i++) {
-            if (i + 1 == index) {
-                return element.data;
+        for (int i = 0; i <= index; i++) {
+            if (i == index) {
+                return element.getData();
             }
-            element = element.next;
+            element = element.getNext();
         }
         return null;
     }
@@ -93,20 +107,20 @@ public class LinkedListByEfckoTypeImpl<T> implements LinkedListByEfckoType<T> {
         ElementByEfckoGeneric<T> element = head;
 
         if (index == 0) {
-            head = element.next;
-            element.next = null;
+            head = element.getNext();
+            element.setNext(null);
             size--;
-            return element.data;
+            return element.getData();
         } else {
             for (int i = 0; i < index; i++) {
                 if (i + 1 == index) {
-                    ElementByEfckoGeneric<T> removeElement = element.next;
-                    element.next = removeElement.next;
-                    removeElement.next = null;
+                    ElementByEfckoGeneric<T> removeElement = element.getNext();
+                    element.setNext(removeElement.getNext());
+                    removeElement.setNext(null);
                     size--;
-                    return removeElement.data;
+                    return removeElement.getData();
                 }
-                element = element.next;
+                element = element.getNext();
             }
         }
         return null;
@@ -116,9 +130,9 @@ public class LinkedListByEfckoTypeImpl<T> implements LinkedListByEfckoType<T> {
     public int indexOf(T data) {
         int index = 0;
 
-        for (ElementByEfckoGeneric<T> e = head; e != null; e = e.next) {
-            if (e.data == null && data == null ||
-                    e.data != null && e.data.equals(data)) {
+        for (ElementByEfckoGeneric<T> e = head; e != null; e = e.getNext()) {
+            if (e.getData() == null && data == null ||
+                    e.getData() != null && e.getData().equals(data)) {
                 return index;
             }
             index++;

@@ -1,7 +1,7 @@
 package ru.Oop.Laba4;
 
 import org.junit.jupiter.api.Test;
-import ru.Oop.LinkedListByEfckoAllType.Integer.LinkedListByEckoTypeInteger;
+import ru.dto.LinkedListByEfckoTypeInteger;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -26,8 +26,8 @@ public class Exercise4UsingLinkedListByEckoTypeInteger {
     public Integer[] returnsSortedNumbers(Integer[] numbers) throws NullPointerException {
         try {
             Laba4Util.checkArrayIsEmpty(numbers);
-            LinkedListByEckoTypeInteger positiveNumbersArray = new LinkedListByEckoTypeInteger();
-            LinkedListByEckoTypeInteger negativeNumbersArray = new LinkedListByEckoTypeInteger();
+            LinkedListByEfckoTypeInteger positiveNumbersArray = new LinkedListByEfckoTypeInteger();
+            LinkedListByEfckoTypeInteger negativeNumbersArray = new LinkedListByEfckoTypeInteger();
             return sortingNonPositiveAndNegativeNumbers(positiveNumbersArray, negativeNumbersArray, numbers);
 
         } catch (NullPointerException e) {
@@ -36,8 +36,8 @@ public class Exercise4UsingLinkedListByEckoTypeInteger {
         }
     }
 
-    public Integer[] sortingNonPositiveAndNegativeNumbers(LinkedListByEckoTypeInteger positiveNumbersArray,
-                                                          LinkedListByEckoTypeInteger negativeNumbersArray,
+    public Integer[] sortingNonPositiveAndNegativeNumbers(LinkedListByEfckoTypeInteger positiveNumbersArray,
+                                                          LinkedListByEfckoTypeInteger negativeNumbersArray,
                                                           Integer[] numbers) {
         for (int i = 0; i < numbers.length; i++) {
             if (numbers[i] < 0) {
@@ -52,8 +52,8 @@ public class Exercise4UsingLinkedListByEckoTypeInteger {
 
     }
 
-    public Integer[] transfersDataFromListToArray(LinkedListByEckoTypeInteger positiveNumbersArray,
-                                                  LinkedListByEckoTypeInteger negativeNumbersArray) {
+    public Integer[] transfersDataFromListToArray(LinkedListByEfckoTypeInteger positiveNumbersArray,
+                                                  LinkedListByEfckoTypeInteger negativeNumbersArray) {
         Integer[] answer = new Integer[positiveNumbersArray.size() + negativeNumbersArray.size()];
         for (int i = 0; i < answer.length; i++) {
             if (i < negativeNumbersArray.size()) {
@@ -66,7 +66,7 @@ public class Exercise4UsingLinkedListByEckoTypeInteger {
         return answer;
     }
 
-    public void insertingAnElementByValueAscendingOrder(LinkedListByEckoTypeInteger numbersList) {
+    public void insertingAnElementByValueAscendingOrder(LinkedListByEfckoTypeInteger numbersList) {
         for (int i = 0; i < numbersList.size(); i++) {
             int x = numbersList.get(i);
             int j = i;
@@ -78,7 +78,7 @@ public class Exercise4UsingLinkedListByEckoTypeInteger {
         }
     }
 
-    public void insertingAnElementByValueDescendingOrder(LinkedListByEckoTypeInteger numbersList) {
+    public void insertingAnElementByValueDescendingOrder(LinkedListByEfckoTypeInteger numbersList) {
         for (int i = 0; i < numbersList.size(); i++) {
             int x = numbersList.get(i);
             int j = i;

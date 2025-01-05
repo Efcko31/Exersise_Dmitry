@@ -1,4 +1,4 @@
-package ru.Oop.LinkedListByEfckoAllType.String;
+package ru.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ElementByEfckoTypeString<E> {
-    protected String data;
-    protected ElementByEfckoTypeString<E> next;
+    private String data;
+    private ElementByEfckoTypeString<E> next;
 
     public ElementByEfckoTypeString(String data) {
         this.data = data;
