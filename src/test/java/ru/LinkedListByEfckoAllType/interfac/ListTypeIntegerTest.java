@@ -6,7 +6,7 @@ import ru.impl.LinkedListByEfckoTypeImpl;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ListTypeIntegerTest { //todo rename
+public class ListTypeIntegerTest {
 
     @Test
     void checkAddAnElementToLinkedListByEfcko() {

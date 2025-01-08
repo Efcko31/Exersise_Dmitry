@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ElementByEfckoTypeInteger {
-    protected Integer data; //todo protected????
-    protected ElementByEfckoTypeInteger next;
+    private Integer data;
+    private ElementByEfckoTypeInteger next;
 
     public ElementByEfckoTypeInteger(Integer data) {
         this.data = data;

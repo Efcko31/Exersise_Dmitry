@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static ru.Oop.Animals.Animal.TheCanineFamily.Canines.*;
 import static ru.Oop.Animals.Animal.TheFelineFamily.Felines.*;
 
-public class ListTypeAnimalsTest { //todo rename
+public class ListTypeAnimalsTest {
     @Test
     void checkAddAnElementToLinkedListByEfckoTypeImpl() {
         assertArrayEquals(new String[]{"Барбариска", "Бусенка", "Барсик", "Миша", "Шарик", "Тузик"}, addElementsToArray());

@@ -5,7 +5,7 @@ public class LinkedListByEfckoTypeImpl<T> implements LinkedListByEfckoType<T> {
 
     private ElementByEfckoGeneric<T> head;
     private int size = 0;
-    private final static String MESSAGE = "Указанный индекс выходит за размер массива: %d"; // шаблон сообщения который можно переиспользовать todo //почему нету static???
+    private final static String MESSAGE = "Указанный индекс выходит за размер массива: %d";
 
     @Override
     public int size() {
