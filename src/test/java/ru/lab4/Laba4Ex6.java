@@ -1,9 +1,9 @@
 package ru.lab4;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static java.lang.Boolean.TRUE;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Laba4Ex6 {
 
@@ -13,11 +13,11 @@ public class Laba4Ex6 {
 
     @Test
     void test() {
-        Assertions.assertTrue(determinesPresenceArithmeticProgression(new int[]{9, 3, 12, 6, 15}));
-        Assertions.assertFalse(determinesPresenceArithmeticProgression(new int[]{9, 3, 7, 6, 4, 2}));
-        Assertions.assertFalse(determinesPresenceArithmeticProgression(new int[]{9, 3, 12, 6, 15, 16}));
-        Assertions.assertTrue(determinesPresenceArithmeticProgression(new int[]{3, 6, 9, 12, 15}));
-        Assertions.assertFalse(determinesPresenceArithmeticProgression(new int[]{1, 2, 3, 4, 15}));
+        assertTrue(determinesPresenceArithmeticProgression(new int[]{9, 3, 12, 6, 15}));
+        assertFalse(determinesPresenceArithmeticProgression(new int[]{9, 3, 7, 6, 4, 2}));
+        assertFalse(determinesPresenceArithmeticProgression(new int[]{9, 3, 12, 6, 15, 16}));
+        assertTrue(determinesPresenceArithmeticProgression(new int[]{3, 6, 9, 12, 15}));
+        assertFalse(determinesPresenceArithmeticProgression(new int[]{1, 2, 3, 4, 15}));
     }
 
     private boolean determinesPresenceArithmeticProgression(int[] listNumber) {

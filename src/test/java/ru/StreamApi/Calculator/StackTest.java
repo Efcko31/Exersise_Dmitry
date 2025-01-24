@@ -1,4 +1,4 @@
-package ru.Stack;
+package ru.StreamApi.Calculator;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

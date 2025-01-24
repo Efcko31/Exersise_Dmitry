@@ -1,4 +1,4 @@
-package ru.Stack;
+package ru.StreamApi.Calculator;
 
 import java.util.Stack;
 
@@ -9,39 +9,10 @@ public class CalculatorByRPN {
     public static Double Calculator(String expression) throws RuntimeException {
         StringBuilder currentString = new StringBuilder();
         Stack<Character> stack = new Stack<>();
-        int priority;
-
-        //expression.split("[+--*()//]", -1, true) Смотри и ахуевай
+//        expression.split("[+--*()//]", -1, true) Смотри и ахуевай
         for (int i = 0; i < expression.length(); i++) {
-            priority = getPriority(expression.charAt(i));
-            switch (getPriority(expression.charAt(i))) {
-                case -1:
-                    currentString.append(expression.charAt(i));
-                    break;
-                case 1:
-                    currentString.append(" ");
-                    while (!stack.empty() && getPriority(stack.peek()) != 2) {
-                        currentString.append(stack.pop());
-                        currentString.append(" ");
 
-                    }
-                    if (!stack.empty()) {
-                        stack.pop();
-                    }
-                    break;
-                case 2:
-                    stack.push(expression.charAt(i));
-                    break;
-                case 3:
-                case 4:
-                    currentString.append(" ");
-                    while (!stack.empty() && getPriority(stack.peek()) >= priority) {
-                        currentString.append(stack.pop());
-                        currentString.append(" ");
-                    }
-                    stack.push(expression.charAt(i));
-                    break;
-            }
+            collectsTheStringAsAnRPN(currentString, stack, i, expression);
         }
         while (!stack.empty()) {
             currentString.append(" ");
@@ -56,7 +27,7 @@ public class CalculatorByRPN {
         Stack<Double> stack = new Stack<>();
 
         for (int i = 0; i < rpnArray.length; i++) {
-             if (!"+-*/".contains(rpnArray[i])/*getPriority(rpn.charAt(i)) == -1*/) {
+            if (!"+-*/".contains(rpnArray[i])/*getPriority(rpn.charAt(i)) == -1*/) {
                 stack.push(Double.parseDouble(rpnArray[i]));
             } else {
                 double a = stack.pop();
@@ -95,5 +66,37 @@ public class CalculatorByRPN {
                 return 1;
         }
         return -1;
+    }
+
+    private static void collectsTheStringAsAnRPN(StringBuilder currentString, Stack<Character> stack, int i, String expression) {
+
+        switch (getPriority(expression.charAt(i))) {
+            case -1:
+                currentString.append(expression.charAt(i));
+                break;
+            case 1:
+                currentString.append(" ");
+                while (!stack.empty() && getPriority(stack.peek()) != 2) {
+                    currentString.append(stack.pop());
+                    currentString.append(" ");
+
+                }
+                if (!stack.empty()) {
+                    stack.pop();
+                }
+                break;
+            case 2:
+                stack.push(expression.charAt(i));
+                break;
+            case 3:
+            case 4:
+                currentString.append(" ");
+                while (!stack.empty() && getPriority(stack.peek()) >= getPriority(expression.charAt(i))) {
+                    currentString.append(stack.pop());
+                    currentString.append(" ");
+                }
+                stack.push(expression.charAt(i));
+                break;
+        }
     }
 }

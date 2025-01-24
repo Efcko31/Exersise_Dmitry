@@ -3,6 +3,8 @@ package ru.lab4;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+
 public class Laba4Ex1 {
 //    Дана последовательность целых чисел. Вывести упорядоченную по возрастанию
 //    последовательность, состоящую из чисел данной последовательности, стоящих на
@@ -10,17 +12,17 @@ public class Laba4Ex1 {
 
     @Test
     void test() {
-        Assertions.assertArrayEquals(new int[]{4, 5, 6, 8, 0, 0, 0}, sortInAscendingOrderInOddPlaces(new int[]{1, 2, 3, 8, 1, 6, 7, 7, 7, 9, 9, 5, 2, 4}));
-        Assertions.assertArrayEquals(new int[]{0, 0, 0, 0, 0, 0, 0}, sortInAscendingOrderInOddPlaces(new int[]{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2}));
-        Assertions.assertArrayEquals(new int[]{0, 0, 0, 0, 0, 0, 0}, sortInAscendingOrderInOddPlaces(new int[]{2, 2, 3, 3, 7, 4, 5, 5, 6, 6, 7, 6, 4, 4}));
+        assertArrayEquals(new int[]{4, 5, 6, 8, 0, 0, 0}, sortInAscendingOrderInOddPlaces(new int[]{1, 2, 3, 8, 1, 6, 7, 7, 7, 9, 9, 5, 2, 4}));
+        assertArrayEquals(new int[]{0, 0, 0, 0, 0, 0, 0}, sortInAscendingOrderInOddPlaces(new int[]{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2}));
+        assertArrayEquals(new int[]{0, 0, 0, 0, 0, 0, 0}, sortInAscendingOrderInOddPlaces(new int[]{2, 2, 3, 3, 7, 4, 5, 5, 6, 6, 7, 6, 4, 4}));
     }
 
     private int[] sortInAscendingOrderInOddPlaces(int[] listNum) {
         int[] answerArray = new int[listNum.length / 2];
         int[] answerArrayForNumberInNoEvenPlace = new int[listNum.length / 2];
         int[] duplicateArray = new int[20];
-        int indexAnswerArrayForNumberInNoEvenPlace = 0,
-                indexAnswerArray = 0;
+        int indexAnswerArrayForNumberInNoEvenPlace = 0;
+        int indexAnswerArray = 0;
 
 
         for (int i = 0; i < listNum.length; i++) {

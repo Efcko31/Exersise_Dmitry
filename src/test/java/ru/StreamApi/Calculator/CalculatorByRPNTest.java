@@ -1,10 +1,10 @@
-package ru.Stack;
+package ru.StreamApi.Calculator;
 
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static ru.Stack.CalculatorByRPN.Calculator;
+import static ru.StreamApi.Calculator.CalculatorByRPN.Calculator;
 
 public class CalculatorByRPNTest {
     @Test

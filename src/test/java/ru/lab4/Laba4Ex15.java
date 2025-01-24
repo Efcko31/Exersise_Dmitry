@@ -1,16 +1,18 @@
 package ru.lab4;
 
-import org.junit.jupiter.api.Assertions;
+
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class Laba4Ex15 {
     //Если в целочисленной последовательности нет других чисел кроме x, y, z, то упорядочить последовательность по невозрастанию
 
     @Test
     void test() {
-        Assertions.assertArrayEquals(new int[]{8, 6, 3}, CheckingForNumbersAndSorting(new int[]{3, 8, 6}, 3, 6, 8));
-        Assertions.assertArrayEquals(new int[]{8, 6, 6, 3, 3}, CheckingForNumbersAndSorting(new int[]{3, 3, 8, 6, 6}, 3, 6, 8));
-        Assertions.assertArrayEquals(new int[]{3, 8, 6, 4}, CheckingForNumbersAndSorting(new int[]{3, 8, 6, 4}, 3, 6, 8));
+        assertArrayEquals(new int[]{8, 6, 3}, CheckingForNumbersAndSorting(new int[]{3, 8, 6}, 3, 6, 8));
+        assertArrayEquals(new int[]{8, 6, 6, 3, 3}, CheckingForNumbersAndSorting(new int[]{3, 3, 8, 6, 6}, 3, 6, 8));
+        assertArrayEquals(new int[]{3, 8, 6, 4}, CheckingForNumbersAndSorting(new int[]{3, 8, 6, 4}, 3, 6, 8));
     }
 
     private int[] CheckingForNumbersAndSorting(int[] numberArray, int x, int y, int z) {
