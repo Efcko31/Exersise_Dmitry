@@ -30,19 +30,9 @@ public class Laba4Ex4Stream {
     }
 
     private List<Integer> sortNegativeDescendingOrderAndPositiveAscendingOrder(List<Integer> listNumber) {
-//        ArrayList<Integer> positiveListNumber = new ArrayList<>();
-//        ArrayList<Integer> negativeListNumber = new ArrayList<>();
         ArrayList<Integer> listAnswer = new ArrayList<>();
-
         listNumber.stream().filter(i -> i < 0).sorted(Comparator.reverseOrder()).forEach(listAnswer::add);
         listNumber.stream().filter(i -> i >= 0).sorted(Comparator.naturalOrder()).forEach(listAnswer::add);
-
-
-//        listNumber.stream().filter(i -> i >= 0).forEach(positiveListNumber::add);
-//        listNumber.stream().filter(i -> i < 0).forEach(negativeListNumber::add);
-//
-//        negativeListNumber.stream().sorted(Comparator.reverseOrder()).forEach(listAnswer::add);
-//        positiveListNumber.stream().sorted(Comparator.naturalOrder()).forEach(listAnswer::add);
 
         return listAnswer;
     }

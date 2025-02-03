@@ -59,7 +59,7 @@ public class Lecture {
         System.out.println("");
 
 
-        // вывести новое число = старое + 5
+        //todo вывести новое число = старое + 5
         someCollection.stream().forEach(i -> {
             var newI = i + 5;
             System.out.print(newI);
@@ -72,7 +72,7 @@ public class Lecture {
     void forFilterExample() {
         List<Integer> someCollection = List.of(12314, 12313, 4, 67, 25, 747, 47, 5474, 45, 56, 6, 36, 6, 75, 567, 3, 7);
 
-        // найти элементы меньше 10, а потом их вывести на экран
+        //todo найти элементы меньше 10, а потом их вывести на экран
 
         for (Integer i : someCollection) {
             if (i < 10) {
@@ -93,10 +93,10 @@ public class Lecture {
         System.out.println("");
 
 
-        // превратить список из интов в стринги
+        //todo превратить список из интов в стринги
         List<String> stringCollecton = someCollection.stream().map(Object::toString).toList();
 
-        // сортировка
+        //todo сортировка
         someCollection.stream()
                 .filter(i -> i < 50)
                 .sorted((o1, o2) -> o1 < o2 ? 1 : 0)

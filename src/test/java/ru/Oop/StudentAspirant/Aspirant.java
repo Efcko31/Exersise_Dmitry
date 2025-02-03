@@ -18,7 +18,7 @@ public class Aspirant extends Student {
 
     @Override
     public int getScholarship() {
-        return EXCELLENT_MARK.equals(averageMark) ?
+        return EXCELLENT_MARK.equals(getAverageMark()) ?
                 SCHOLARSHIP_FOR_EXCELLENT_STUDENT_STUDIES :
                 SCHOLARSHIP_FOR_THE_STUDENT_STUDIES;
     }
