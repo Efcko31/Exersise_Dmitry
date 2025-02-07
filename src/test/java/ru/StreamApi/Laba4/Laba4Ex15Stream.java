@@ -3,7 +3,6 @@ package ru.StreamApi.Laba4;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,16 +15,18 @@ public class Laba4Ex15Stream {
 
     @Test
     void test() {
-        assertEquals(Arrays.asList(8, 6, 3), CheckingForNumbersAndSorting(Arrays.asList(3, 8, 6), 3, 6, 8));
-        assertEquals(Arrays.asList(8, 6, 6, 3, 3), CheckingForNumbersAndSorting(Arrays.asList(3, 3, 8, 6, 6), 3, 6, 8));
-        assertEquals(Arrays.asList(3, 8, 6, 4), CheckingForNumbersAndSorting(Arrays.asList(3, 8, 6, 4), 3, 6, 8));
+        assertEquals(List.of(8, 6, 3), CheckingForNumbersAndSorting(List.of(3, 8, 6), 3, 6, 8));
+        assertEquals(List.of(8, 6, 6, 3, 3), CheckingForNumbersAndSorting(List.of(3, 3, 8, 6, 6), 3, 6, 8));
+        assertEquals(List.of(3, 8, 6, 4), CheckingForNumbersAndSorting(List.of(3, 8, 6, 4), 3, 6, 8));
     }
 
     private List<Integer> CheckingForNumbersAndSorting(List<Integer> listNumber, int x, int y, int z) {
 
 
         if (listNumber.stream().allMatch(i -> i == x || i == y || i == z)) {
-            return listNumber.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+            return listNumber.stream().
+                    sorted(Comparator.reverseOrder()).
+                    collect(Collectors.toList());
         } else {
             return listNumber;
         }

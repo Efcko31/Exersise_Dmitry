@@ -23,8 +23,9 @@ public class RecruitmentTheKingsArmy {
                 selectionPeasantsForArmy(infantry1stPlatoon, archers1stPlatoon));
     }
 
-    public String selectionPeasantsForArmy(List<Infantryman> Infantry1stPlatoon,
-                                           List<Infantryman> Archers1stPlatoon, Peasant... peasants) {
+    public String selectionPeasantsForArmy // selectAndFillArmyPlatoons
+            (List<Infantryman> Infantry1stPlatoon,
+                                           List<Infantryman> Archers1stPlatoon, Peasant... peasants) {//Верни армию а не строку
         if (peasants.length > 0) {
             Arrays.stream(peasants).toList().stream().
                     filter(i -> "М".equals(i.getGender()) && i.getAge() < 60 && i.getHealthAssessment() > 65).
@@ -38,7 +39,7 @@ public class RecruitmentTheKingsArmy {
                             i.getDescription(),
                             "Железный меч",
                             "Кольчугаб шлемб пластины на запястье")).
-                    forEach(Infantry1stPlatoon::add);
+                    forEach(Infantry1stPlatoon::add);//todo Collectors
 
             Arrays.stream(peasants).toList().stream().
                     filter(i -> "М".equals(i.getGender()) && i.getAge() < 60 && i.getHealthAssessment() > 50 && i.getHealthAssessment() < 66).
@@ -56,7 +57,7 @@ public class RecruitmentTheKingsArmy {
             answer.append("Пехота: ");
             Infantry1stPlatoon.forEach(i -> answer.append(i.getLastName() + " "));
             answer.append("; Лучники: ");
-            Archers1stPlatoon.forEach(i -> answer.append(i.getLastName() + " "));
+            Archers1stPlatoon.forEach(i -> answer.append(i.getLastName() + " "));//Collection.merge
             return answer.toString();
         } else {
             System.out.println("Не может быть, что-бы совсем никого не было! Отправить отряд для проверки в деревни!");
