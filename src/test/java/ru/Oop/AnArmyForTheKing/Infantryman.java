@@ -20,4 +20,9 @@ public class Infantryman extends Peasant {
         this.armor = armor;
     }
 
+    public Infantryman(Peasant peasant, String weapon, String armor) {
+        this.weapon = weapon;
+        this.armor = armor;
+    }
+
 }

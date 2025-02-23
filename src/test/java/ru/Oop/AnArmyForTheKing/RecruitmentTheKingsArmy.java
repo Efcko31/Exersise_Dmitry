@@ -2,32 +2,33 @@ package ru.Oop.AnArmyForTheKing;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static ru.Oop.AnArmyForTheKing.AllPeasant.*;
 
 public class RecruitmentTheKingsArmy {
-    List<Infantryman> infantry1stPlatoon = new ArrayList<>();
-    List<Infantryman> archers1stPlatoon = new ArrayList<>();
 
     @Test
     void test() {
-        assertEquals("Пехота: Иванов Сидоров Задорнов Вавилов ; Лучники: Гагус Вагин Стрельчонок ",
-                selectionPeasantsForArmy(infantry1stPlatoon, archers1stPlatoon,
-                antonIvanov, peterCheshkov, artemShtilko, irinaGalgadot, ivanSidorov, olegGagus, dmitryVagin,
-                mikhailZadornov, maksimStrelchonok, nikolayVavilov));
-        assertEquals("",
-                selectionPeasantsForArmy(infantry1stPlatoon, archers1stPlatoon));
+        /*"Пехота: Иванов Сидоров Задорнов Вавилов ; Лучники: Гагус Вагин Стрельчонок "*/
+        assertEquals(List.of(), recruitsInfantryIntoArmy());
+        assertTrue(equalsAll(List.of(antonIvanov, ivanSidorov, mikhailZadornov, nikolayVavilov),
+                recruitsInfantryIntoArmy(antonIvanov, peterCheshkov, artemShtilko, irinaGalgadot, ivanSidorov, olegGagus, dmitryVagin,
+                mikhailZadornov, maksimStrelchonok, nikolayVavilov)));
+
+        assertTrue(equalsAll(List.of(olegGagus, dmitryVagin, maksimStrelchonok),
+                recruitsArcherIntoArmy(antonIvanov, peterCheshkov, artemShtilko, irinaGalgadot, ivanSidorov, olegGagus, dmitryVagin,
+                        mikhailZadornov, maksimStrelchonok, nikolayVavilov)));
+        assertEquals(List.of(), recruitsArcherIntoArmy());
     }
 
-    public String selectionPeasantsForArmy // selectAndFillArmyPlatoons
-            (List<Infantryman> Infantry1stPlatoon,
-                                           List<Infantryman> Archers1stPlatoon, Peasant... peasants) {//Верни армию а не строку
+    public List<Peasant> recruitsInfantryIntoArmy(Peasant... peasants) {//Верни армию а не строку
         if (peasants.length > 0) {
-            Arrays.stream(peasants).toList().stream().
+            return Arrays.stream(peasants).toList().stream().
                     filter(i -> "М".equals(i.getGender()) && i.getAge() < 60 && i.getHealthAssessment() > 65).
                     map(i -> new Infantryman(
                             i.getFirstName(),
@@ -38,12 +39,25 @@ public class RecruitmentTheKingsArmy {
                             i.getHealthAssessment(),
                             i.getDescription(),
                             "Железный меч",
-                            "Кольчугаб шлемб пластины на запястье")).
-                    forEach(Infantry1stPlatoon::add);//todo Collectors
+                            "Кольчуга шлем пластины на запястье")).
+                    collect(Collectors.toList());
+//            StringBuilder answer = new StringBuilder();
+//            answer.append("Пехота: ");
+//            Infantry1stPlatoon.forEach(i -> answer.append(i.getLastName() + " "));
+        } else {
+            System.out.println("Не может быть, что-бы совсем никого не было! Отправить отряд для проверки в деревни!");
+            return Collections.emptyList();
+        }
+    }//todo Collectors
 
-            Arrays.stream(peasants).toList().stream().
-                    filter(i -> "М".equals(i.getGender()) && i.getAge() < 60 && i.getHealthAssessment() > 50 && i.getHealthAssessment() < 66).
-                    map(i -> new Infantryman(
+    public List<Peasant> recruitsArcherIntoArmy(Peasant... peasants) {
+        if (peasants.length > 0) {
+            return Arrays.stream(peasants).toList().stream().
+                    filter(i -> "М".equals(i.getGender()) &&
+                            i.getAge() < 60 &&
+                            i.getHealthAssessment() > 50 &&
+                            i.getHealthAssessment() < 66).
+                    map(i -> new Archer(
                             i.getFirstName(),
                             i.getLastName(),
                             i.getPatronymic(),
@@ -51,17 +65,26 @@ public class RecruitmentTheKingsArmy {
                             i.getAge(),
                             i.getHealthAssessment(),
                             i.getDescription(), "Длинный лук", "Легкая кожаная броня и накладки")).
-                    forEach(Archers1stPlatoon::add);
+                    collect(Collectors.toList());
 
-            StringBuilder answer = new StringBuilder();
-            answer.append("Пехота: ");
-            Infantry1stPlatoon.forEach(i -> answer.append(i.getLastName() + " "));
-            answer.append("; Лучники: ");
-            Archers1stPlatoon.forEach(i -> answer.append(i.getLastName() + " "));//Collection.merge
-            return answer.toString();
+//            StringBuilder answer = new StringBuilder(); todo Доделать
+//            answer.append("Пехота: ");
+//            Infantry1stPlatoon.forEach(i -> answer.append(i.getLastName() + " "));
+//            answer.append("; Лучники: ");
+//            Archers1stPlatoon.forEach(i -> answer.append(i.getLastName() + " "));//Collection.merge
+//            return answer.toString();
         } else {
             System.out.println("Не может быть, что-бы совсем никого не было! Отправить отряд для проверки в деревни!");
-            return "";
+            return Collections.emptyList();
+        }
+    }
+
+
+    public static boolean equalsAll (List<Peasant> expected, List<Peasant> actual) {
+        if (expected.size() != actual.size()) {
+            return false;
+        } else {
+          return expected.stream().anyMatch(l1 -> actual.stream().anyMatch(l1::equals));
         }
     }
 }

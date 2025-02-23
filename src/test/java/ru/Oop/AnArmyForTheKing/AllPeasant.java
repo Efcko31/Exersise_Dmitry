@@ -1,8 +1,5 @@
 package ru.Oop.AnArmyForTheKing;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class AllPeasant {
     public static Peasant antonIvanov = new Peasant(
             "Антон",

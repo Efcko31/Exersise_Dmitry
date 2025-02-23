@@ -11,16 +11,17 @@ public class Laba4Ex3 {
     //часть последовательности до последнего вхождения x
     @Test
     void test() {
-        assertArrayEquals(new Integer[]{9, 3, 7, 6, 4, 2}, sortToNumber(new Integer[]{9, 3, 7, 6, 4, 2}));
-        assertArrayEquals(new Integer[]{3, 4, 6, 7, 9, 1, 2}, sortToNumber(new Integer[]{9, 3, 7, 6, 4, 1, 2}));
-        assertArrayEquals(new Integer[]{1, 3, 5, 4, 2, 9, 7}, sortToNumber(new Integer[]{1, 3, 5, 4, 2, 9, 7}));
-        assertThrows(NullPointerException.class, () -> sortToNumber(new Integer[]{}));
+        assertArrayEquals(new Integer[]{9, 3, 7, 6, 4, 2}, sortToNumber(new Integer[]{9, 3, 7, 6, 4, 2}, 1));
+        assertArrayEquals(new Integer[]{9, 7, 6, 4, 3, 1, 2}, sortToNumber(new Integer[]{9, 3, 7, 6, 4, 1, 2}, 1));
+        assertArrayEquals(new Integer[]{1, 3, 5, 4, 2, 9, 7}, sortToNumber(new Integer[]{1, 3, 5, 4, 2, 9, 7}, 1));
+        assertArrayEquals(new Integer[]{55, 12, 9, 7, 5, 4, 3, 2, 1, 1, 647, 89},
+                sortToNumber(new Integer[]{1, 3, 5, 4, 2, 9, 7, 12, 55, 1, 647, 89}, 1));
+        assertThrows(NullPointerException.class, () -> sortToNumber(new Integer[]{}, 1));
     }
 
-    private Integer[] sortToNumber(Integer[] listNumber) {
+    private Integer[] sortToNumber(Integer[] listNumber, int x) {
         try {
             Laba4Util.checkArrayIsEmpty(listNumber);
-            int x = 1;
             int lastEntranceX = 0;
 
             for (int i = listNumber.length - 1; i > 0; i--) {
@@ -39,7 +40,7 @@ public class Laba4Ex3 {
 
     private static Integer[] sortByChoise(Integer[] numberArray, Integer lastEntranceX) {
         for (int i = 0; i < numberArray.length; i++) {
-            int indexMinimum = searchMinimumValue(numberArray, i, lastEntranceX);
+            int indexMinimum = searchMaximumValue(numberArray, i, lastEntranceX);
             int numberForReplace = numberArray[i];
             numberArray[i] = numberArray[indexMinimum];
             numberArray[indexMinimum] = numberForReplace;
@@ -47,10 +48,10 @@ public class Laba4Ex3 {
         return numberArray;
     }
 
-    private static Integer searchMinimumValue(Integer[] numberArray, int start, int finish) {
+    private static Integer searchMaximumValue(Integer[] numberArray, int start, int finish) {
         int minIndex = start, minValue = numberArray[start];
         for (int j = start; j < finish; j++) {
-            if (minValue > numberArray[j]) {
+            if (minValue < numberArray[j]) {
                 minValue = numberArray[j];
                 minIndex = j;
             }
