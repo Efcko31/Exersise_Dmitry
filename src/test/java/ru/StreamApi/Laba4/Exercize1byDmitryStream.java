@@ -19,9 +19,9 @@ public class Exercize1byDmitryStream {
     }
 
     public List<String> findWordsConsistingOnlyOfNumbers(String string) {
-        return Arrays.stream(string.split(" ")).
-                filter(s -> s.matches("\\d+")).
-                toList();
+        return Arrays.stream(string.split(" "))
+                .filter(s -> s.matches("\\d+"))
+                .toList();
 
     }
 }

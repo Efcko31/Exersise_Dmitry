@@ -1,9 +1,12 @@
-package ru.Oop.PhoneDirectory;
+package ru.PhoneDirectory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PhoneDirectory {
 
     public static Person nikolayIvanov = new Person(
-            "8-111-111-11-11",
+            "+7-111-111-11-11",
             "Николай",
             "Иванов",
             "Васильевич",
@@ -12,7 +15,7 @@ public class PhoneDirectory {
             "Слесарь");
 
     public static Person petrPetrov = new Person(
-            "8-222-222-22-22",
+            "+7-222-222-22-22",
             "Петр",
             "Петров",
             "Петрович",
@@ -21,7 +24,7 @@ public class PhoneDirectory {
             "Разработчик");
 
     public static Person ilyaIlyiyov = new Person(
-            "8-333-333-33-33",
+            "+7-333-333-33-33",
             "Илья",
             "Ильёв",
             "Ильич",
@@ -30,7 +33,7 @@ public class PhoneDirectory {
             "Разработчик");
 
     public static Person aleksandrAleksandrov = new Person(
-            "8-444-444-44-44",
+            "+7-444-444-44-44",
             "Александр",
             "Алекснадров",
             "Александрович",
@@ -38,8 +41,8 @@ public class PhoneDirectory {
             "улица Ромашковая, д.12",
             "Слесарь");
 
-    public static Person nikolayVasiliev = new Person(
-            "8-555-555-55-55",
+    public static Person ivanovIvan = new Person(
+            "+7-555-555-55-55",
             "Иван",
             "Иванов",
             "Иванович",
@@ -48,7 +51,7 @@ public class PhoneDirectory {
             "Разработчик");
 
     public static Person artemArtemov = new Person(
-            "8-666-666-66-66",
+            "+7-666-666-66-66",
             "Артем",
             "Артемов",
             "Артемович",
@@ -57,7 +60,7 @@ public class PhoneDirectory {
             "Слесарь");
 
     public static Person olegOlegov = new Person(
-            "8-777-777-77-77",
+            "+7-777-777-77-77",
             "Олег",
             "Олегов",
             "",
@@ -66,7 +69,7 @@ public class PhoneDirectory {
             "Слесарь");
 
     public static Person alekseyAlekseev = new Person(
-            "8-888-888-88-88",
+            "+7-888-888-88-88",
             "Алексей",
             "Алексеев",
             "",
@@ -75,7 +78,7 @@ public class PhoneDirectory {
             "Таксист");
 
     public static Person maksimMaksimov = new Person(
-            "8-999-999-99-99",
+            "+7-999-999-99-99",
             "Максим",
             "Максимов",
             "Максимович",
@@ -84,7 +87,7 @@ public class PhoneDirectory {
             "Стоматолог");
 
     public static Person denisDenisov = new Person(
-            "8-000-000-00-00",
+            "+7-000-000-00-00", //номер телефона пишется с кодом страны +7 expression
             "Денис",
             "Денисов",
             "",
@@ -96,4 +99,9 @@ public class PhoneDirectory {
         System.out.printf("Начат вызов. %s т.%s%n", person.getFirstName(), person.getPhoneNumber());
 
     }
+
+    public static List<Person> phoneDirectory = new ArrayList<>(List.of(
+            nikolayIvanov, petrPetrov, ilyaIlyiyov, aleksandrAleksandrov,
+            ivanovIvan, artemArtemov, olegOlegov, alekseyAlekseev,
+            maksimMaksimov, denisDenisov));
 }

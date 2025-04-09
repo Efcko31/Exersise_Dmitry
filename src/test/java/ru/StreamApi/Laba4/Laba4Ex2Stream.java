@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Laba4Ex2Stream {
     //private Map<Integer, Integer> mapOf;
-    //. Дана целочисленная последовательность. Определить количество вхождений каждого числа в последовательность.
+    //. Дана целочисленнслая последовательность. Определить количество вхождений каждого чиа в последовательность.
     @Test
     void test() {
 

@@ -1,4 +1,4 @@
-package ru.StreamApi.Calculator;
+package ru.Stak.Calculator;
 
 import java.util.Stack;
 
