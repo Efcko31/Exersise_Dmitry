@@ -22,14 +22,13 @@ public class Archer extends Peasant {
     private DescriptionOfSolder descriptionOfSolder; //фио + дожность + в какой роте + снаряжение @Named
 
 
-    @Override
-    public boolean equals(Peasant actual) {
-        return super.equals(actual);
-    }
 
-    @Override
-    public boolean equalsAll(List<Peasant> expected, List<Peasant> actual) {
-        return super.equalsAll(expected, actual);
-    }
+//    public boolean equals(Peasant actual) {
+//        return super.equals(actual);
+//    }
+
+//    public boolean equalsAll(List<Peasant> expected, List<Peasant> actual) {
+//        return super.equalsAll(expected, actual);
+//    }
 }
 

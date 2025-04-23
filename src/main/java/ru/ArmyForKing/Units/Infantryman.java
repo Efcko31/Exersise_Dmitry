@@ -9,7 +9,7 @@ import ru.ArmyForKing.DescriptionOfSolder;
 import ru.ArmyForKing.Weapon.OneHandedWeapon;
 
 import java.time.LocalDateTime;
-import java.util.List;
+
 
 
 @Getter
@@ -23,13 +23,4 @@ public class Infantryman extends Peasant {
     private LocalDateTime dateOfRequirement; //в маппере LocalDAteTime.now() всем солдатам constanta
     private DescriptionOfSolder descriptionOfSolder; //фио + дожность + в какой роте + снаряжение @Named
 
-    @Override
-    public boolean equals(Peasant actual) {
-        return super.equals(actual);
-    }
-
-    @Override
-    public boolean equalsAll(List<Peasant> expected, List<Peasant> actual) {
-        return super.equalsAll(expected, actual);
-    }
 }

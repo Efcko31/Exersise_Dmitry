@@ -1,4 +1,4 @@
-package ru.impl;
+package ru.Impl;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
