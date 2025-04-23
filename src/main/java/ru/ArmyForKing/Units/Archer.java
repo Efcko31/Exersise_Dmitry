@@ -9,6 +9,7 @@ import ru.ArmyForKing.DescriptionOfSolder;
 import ru.ArmyForKing.Weapon.TwoHandedWeapons;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,5 +21,14 @@ public class Archer extends Peasant {
     private LocalDateTime dateOfRequirement; //в маппере LocalDAteTime.now() всем солдатам constanta
     private DescriptionOfSolder descriptionOfSolder; //фио + дожность + в какой роте + снаряжение @Named
 
+
+
+//    public boolean equals(Peasant actual) {
+//        return super.equals(actual);
+//    }
+
+//    public boolean equalsAll(List<Peasant> expected, List<Peasant> actual) {
+//        return super.equalsAll(expected, actual);
+//    }
 }
 

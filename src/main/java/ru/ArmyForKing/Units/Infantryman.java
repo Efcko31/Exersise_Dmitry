@@ -9,7 +9,7 @@ import ru.ArmyForKing.DescriptionOfSolder;
 import ru.ArmyForKing.Weapon.OneHandedWeapon;
 
 import java.time.LocalDateTime;
-import java.util.List;
+
 
 
 @Getter

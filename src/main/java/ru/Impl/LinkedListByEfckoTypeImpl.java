@@ -1,4 +1,4 @@
-package ru.impl;
+package ru.Impl;
 
 
 public class LinkedListByEfckoTypeImpl<T> implements LinkedListByEfckoType<T> {
