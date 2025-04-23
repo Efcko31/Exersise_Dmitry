@@ -1,107 +1,69 @@
 package ru.PhoneDirectory;
 
-import java.util.ArrayList;
+import ru.PhoneDirectory.DTO.FullNamePhoneNumb;
+import ru.PhoneDirectory.DTO.FullNamePhoneNumbAddress;
+import ru.PhoneDirectory.Mapper.FullNamePhoneNumbAddressMapper;
+import ru.PhoneDirectory.Mapper.FullNamePhoneNumbMapper;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PhoneDirectory {
+    //1)найти всех людей проживающих в городе n, и вернуть их номер телефона и фио
 
-    public static Person nikolayIvanov = new Person(
-            "+7-111-111-11-11",
-            "Николай",
-            "Иванов",
-            "Васильевич",
-            "Москва",
-            "улица Ромашковая, д.12",
-            "Слесарь");
+    public static List<FullNamePhoneNumb> findEveryoneWhoLivesInTheCityX(
+            String cityN, List<Person> phoneDirectory) {
+        return phoneDirectory.stream()
+                .filter(p -> p.getCityOfResidence().equals(cityN))
+                .map(FullNamePhoneNumbMapper.INSTANCE::toFullNamePhoneNumb)
+                .collect(Collectors.toList());
+    }
 
-    public static Person petrPetrov = new Person(
-            "+7-222-222-22-22",
-            "Петр",
-            "Петров",
-            "Петрович",
-            "Санкт-Петербург",
-            "улица Громова, д.6, кв.12",
-            "Разработчик");
+    //2)найти людей без отчества, и вернуть место их проживания, фио, номер телефона
 
-    public static Person ilyaIlyiyov = new Person(
-            "+7-333-333-33-33",
-            "Илья",
-            "Ильёв",
-            "Ильич",
-            "Санкт-Петербург",
-            "улица Громова, д.12, кв.55",
-            "Разработчик");
+    public static List<FullNamePhoneNumbAddress> findPeopleWithoutPatronymic(
+            List<Person> phoneDirectory) {
+        return phoneDirectory.stream()
+                .filter(p -> p.getPatronymic().isEmpty())
+                .map(FullNamePhoneNumbAddressMapper.INSTANCE::toFullNamePhoneNumbAddress)
+                .collect(Collectors.toList());
+    }
 
-    public static Person aleksandrAleksandrov = new Person(
-            "+7-444-444-44-44",
-            "Александр",
-            "Алекснадров",
-            "Александрович",
-            "Москва",
-            "улица Ромашковая, д.12",
-            "Слесарь");
+    //3)найти людей с профессией x, и вернуть информацию о них отсротирваную по городу
 
-    public static Person ivanovIvan = new Person(
-            "+7-555-555-55-55",
-            "Иван",
-            "Иванов",
-            "Иванович",
-            "Екатеринбург",
-            "улица Красноказарменная, д.33, кв.44",
-            "Разработчик");
-
-    public static Person artemArtemov = new Person(
-            "+7-666-666-66-66",
-            "Артем",
-            "Артемов",
-            "Артемович",
-            "Екатеринбург",
-            "улица Красноказарменная, д.12, кв.12",
-            "Слесарь");
-
-    public static Person olegOlegov = new Person(
-            "+7-777-777-77-77",
-            "Олег",
-            "Олегов",
-            "",
-            "Москва",
-            "улица Новохохловская, д.12",
-            "Слесарь");
-
-    public static Person alekseyAlekseev = new Person(
-            "+7-888-888-88-88",
-            "Алексей",
-            "Алексеев",
-            "",
-            "Санкт-Петербург",
-            "улица Гринькова, д.33, кв.76",
-            "Таксист");
-
-    public static Person maksimMaksimov = new Person(
-            "+7-999-999-99-99",
-            "Максим",
-            "Максимов",
-            "Максимович",
-            "Белгород",
-            "улица Королева, д.55, кв.22",
-            "Стоматолог");
-
-    public static Person denisDenisov = new Person(
-            "+7-000-000-00-00", //номер телефона пишется с кодом страны +7 expression
-            "Денис",
-            "Денисов",
-            "",
-            "Белгород",
-            "улица Победы, д.1, кв.1",
-            "Таксист");
-
-    public static void makeCall(Person person) {
-        System.out.printf("Начат вызов. %s т.%s%n", person.getFirstName(), person.getPhoneNumber());
+    public static List<Person> findPeopleWithProfessionXAndSortByCity(
+            String profession, List<Person> phoneDirectory) {
+        return phoneDirectory.stream()
+                .filter(p -> p.getTypeofActivity().equals(profession))
+                .sorted((o1, o2) -> String.CASE_INSENSITIVE_ORDER
+                        .compare(o1.getCityOfResidence(), o2.getCityOfResidence()))
+                .collect(Collectors.toList());
 
     }
 
-    public static List<Person> phoneDirectory = new ArrayList<>(List.of(
-            nikolayIvanov, petrPetrov, ilyaIlyiyov, aleksandrAleksandrov,
-            ivanovIvan, artemArtemov, olegOlegov, alekseyAlekseev,
-            maksimMaksimov, denisDenisov));
+    //4)найти n людей с определенной профессией
+
+    public static List<Person> findNPeopleWithTheSpecifiedProfession(String profession, int n, List<Person> phoneDirectory) {
+        List<Person> listPeopleWithProfessionN = phoneDirectory.stream()
+                .filter(s -> s.getTypeofActivity().equals(profession))
+                .limit(n)
+                .toList();
+
+        listPeopleWithProfessionN.forEach(p -> System.out.printf("%s %s %s, %s\n",
+                p.getLastName(), p.getFirstName(), p.getPatronymic(), p.getTypeofActivity()));
+
+        return listPeopleWithProfessionN;
+
+    }
+
+    //5)осуществить прозвон всех людей с профессией x, с уточненим актуальности информации
+
+    public static List<Person> callAllPeopleWithProfessionX(String profession, List<Person> phoneDirectory) {
+        List<Person> subscribersToWhomCallWasMade = phoneDirectory.stream()
+                .filter(p -> p.getTypeofActivity().equals(profession))
+                .toList();
+        subscribersToWhomCallWasMade.forEach(PersonsForPhoneDirectory::makeCall);
+        System.out.println("-------------------------");
+        return subscribersToWhomCallWasMade;
+    }
 }
