@@ -1,37 +1,33 @@
 package ru.StreamApi.AnArmyForTheKingTest;
 
 import org.junit.jupiter.api.Test;
-import ru.ArmyForKing.Units.Infantryman;
-import ru.ArmyForKing.Units.Peasant;
 
 import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import static ru.ArmyForKing.RecruitmentTheKingsArmy.*;
-import static ru.StreamApi.AnArmyForTheKingTest.AllPeasant.*;
+import static ru.ArmyForKing.Units.AllPeasant.*;
 
 public class RecruitmentTheKingsArmyTest {
 
-    public static List<Infantryman> infantrymanListTest = recruitsInfantryIntoArmy(ListOfThoseWhoCameTheArmySelection);
+
     @Test
     void test() {
+
         assertEquals(List.of(), recruitsInfantryIntoArmy(Collections.emptyList()));
         assertEquals(List.of(), recruitsArcherIntoArmy(Collections.emptyList()));
         assertEquals(List.of(), recruitsCavalryIntoArmy(Collections.emptyList()));
 
-//        assertTrue(equalsAll(List.of(antonIvanov, ivanSidorov, mikhailZadornov, nikolayVavilov),
-//                recruitsInfantryIntoArmy(ListOfThoseWhoCameTheArmySelection)));
-//        assertTrue(equalsAll(List.of(olegGagus, dmitryVagin, maksimStrelchonok),
-//                recruitsArcherIntoArmy(ListOfThoseWhoCameTheArmySelection)));
-//        assertTrue(equalsAll(List.of(ilyaInTheCube, ilyaIlyov, nikolayInTheCube, dementiyArhilov, dimaInTheCube),
-//                recruitsCavalryIntoArmy(ListOfThoseWhoCameTheArmySelection)));
+        assertEquals(antonIvanov.getPeasant().getLastName(), recruitsInfantryIntoArmy(ListOfThoseWhoCameTheArmySelection).getFirst().getLastName());
+        assertEquals(nikolayVavilov.getPeasant().getLastName(), recruitsInfantryIntoArmy(ListOfThoseWhoCameTheArmySelection).getLast().getLastName());
 
+        assertEquals(olegGagus.getPeasant().getLastName(), recruitsArcherIntoArmy(ListOfThoseWhoCameTheArmySelection).getFirst().getLastName());
+        assertEquals(maksimStrelchonok.getPeasant().getLastName(), recruitsArcherIntoArmy(ListOfThoseWhoCameTheArmySelection).getLast().getLastName());
 
-        for (Peasant p : infantrymanListTest) {
-            System.out.println(p + p.getLastName());
-        }
+        assertEquals(ilyaInTheCube.getPeasant().getLastName(), recruitsCavalryIntoArmy(ListOfThoseWhoCameTheArmySelection).getFirst().getLastName());
+        assertEquals(dimaInTheCube.getPeasant().getLastName(), recruitsCavalryIntoArmy(ListOfThoseWhoCameTheArmySelection).getLast().getLastName());
+
     }
-
 }

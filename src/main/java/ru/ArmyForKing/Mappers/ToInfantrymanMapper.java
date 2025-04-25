@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
 
 
 @Mapper(imports = LocalDateTime.class )
-public interface toInfantrymanMapper {
-    toInfantrymanMapper INSTANCE = Mappers.getMapper(toInfantrymanMapper.class);
+public interface ToInfantrymanMapper {
+    ToInfantrymanMapper INSTANCE = Mappers.getMapper(ToInfantrymanMapper.class);
 
     @Mapping(target = "dateOfRequirement", expression = "java(LocalDateTime.now())", dateFormat = "dd.MM.yyyy")
     Infantryman toInfantryman(Peasant peasant,

@@ -1,4 +1,4 @@
-package ru.MappingLecture;
+package ru.lectures.MappingLecture;
 
 import java.math.BigDecimal;
 import java.util.List;

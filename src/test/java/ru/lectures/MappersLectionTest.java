@@ -1,13 +1,15 @@
-package ru.lections.mappersLection;
+package ru.lectures;
 
 import org.junit.jupiter.api.Test;
-import ru.MappingLecture.ClientBankAccount;
-import ru.MappingLecture.ClientLogicUtils;
+import ru.lectures.MappingLecture.ClientBankAccount;
+import ru.lectures.MappingLecture.ClientLogicUtils;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 public class MappersLectionTest {
+
+    // Мапперу необходимо ЯВНО указывать на переменные!
     private final ClientBankAccount CLIENT1 = new ClientBankAccount("tfth",
             "rgdgd",
             "drgrdg",

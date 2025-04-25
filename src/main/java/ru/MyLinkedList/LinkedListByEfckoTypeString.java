@@ -1,4 +1,4 @@
-package ru.DTO;
+package ru.MyLinkedList;
 
 import lombok.Getter;
 import lombok.Setter;

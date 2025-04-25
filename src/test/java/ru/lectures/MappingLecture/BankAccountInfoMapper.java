@@ -1,4 +1,4 @@
-package ru.MappingLecture;
+package ru.lectures.MappingLecture;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

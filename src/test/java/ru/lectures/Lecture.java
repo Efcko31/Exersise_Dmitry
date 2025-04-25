@@ -1,4 +1,4 @@
-package ru.StreamApi;
+package ru.lectures;
 
 
 import org.junit.jupiter.api.Test;

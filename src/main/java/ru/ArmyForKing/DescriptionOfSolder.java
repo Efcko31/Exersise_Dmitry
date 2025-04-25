@@ -14,8 +14,6 @@ public class DescriptionOfSolder {
     private String company;
     private String post;
     private String equipment;
-
-
-    }
+}
 
 

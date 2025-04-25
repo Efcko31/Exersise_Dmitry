@@ -1,8 +1,8 @@
 package ru.Oop.Laba4;
 
 import org.junit.jupiter.api.Test;
-import ru.DTO.ElementByEfckoTypeInteger;
-import ru.DTO.LinkedListByEfckoTypeInteger;
+import ru.MyLinkedList.ElementByEfckoTypeInteger;
+import ru.MyLinkedList.LinkedListByEfckoTypeInteger;
 
 import static org.junit.jupiter.api.Assertions.*;
 

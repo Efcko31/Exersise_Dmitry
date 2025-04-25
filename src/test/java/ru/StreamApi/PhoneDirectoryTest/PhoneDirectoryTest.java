@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static ru.PhoneDirectory.PersonsForPhoneDirectory.*;
+import static ru.StreamApi.PhoneDirectoryTest.PersonsForPhoneDirectory.*;
 import static ru.PhoneDirectory.PhoneDirectory.*;
 
 public class PhoneDirectoryTest {

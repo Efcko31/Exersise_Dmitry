@@ -6,10 +6,11 @@ import java.util.Optional;
 public class Methods {
 
     public static List<String> getValidTicketNumber(User user) {
+
         return Optional.ofNullable(user)
                 .flatMap(User::getTicket).stream()
                 .flatMap(List::stream)
-                .filter(ticket -> ticket.isValid())
+                .filter(Ticket::isValid)
                 .map(ticket -> String.format("Билет: %s, Цена: %s",
                         ticket.getId(),
                         ticket.getPrice().map(Object::toString)
@@ -30,8 +31,8 @@ public class Methods {
 
                                 .orElse("Цена не указана")))
                 .toList();
-                /*.orElseThrow(() -> new IllegalArgumentException("Билет не найден"));*/
+        //.orElseThrow(() -> new IllegalArgumentException("Билет не найден"));
     }
 
-    //public static List<>
+
 }

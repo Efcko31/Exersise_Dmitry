@@ -17,6 +17,7 @@ public enum AllHorses {
     private final Horse horse;
 
     AllHorses(Horse horse) {this.horse = horse; }
+
     public static final List<AllHorses> HORSE_STALL = List.of(SIVKA, LORIC, BORIS, BURKA, GUNGNIR);
 
 }

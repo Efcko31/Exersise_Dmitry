@@ -30,7 +30,4 @@ public class Person extends Object{
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
     }
-
-
-
 }

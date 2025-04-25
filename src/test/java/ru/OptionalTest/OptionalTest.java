@@ -1,17 +1,16 @@
 package ru.OptionalTest;
 
 import org.junit.jupiter.api.Test;
-import ru.Optional.UsersOptional;
 
 import java.util.Arrays;
 
 import static ru.Optional.Methods.getValidTicketNumber;
 import static ru.Optional.Methods.getValidTicketNumberConcert;
-import static ru.Optional.UsersOptional.*;
+import static ru.Optional.UsersOptional.values;
 
 public class OptionalTest {
     @Test
-    void test(){
+    void test() {
         Arrays.stream(values())
                 .forEach(u -> System.out.println(getValidTicketNumber(u.getUser())));
         System.out.println("_________________________");

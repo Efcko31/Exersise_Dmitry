@@ -1,4 +1,4 @@
-package ru.MappingLecture;
+package ru.lectures.MappingLecture;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
