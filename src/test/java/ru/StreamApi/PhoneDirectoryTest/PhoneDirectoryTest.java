@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static ru.StreamApi.PhoneDirectoryTest.PersonsForPhoneDirectory.*;
 import static ru.PhoneDirectory.PhoneDirectory.*;
+import static ru.StreamApi.PhoneDirectoryTest.PersonsForPhoneDirectory.*;
 
 public class PhoneDirectoryTest {
 
@@ -31,26 +31,25 @@ public class PhoneDirectoryTest {
         var person = findPeopleWithoutPatronymic(phoneDirectory);
         assertEquals(3, person.size());
         assertEquals("Москва", person.getFirst().getCityOfResidence());
-
     }
 
     //3)найти людей с профессией x, и вернуть информацию о них отсротирваную по городу
     @Test
     void findPeopleWithCertainProfessionTest() {
         assertEquals(List.of(
-                        ivanovIvan, petrPetrov, ilyaIlyiyov),
+                        ivanovIvan.getPerson(), petrPetrov.getPerson(), ilyaIlyiyov.getPerson()),
                 findPeopleWithProfessionXAndSortByCity("Разработчик", phoneDirectory));
         assertEquals(List.of(
-                        denisDenisov, alekseyAlekseev),
+                        denisDenisov.getPerson(), alekseyAlekseev.getPerson()),
                 findPeopleWithProfessionXAndSortByCity("Таксист", phoneDirectory));
     }
 
     //4)найти n людей с определенной профессией
     @Test
     void findNPeopleWithTheSpecifiedProfessionTest() {
-        assertEquals(List.of(alekseyAlekseev), findNPeopleWithTheSpecifiedProfession(
+        assertEquals(List.of(alekseyAlekseev.getPerson()), findNPeopleWithTheSpecifiedProfession(
                 "Таксист", 1, phoneDirectory));
-        assertEquals(List.of(nikolayIvanov, aleksandrAleksandrov), findNPeopleWithTheSpecifiedProfession(
+        assertEquals(List.of(nikolayIvanov.getPerson(), aleksandrAleksandrov.getPerson()), findNPeopleWithTheSpecifiedProfession(
                 "Слесарь", 2, phoneDirectory));
         assertEquals(List.of(), findNPeopleWithTheSpecifiedProfession(
                 "Слесарь", 0, phoneDirectory));
@@ -59,12 +58,11 @@ public class PhoneDirectoryTest {
     //5)осуществить прозвон всех людей с профессией x, с уточненим актуальности информации
     @Test
     void callAllPeopleWithProfessionXAndClarifyInformationTest() {
-        assertEquals(List.of(nikolayIvanov, aleksandrAleksandrov, artemArtemov, olegOlegov),
+        assertEquals(List.of(nikolayIvanov.getPerson(), aleksandrAleksandrov.getPerson(), artemArtemov.getPerson(), olegOlegov.getPerson()),
                 callAllPeopleWithProfessionX("Слесарь", phoneDirectory));
-        assertEquals(List.of(alekseyAlekseev, denisDenisov),
+        assertEquals(List.of(alekseyAlekseev.getPerson(), denisDenisov.getPerson()),
                 callAllPeopleWithProfessionX("Таксист", phoneDirectory));
-        assertEquals(List.of(petrPetrov, ilyaIlyiyov, ivanovIvan),
+        assertEquals(List.of(petrPetrov.getPerson(), ilyaIlyiyov.getPerson(), ivanovIvan.getPerson()),
                 callAllPeopleWithProfessionX("Разработчик", phoneDirectory));
     }
-
 }

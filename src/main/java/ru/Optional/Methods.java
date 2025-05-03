@@ -14,7 +14,6 @@ public class Methods {
                 .map(ticket -> String.format("Билет: %s, Цена: %s",
                         ticket.getId(),
                         ticket.getPrice().map(Object::toString)
-
                                 .orElse("Цена не указана")))
                 .toList();
     }
@@ -28,7 +27,6 @@ public class Methods {
                 .map(ticket -> String.format("Билет: %s, Цена: %s",
                         ticket.getId(),
                         ticket.getPrice().map(Object::toString)
-
                                 .orElse("Цена не указана")))
                 .toList();
         //.orElseThrow(() -> new IllegalArgumentException("Билет не найден"));
