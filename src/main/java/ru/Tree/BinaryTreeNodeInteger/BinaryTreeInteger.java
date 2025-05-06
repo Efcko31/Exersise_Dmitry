@@ -7,30 +7,151 @@ public class BinaryTreeInteger {
         rootNode = null;
     }
 
-    public void insert(Integer value) {
+    public boolean delete(Integer key) {
+        NodeBinaryTreeInteger current = rootNode;
+        NodeBinaryTreeInteger parent = rootNode;
+        boolean isLeftChild = true;
 
-        NodeBinaryTreeInteger newNode = new NodeBinaryTreeInteger(value);
+        while (current.getKey() != key) {
+            parent = current;
+            if (key < current.getKey()) {
+                isLeftChild = true;
+                current = current.getLeftChild();
+            } else {
+                isLeftChild = false;
+                current = current.getRightChild();
+            }
+            if (current == null) {
+                System.out.println("Узел не найден");
+                return false;
+            }
+        }
+
+        if (current.getLeftChild() == null && current.getRightChild() == null) {
+            if (current == rootNode) {
+                rootNode = null;
+            } else if (isLeftChild) {
+                parent.setLeftChild(null);
+            } else {
+                parent.setRightChild(null);
+            }
+        } else if (current.getRightChild() == null) {
+            if (current == rootNode) {
+                rootNode = current.getLeftChild();
+            } else if (isLeftChild) {
+                parent.setLeftChild(current.getLeftChild());
+            } else {
+                parent.setRightChild(current.getLeftChild());
+            }
+        } else if (current.getLeftChild() == null) {
+            if (current == rootNode) {
+                rootNode = current.getRightChild();
+            } else if (isLeftChild) {
+                parent.setLeftChild(current.getRightChild());
+            } else {
+                parent.setRightChild(current.getRightChild());
+            }
+        } else {
+            NodeBinaryTreeInteger successor = getSuccessor(current);
+
+            if (current == rootNode) {
+                rootNode = successor;
+            } else if (isLeftChild) {
+                parent.setLeftChild(successor);
+            } else {
+                parent.setRightChild(successor);
+            }
+            successor.setLeftChild(current.getLeftChild());
+
+        }
+        return true;
+    }
+
+
+    private NodeBinaryTreeInteger getSuccessor(NodeBinaryTreeInteger delNode) {
+        NodeBinaryTreeInteger successorParent = delNode;
+        NodeBinaryTreeInteger successor = delNode;
+        NodeBinaryTreeInteger current = delNode.getRightChild();
+
+        while (current != null) {
+            successorParent = successor;
+            successor = current;
+            current = current.getLeftChild();
+        }
+
+        if (successor != delNode.getRightChild()) {
+            successorParent.setLeftChild(successor.getRightChild());
+            successor.setRightChild(delNode.getRightChild());
+        }
+        return successor;
+    }
+
+    public void insert(Integer key, Double value) {
+
+        NodeBinaryTreeInteger newNode = new NodeBinaryTreeInteger(key, value);
 
         if (rootNode == null) {
             rootNode = newNode;
         } else {
             NodeBinaryTreeInteger currentNode = rootNode;
+            NodeBinaryTreeInteger parent;
 
-            if (value < data) {
-                if (leftChild == null) {
-                    leftChild = new NodeBinaryTreeInteger(value);
+            while (true) {
+                parent = currentNode;
+                if (key < currentNode.getKey()) {
+                    currentNode = currentNode.getLeftChild();
+                    if (currentNode == null) {
+                        parent.setLeftChild(newNode);
+                        return;
+                    }
                 } else {
-                    leftChild.insert(value);
-                }
-            } else {
-                if (rightChild == null) {
-                    rightChild = new NodeBinaryTreeInteger(value);
-                } else {
-                    rightChild.insert(value);
+                    currentNode = currentNode.getRightChild();
+                    if (currentNode == null) {
+                        parent.setRightChild(newNode);
+                        return;
+                    }
                 }
             }
         }
+    }
 
+    public NodeBinaryTreeInteger find(Integer key) {
+        NodeBinaryTreeInteger current = rootNode;
 
+        while (current.getKey() != key) {
+            if (key < current.getKey()) {
+                current = current.getLeftChild();
+            } else {
+                current = current.getRightChild();
+            }
+
+            if (current == null) {
+                System.out.println("Узел не найден");
+                return null;
+            }
+        }
+        return current;
+    }
+
+    public NodeBinaryTreeInteger minimum() {
+        NodeBinaryTreeInteger current = rootNode;
+        NodeBinaryTreeInteger last = current;
+
+        while(current != null) {
+            last = current;
+            current = current.getLeftChild();
+        }
+        return last;
+    }
+
+    public NodeBinaryTreeInteger maximum() {
+        NodeBinaryTreeInteger current = rootNode;
+        NodeBinaryTreeInteger last = current;
+
+        while(current != null) {
+            last = current;
+            current = current.getRightChild();
+        }
+        return last;
     }
 }
