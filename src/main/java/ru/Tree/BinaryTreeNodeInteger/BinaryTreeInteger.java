@@ -1,5 +1,8 @@
 package ru.Tree.BinaryTreeNodeInteger;
 
+import lombok.Data;
+
+@Data
 public class BinaryTreeInteger {
     private NodeBinaryTreeInteger rootNode;
 
@@ -153,5 +156,18 @@ public class BinaryTreeInteger {
             current = current.getRightChild();
         }
         return last;
+    }
+
+    public void symmetricalTreeTraversal(NodeBinaryTreeInteger root) {
+        inOrder(root);
+    }
+
+    private void inOrder(NodeBinaryTreeInteger localRoot) {
+        if (localRoot != null) {
+            inOrder(localRoot.getLeftChild());
+
+            System.out.print(localRoot.getKey() + " ");
+            inOrder(localRoot.getRightChild());
+        }
     }
 }
