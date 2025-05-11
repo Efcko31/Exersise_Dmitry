@@ -2,6 +2,7 @@ package ru.ArmyForKing.Units;
 
 import lombok.Getter;
 
+import java.util.HashMap;
 import java.util.List;
 
 import static ru.ArmyForKing.Utils.Constants.FEMALE_GENDER;
@@ -138,7 +139,15 @@ public enum AllPeasant {
             MALE_GENDER,
             22,
             95,
-            "Состояние здоровья отличное"));
+            "Состояние здоровья отличное")),
+    errorError(new Peasant(
+            "Ошибка",
+            "Архилов",
+            "Error",
+            MALE_GENDER,
+            99,
+            99,
+            "Просто для теста"));
 
     private final Peasant peasant;
 
@@ -146,11 +155,23 @@ public enum AllPeasant {
         this.peasant = peasant;
     }
 
-    public static final List<Peasant> ListOfThoseWhoCameTheArmySelection = List.of(antonIvanov.getPeasant(),
-            peterCheshkov.getPeasant(), artemShtilko.getPeasant(), irinaGalgadot.getPeasant(), irinaGalgadot.getPeasant(),
+    public static final List<Peasant> listOfThoseWhoCameTheArmySelection = List.of(antonIvanov.getPeasant(),
+            peterCheshkov.getPeasant(), artemShtilko.getPeasant(), irinaGalgadot.getPeasant(),
             ivanSidorov.getPeasant(), olegGagus.getPeasant(), ilyaInTheCube.getPeasant(), dmitryVagin.getPeasant(),
             mikhailZadornov.getPeasant(), maksimStrelchonok.getPeasant(), nikolayVavilov.getPeasant(),
             ilyaIlyov.getPeasant(), nikolayInTheCube.getPeasant(), dementiyArhilov.getPeasant(),
             dimaInTheCube.getPeasant(), ekaterinaPrutnikova.getPeasant());
+
+    public static  HashMap<String, Peasant> createListPeasantsWithHashMap() {
+        HashMap<String, Peasant> listOfPeasantOnHashMap = new HashMap<>();
+
+        for (Peasant i : listOfThoseWhoCameTheArmySelection) {
+            listOfPeasantOnHashMap.put(i.getLastName(), i);
+        }
+
+        return listOfPeasantOnHashMap;
+    }
+
+
 
 }
