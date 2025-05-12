@@ -1,6 +1,6 @@
 package ru.Tree;
 
-import org.junit.jupiter.api.Assertions;
+
 import org.junit.jupiter.api.Test;
 import ru.Tree.BinaryTreeNodeInteger.BinaryTreeInteger;
 import ru.Tree.BinaryTreeNodeInteger.NodeBinaryTreeInteger;
@@ -8,14 +8,15 @@ import ru.Tree.BinaryTreeNodeInteger.NodeBinaryTreeInteger;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BinaryTreeTest {
-    BinaryTreeInteger threeTest = new BinaryTreeInteger();
+    BinaryTreeInteger threeTest = insertingNodeIntoTreeTest();
 
     @Test
     public void test() {
-        threeTest = insertingNodeIntoTreeTest(threeTest);
+        assertNotNull(insertingNodeIntoTreeTest().getRootNode());
     }
 
-    public BinaryTreeInteger insertingNodeIntoTreeTest(BinaryTreeInteger threeTest) {
+    public BinaryTreeInteger insertingNodeIntoTreeTest() {
+        BinaryTreeInteger threeTest = new BinaryTreeInteger();
         threeTest.insert(63, 1.0);
         threeTest.insert(47, 1.1);
         threeTest.insert(71, 1.2);
@@ -39,18 +40,21 @@ public class BinaryTreeTest {
 
     @Test
     public void deleteTest() {
-        assertTrue(deletesDataFromTree(insertingNodeIntoTreeTest(threeTest), 63));
+        assertTrue(deletesDataFromTree(threeTest, 63));
+        assertFalse(deletesDataFromTree(threeTest, 199));
     }
 
     public boolean deletesDataFromTree( BinaryTreeInteger threeTest, Integer delNodeKey) {
-        threeTest.delete(delNodeKey);
+        boolean answer = threeTest.delete(delNodeKey);
         threeTest.symmetricalTreeTraversal(threeTest.getRootNode());
-        return true;
+        return answer;
     }
 
     @Test
-    public void findTest() {
-        assertEquals(new NodeBinaryTreeInteger(33, 1.7), insertingNodeIntoTreeTest(threeTest).find(33));
-        //assertNull(insertingNodeIntoTreeTest(threeTest).find(44));
+    public void findMaximumMinimumMethodsTest() {
+        assertEquals(new NodeBinaryTreeInteger(33, 1.7), threeTest.find(33));
+        assertNull(threeTest.find(44));
+        assertEquals(75, threeTest.maximum().getKey());
+        assertEquals(10, threeTest.minimum().getKey());
     }
 }

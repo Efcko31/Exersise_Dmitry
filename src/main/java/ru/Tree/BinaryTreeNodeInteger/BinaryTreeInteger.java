@@ -11,6 +11,11 @@ public class BinaryTreeInteger {
     }
 
     public boolean delete(Integer key) {
+        if(rootNode == null) {
+            System.out.println("Дерево или корень пустые!");
+            return false;
+        }
+
         NodeBinaryTreeInteger current = rootNode;
         NodeBinaryTreeInteger parent = rootNode;
         boolean isLeftChild = true;
