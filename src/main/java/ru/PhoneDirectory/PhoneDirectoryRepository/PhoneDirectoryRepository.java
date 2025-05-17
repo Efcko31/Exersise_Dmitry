@@ -36,7 +36,7 @@ public class PhoneDirectoryRepository {
         }
     }
 
-    public Person findByPhoneNumber(String phoneNumber) throws SQLException {
-        String sql = "SELECT * "
-    }
+//    public Person findByPhoneNumber(String phoneNumber) throws SQLException {
+//        String sql = "SELECT * "
+//    }
 }
