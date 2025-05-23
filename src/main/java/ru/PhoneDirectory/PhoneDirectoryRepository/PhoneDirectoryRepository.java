@@ -1,6 +1,5 @@
 package ru.PhoneDirectory.PhoneDirectoryRepository;
 
-import ru.PhoneDirectory.DTO.FullNamePhoneNumb;
 import ru.PhoneDirectory.Person;
 
 import java.sql.*;
@@ -12,7 +11,7 @@ public class PhoneDirectoryRepository {
     private static final String USER = "postgres";
     private static final String PASSWORD = "Bkmz1205!F";
 
-    public Connection getConnection() throws SQLException {
+    public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 
@@ -36,7 +35,7 @@ public class PhoneDirectoryRepository {
         }
     }
 
-    public Person findByPhoneNumber(String phoneNumber) throws SQLException {
+    public static Person findByPhoneNumber(String phoneNumber) throws SQLException {
         String sql = "SELECT * FROM phonedirectory WHERE phone_number = ?";
 
         try (Connection conn = getConnection();
@@ -51,15 +50,16 @@ public class PhoneDirectoryRepository {
                         result.getString("first_name"),
                         result.getString("last_name"),
                         result.getString("patronymic"),
-                        result.getString("city_of_residence"),
+                        result.getString("city_of_resident"),
                         result.getString("address"),
                         result.getString("type_of_activity"));
             }
+            System.out.println("С данным номером телефона, человек не найден.");
             return null;
         }
     }
 
-    public List<Person> findEveryoneWhoLivesInTheCityXUsingSQL(String cityN) throws SQLException {
+    public static List<Person> findEveryoneWhoLivesInTheCityXUsingSQL(String cityN) throws SQLException {
         List<Person> listPersonsWhoLiveInCityN = new ArrayList<>();
         String sql = "SELECT first_name, last_name, patronymic, phone_number" +
                 " FROM phonedirectory WHERE city_of_resident = ?";
@@ -70,16 +70,41 @@ public class PhoneDirectoryRepository {
             stmt.setString(1, cityN);
             ResultSet result = stmt.executeQuery();
 
-            while(result.next()) {
+            while (result.next()) {
                 Person person = new Person(
                         result.getString("first_name"),
                         result.getString("last_name"),
                         result.getString("patronymic"),
                         result.getString("phone_number")
-                        );
+                );
                 listPersonsWhoLiveInCityN.add(person);
             }
         }
         return listPersonsWhoLiveInCityN;
     }
+
+    public static List<Person> findPeopleWithoutPatronymic() throws SQLException {
+        List<Person> listPeopleWithoutPatronymic = new ArrayList<>();
+        String sql = "SELECT first_name, last_name, phone_number, city_of_resident, address" +
+                " FROM phonedirectory WHERE patronymic = ?";
+
+        try (Connection conn = getConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, "");
+            ResultSet result = stmt.executeQuery();
+
+            while (result.next()) {
+                listPeopleWithoutPatronymic.add(new Person(
+                        result.getString("city_of_resident"),
+                        result.getString("address"),
+                        result.getString("first_name"),
+                        result.getString("last_name"),
+                        result.getString("phone_number")
+                ));
+            }
+            return listPeopleWithoutPatronymic;
+        }
+    }
+
 }
