@@ -1,14 +1,14 @@
 package ru.PhoneDirectory.PhoneDirectoryRepository;
 
+import ru.PhoneDirectory.DTO.FullNamePhoneNumb;
 import ru.PhoneDirectory.Person;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PhoneDirectoryRepository {
-    private static final String URL = "jdbc:postgresql://localhost:5432/my_first_database";
+    private static final String URL = "jdbc:postgresql://localhost:5432/my_first_db";
     private static final String USER = "postgres";
     private static final String PASSWORD = "Bkmz1205!F";
 
@@ -17,8 +17,8 @@ public class PhoneDirectoryRepository {
     }
 
     public void addPerson(Person person) throws SQLException {
-        String sql = "INCERT INTO person (phone_number, first_name, last_name, patronymic, " +
-                "city_of_residence, address, type_of_activity) " +
+        String sql = "INSERT INTO phonedirectory (phone_number, first_name, last_name, patronymic, " +
+                "city_of_resident, address, type_of_activity) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = getConnection();
@@ -36,7 +36,50 @@ public class PhoneDirectoryRepository {
         }
     }
 
-//    public Person findByPhoneNumber(String phoneNumber) throws SQLException {
-//        String sql = "SELECT * "
-//    }
+    public Person findByPhoneNumber(String phoneNumber) throws SQLException {
+        String sql = "SELECT * FROM phonedirectory WHERE phone_number = ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, phoneNumber);
+            ResultSet result = stmt.executeQuery();
+
+            if (result.next()) {
+                return new Person(
+                        result.getString("phone_number"),
+                        result.getString("first_name"),
+                        result.getString("last_name"),
+                        result.getString("patronymic"),
+                        result.getString("city_of_residence"),
+                        result.getString("address"),
+                        result.getString("type_of_activity"));
+            }
+            return null;
+        }
+    }
+
+    public List<Person> findEveryoneWhoLivesInTheCityXUsingSQL(String cityN) throws SQLException {
+        List<Person> listPersonsWhoLiveInCityN = new ArrayList<>();
+        String sql = "SELECT first_name, last_name, patronymic, phone_number" +
+                " FROM phonedirectory WHERE city_of_resident = ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, cityN);
+            ResultSet result = stmt.executeQuery();
+
+            while(result.next()) {
+                Person person = new Person(
+                        result.getString("first_name"),
+                        result.getString("last_name"),
+                        result.getString("patronymic"),
+                        result.getString("phone_number")
+                        );
+                listPersonsWhoLiveInCityN.add(person);
+            }
+        }
+        return listPersonsWhoLiveInCityN;
+    }
 }

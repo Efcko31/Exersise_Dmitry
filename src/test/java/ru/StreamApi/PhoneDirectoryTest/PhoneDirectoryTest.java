@@ -2,6 +2,7 @@ package ru.StreamApi.PhoneDirectoryTest;
 
 
 import org.junit.jupiter.api.Test;
+import ru.PhoneDirectory.Person;
 
 import java.util.List;
 
@@ -65,4 +66,14 @@ public class PhoneDirectoryTest {
         assertEquals(List.of(petrPetrov.getPerson(), ilyaIlyiyov.getPerson(), ivanovIvan.getPerson()),
                 callAllPeopleWithProfessionX("Разработчик", phoneDirectory));
     }
+
+    @Test
+    void transferringDataToSQL() {
+
+    }
+
+    public void transferringDataToSQLTest(List<Person> persons) {
+        
+    }
+
 }
