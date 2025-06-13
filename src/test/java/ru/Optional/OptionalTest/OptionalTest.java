@@ -1,4 +1,4 @@
-package ru.OptionalTest;
+package ru.Optional.OptionalTest;
 
 import org.junit.jupiter.api.Test;
 
