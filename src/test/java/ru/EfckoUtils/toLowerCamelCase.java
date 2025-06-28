@@ -9,11 +9,11 @@ import java.util.stream.Collectors;
 public class toLowerCamelCase {
     @Test
     void test() {
-        toLowerCamelCaseTest("checks that the string length is more than five characters");
+        toLowerCamelCaseTest("Counts the sum of the numbers for each key");
     }
     public void toLowerCamelCaseTest(String sentence) {
 
-        List<String> str = Arrays.stream(sentence.split("[\\s\\p{Punct}]+")).toList();
+        List<String> str = Arrays.stream(sentence.toLowerCase().split("[\\s\\p{Punct}]+")).toList();
         String answer =  str.stream().map(word -> word.isEmpty() ? word :
                 word.substring(0, 1).toUpperCase() + word.substring(1))
                 .collect(Collectors.joining(""));
