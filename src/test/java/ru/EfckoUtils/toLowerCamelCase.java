@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class toLowerCamelCase {
     @Test
     void test() {
-        toLowerCamelCaseTest("Counts the sum of the numbers for each key");
+        toLowerCamelCaseTest("counts the number of divisors");
     }
     public void toLowerCamelCaseTest(String sentence) {
 
