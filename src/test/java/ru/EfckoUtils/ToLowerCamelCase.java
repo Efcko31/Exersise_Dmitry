@@ -9,13 +9,14 @@ import java.util.stream.Collectors;
 public class ToLowerCamelCase {
     @Test
     void test() {
-        toLowerCamelCaseTest("counts the number of divisors");
+        toLowerCamelCaseTest("encodes and decodes an array of integers");
     }
+
     public void toLowerCamelCaseTest(String sentence) {
 
         List<String> str = Arrays.stream(sentence.toLowerCase().split("[\\s\\p{Punct}]+")).toList();
-        String answer =  str.stream().map(word -> word.isEmpty() ? word :
-                word.substring(0, 1).toUpperCase() + word.substring(1))
+        String answer = str.stream().map(word -> word.isEmpty() ? word :
+                        word.substring(0, 1).toUpperCase() + word.substring(1))
                 .collect(Collectors.joining(""));
 
         // Первое слово должно остаться с маленькой буквы

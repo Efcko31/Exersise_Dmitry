@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -18,9 +19,12 @@ public class ExerciseStreamAPI5 {
     }
 
     public String searchForMostFrequentWordInText(String sentence) {
-        Map<String, Long> wordCounter = Arrays.stream(sentence.split(" "))
-                .map(w -> w.replaceAll("[^A-Za-zА-Яа-я]", "").toLowerCase())
-                .collect(groupingBy(w -> w, Collectors.counting()));
+        Map<String, Long> wordCounter = Arrays.stream(sentence.split("[\\s\\p{Punct}]+"))
+                .map(String::toLowerCase)
+                .filter(w -> !w.isEmpty())
+                .collect(groupingBy(c -> c, Collectors.counting()));
+
         return Collections.max(wordCounter.entrySet(), Map.Entry.comparingByValue()).getKey();
     }
 }
+
