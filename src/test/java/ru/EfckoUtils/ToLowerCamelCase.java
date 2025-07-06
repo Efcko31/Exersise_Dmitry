@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class toLowerCamelCase {
+public class ToLowerCamelCase {
     @Test
     void test() {
         toLowerCamelCaseTest("counts the number of divisors");

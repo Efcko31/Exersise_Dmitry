@@ -1,11 +1,9 @@
 package ru.Oop;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.LinkedList;
 
-public class test {
-    @Test
+public class Test {
+    @org.junit.jupiter.api.Test
     void test() {
         LinkedList<String> list1 = new LinkedList<>();
 //        list1.add("a");
