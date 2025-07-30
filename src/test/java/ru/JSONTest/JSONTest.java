@@ -16,7 +16,20 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class JSONTest {
-    ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules();;
+    ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules();
+
+    @Test
+    void carpetJsonTest() throws IOException {
+        File fileCarpet = new File("src/test/java/ru/JSONTest/resources/platinumCarpet.json");
+        CarpetJson platinum = objectMapper.readValue(fileCarpet, CarpetJson.class);
+
+        String carpetShapurJson = "{\n" +
+                " \"brandName\" : \"Osta\",\n" +
+                " \" collectionName\" : \"Shapur\",\n" +
+                " \"composition\" : \"wool\",\n" +
+                " \"density\" : \"720000\"\n" + "}";
+        CarpetJson shapur = objectMapper.readValue(carpetShapurJson, CarpetJson.class);
+    }
 
     @Test
     void pojoToJsonString() throws JsonProcessingException {

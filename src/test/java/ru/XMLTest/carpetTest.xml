@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<countries>
+    <country nameContry="Belgium">
+        <brands>
+            <brand nameBrande="Osta">
+                <collections>
+                    <collection nameCollection="Shapur">
+
+                    </collection>
+                </collections>
+            </brand>
+            <brand nameBrande="Ragolle">
+
+            </brand>
+        </brands>
+    </country>
+    <country nameContry="Turkey">
+        <brands>
+            <brand brandName="Durkar Carpet">
+
+            </brand>
+            <brand brandName="Milat">
+
+            </brand>
+        </brands>
+    </country>
+</countries>
