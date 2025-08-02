@@ -1,4 +1,4 @@
-package ru.lectures.Patterns.StructuralPatterns.Adapter;
+package ru.lectures.Patterns.StructuralPatterns.Adapter.USBAdapter;
 
 public class Adapter {
     public static void main(String[] args) {

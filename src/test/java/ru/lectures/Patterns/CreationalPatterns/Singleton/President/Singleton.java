@@ -1,4 +1,4 @@
-package ru.lectures.Patterns.CreationalPatterns.Singleton;
+package ru.lectures.Patterns.CreationalPatterns.Singleton.President;
 
 public class Singleton { //Одиночка - гарантирует что класс имеет только 1 экземпляр
     public static void main(String[] args) {

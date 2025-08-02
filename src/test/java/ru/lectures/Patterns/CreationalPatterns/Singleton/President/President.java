@@ -1,4 +1,4 @@
-package ru.lectures.Patterns.CreationalPatterns.Singleton;
+package ru.lectures.Patterns.CreationalPatterns.Singleton.President;
 
 public class President {
     private static President instance;
