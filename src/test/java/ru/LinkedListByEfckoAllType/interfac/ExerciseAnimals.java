@@ -1,7 +1,7 @@
 package ru.LinkedListByEfckoAllType.interfac;
 
 import org.junit.jupiter.api.Test;
-import ru.Impl.LinkedListByEfckoTypeImpl;
+import ru.MyLinkedList.MyLinkedListGeneric.LinkedListByEfckoTypeImpl;
 import ru.Oop.Animals.Animal.Animal;
 import ru.Oop.Animals.Profesion.Veterinarian;
 

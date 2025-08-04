@@ -1,7 +1,7 @@
 package ru.Oop.Laba4;
 
 import org.junit.jupiter.api.Test;
-import ru.MyLinkedList.LinkedListByEfckoTypeInteger;
+import ru.MyLinkedList.MyLinkedListInteger.LinkedListByEfckoTypeInteger;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
