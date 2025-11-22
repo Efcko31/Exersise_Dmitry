@@ -10,15 +10,22 @@ import java.util.stream.Stream;
 @Named
 public class ForTest {
     public static void main(String[] args)  {
-        String suit = "♦";
-        String[] holeCards = new String[]{"K♠", "A♦"};
-        String[] communityCards = new String[]{"J♣", "Q♥", "9♥", "2♥", "3♦"};
-        HashMap<String, Integer> cardRank = new HashMap<>(
-                Map.of("J", 11, "Q", 12, "K", 13, "A", 14));
+//        String suit = "♦";
+//        String[] holeCards = new String[]{"K♠", "A♦"};
+//        String[] communityCards = new String[]{"J♣", "Q♥", "9♥", "2♥", "3♦"};
+//        HashMap<String, Integer> cardRank = new HashMap<>(
+//                Map.of("J", 11, "Q", 12, "K", 13, "A", 14));
+//
+//        Integer i = cardRank.getOrDefault(holeCards[1].replace(suit,""),
+//                Integer.parseInt(holeCards[1].replace(suit,"")));
+//        System.out.println(i);
 
-        Integer i = cardRank.getOrDefault(holeCards[1].replace(suit,""),
-                Integer.parseInt(holeCards[1].replace(suit,"")));
-        System.out.println(i);
+        ArrayList<String> test = new ArrayList<>(List.of("11", "5", "13", "2", "3"));
+        test.stream().sorted(Comparator.comparingInt(Integer::parseInt));
+        System.out.println(test);
+//        String testfff = test.stream().map(Object::toString).collect(Collectors.joining(""));
+//        System.out.println(testfff);
+//        System.out.println(testfff.substring(4,8));
 
 //        System.out.println("Suit: " + suit);
 //        System.out.println("CardRank map: " + cardRank);
