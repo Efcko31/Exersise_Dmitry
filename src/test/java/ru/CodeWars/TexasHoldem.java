@@ -1,9 +1,11 @@
 package ru.CodeWars;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -29,32 +31,39 @@ public class TexasHoldem {
 
         HashMap<String, Integer> numberCardsEachSuitHand = new HashMap<>();
         HashMap<String, Integer> numberCardsEachSuitCommunity = new HashMap<>();
+        HashMap<String, Integer> numberCardsByRankHand = new HashMap<>();
+        HashMap<String, Integer> numberCardsByRankCommunity = new HashMap<>();
 
         Arrays.stream(holeCards)
                 .forEach(c -> numberCardsEachSuitHand.put(c.substring(c.length() - 1),
                         numberCardsEachSuitHand.getOrDefault(c.substring(c.length() - 1), 0) + 1));
-
         Arrays.stream(communityCards)
                 .forEach(c -> numberCardsEachSuitCommunity.put(c.substring(c.length() - 1),
                         numberCardsEachSuitCommunity.getOrDefault(c.substring(c.length() - 1), 0) + 1));
 
+        Arrays.stream(holeCards).forEach(c -> numberCardsByRankHand.put(c.substring(0, c.length() - 2),
+                numberCardsByRankHand.getOrDefault(c.substring(0, c.length() - 2), 0) + 1));
+        Arrays.stream(holeCards).forEach(c -> numberCardsByRankCommunity.put(c.substring(0, c.length() - 2),
+                numberCardsByRankCommunity.getOrDefault(c.substring(0, c.length() - 2), 0) + 1));
+
         for (String key : numberCardsEachSuitHand.keySet()) {
             if (numberCardsEachSuitCommunity.containsKey(key) &&
                     numberCardsEachSuitHand.get(key) + numberCardsEachSuitCommunity.get(key) >= 5) { //suit = key
-                return chekStraightFlush(key, holeCards, communityCards, cardRank);
+                return chekCombinationsCardsBySuit(key, holeCards, communityCards, cardRank);
             } else if (numberCardsEachSuitCommunity.size() == 1) {
-                return chekStraightFlush(numberCardsEachSuitCommunity.keySet().iterator().next(),
+                return chekCombinationsCardsBySuit(numberCardsEachSuitCommunity.keySet().iterator().next(),
                         holeCards, communityCards, cardRank);
             }
         }
 
+
         return new TexasHoldemHand("nothing", new String[]{"A", "Q", "9", "6", "3"});
     }
 
-    public TexasHoldemHand chekStraightFlush(String suit,
-                                             String[] holeCards,
-                                             String[] communityCards,
-                                             HashMap<String, Integer> cardRank) {
+    public TexasHoldemHand chekCombinationsCardsBySuit(String suit,
+                                                       String[] holeCards,
+                                                       String[] communityCards,
+                                                       HashMap<String, Integer> cardRank) {
 
         ArrayList<String> numericRangHoleCard = Arrays.stream(holeCards)
                 .filter(c -> c.contains(suit))
@@ -100,6 +109,31 @@ public class TexasHoldem {
             } else {
                 return new TexasHoldemHand("flush", answer);
             }
+        }
+    }
+
+    public TexasHoldemHand checkCardCombinationByRank(String[] holeCards,
+                                                      String[] communityCards,
+                                                      HashMap<String, Integer> numberCardsByRankHand,
+                                                      HashMap<String, Integer> numberCardsByRankCommunity) {
+
+        boolean isFourKind = false;
+        boolean isFullHouse = false;
+        boolean isStraight = false;
+        boolean isThreeKind = false;
+        boolean isTwoPair = false;
+        boolean isPair = false;
+        HashMap<String, Integer> allRank = new HashMap<>(numberCardsByRankHand);
+        allRank.forEach((key, value) -> numberCardsByRankCommunity.merge(key, value, Integer::sum));
+//        allRank.entrySet().stream().sorted(Map.Entry.<String, Integer>comparingByValue().reversed());
+
+        for (String key : allRank.keySet()) {
+            if (allRank.get(key) == 4) {
+
+                isFourKind = true;
+            }
+            if (allRank.)
+
         }
     }
 
