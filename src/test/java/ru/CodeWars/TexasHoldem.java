@@ -2,10 +2,7 @@ package ru.CodeWars;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -14,25 +11,28 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TexasHoldem {
 
     public TexasHoldemHand findPair(String[] holeCards, String[] communityCards) {
-        HashMap<String, Integer> cardRank = new HashMap<>();
-        cardRank.put("2", 2);
-        cardRank.put("3", 3);
-        cardRank.put("4", 4);
-        cardRank.put("5", 5);
-        cardRank.put("6", 6);
-        cardRank.put("7", 7);
-        cardRank.put("8", 8);
-        cardRank.put("9", 9);
-        cardRank.put("10", 10);
-        cardRank.put("J", 11);
-        cardRank.put("Q", 12);
-        cardRank.put("K", 13);
-        cardRank.put("A", 14);
+        HashMap<String, Integer> cardRanks = new HashMap<>();
+        cardRanks.put("2", 2);
+        cardRanks.put("3", 3);
+        cardRanks.put("4", 4);
+        cardRanks.put("5", 5);
+        cardRanks.put("6", 6);
+        cardRanks.put("7", 7);
+        cardRanks.put("8", 8);
+        cardRanks.put("9", 9);
+        cardRanks.put("10", 10);
+        cardRanks.put("J", 11);
+        cardRanks.put("Q", 12);
+        cardRanks.put("K", 13);
+        cardRanks.put("A", 14);
+
+        List<String> allRank = new ArrayList<>();
+        allRank.addAll(Arrays.asList(holeCards));
+        allRank.addAll(Arrays.asList(communityCards));
 
         HashMap<String, Integer> numberCardsEachSuitHand = new HashMap<>();
         HashMap<String, Integer> numberCardsEachSuitCommunity = new HashMap<>();
-        HashMap<String, Integer> numberCardsByRankHand = new HashMap<>();
-        HashMap<String, Integer> numberCardsByRankCommunity = new HashMap<>();
+
 
         Arrays.stream(holeCards)
                 .forEach(c -> numberCardsEachSuitHand.put(c.substring(c.length() - 1),
@@ -41,20 +41,24 @@ public class TexasHoldem {
                 .forEach(c -> numberCardsEachSuitCommunity.put(c.substring(c.length() - 1),
                         numberCardsEachSuitCommunity.getOrDefault(c.substring(c.length() - 1), 0) + 1));
 
-        Arrays.stream(holeCards).forEach(c -> numberCardsByRankHand.put(c.substring(0, c.length() - 2),
-                numberCardsByRankHand.getOrDefault(c.substring(0, c.length() - 2), 0) + 1));
-        Arrays.stream(holeCards).forEach(c -> numberCardsByRankCommunity.put(c.substring(0, c.length() - 2),
-                numberCardsByRankCommunity.getOrDefault(c.substring(0, c.length() - 2), 0) + 1));
 
         for (String key : numberCardsEachSuitHand.keySet()) {
             if (numberCardsEachSuitCommunity.containsKey(key) &&
                     numberCardsEachSuitHand.get(key) + numberCardsEachSuitCommunity.get(key) >= 5) { //suit = key
-                return chekCombinationsCardsBySuit(key, holeCards, communityCards, cardRank);
+                return chekCombinationsCardsBySuit(key, holeCards, communityCards, cardRanks);
             } else if (numberCardsEachSuitCommunity.size() == 1) {
                 return chekCombinationsCardsBySuit(numberCardsEachSuitCommunity.keySet().iterator().next(),
-                        holeCards, communityCards, cardRank);
+                        holeCards, communityCards, cardRanks);
             }
         }
+
+//        HashMap<String, Integer> numberCardsByRankHand = new HashMap<>();
+//        HashMap<String, Integer> numberCardsByRankCommunity = new HashMap<>();
+//
+//        Arrays.stream(holeCards).forEach(c -> numberCardsByRankHand.put(c.substring(0, c.length() - 2),
+//                numberCardsByRankHand.getOrDefault(c.substring(0, c.length() - 2), 0) + 1));
+//        Arrays.stream(holeCards).forEach(c -> numberCardsByRankCommunity.put(c.substring(0, c.length() - 2),
+//                numberCardsByRankCommunity.getOrDefault(c.substring(0, c.length() - 2), 0) + 1));
 
 
         return new TexasHoldemHand("nothing", new String[]{"A", "Q", "9", "6", "3"});
@@ -112,29 +116,45 @@ public class TexasHoldem {
         }
     }
 
-    public TexasHoldemHand checkCardCombinationByRank(String[] holeCards,
-                                                      String[] communityCards,
-                                                      HashMap<String, Integer> numberCardsByRankHand,
-                                                      HashMap<String, Integer> numberCardsByRankCommunity) {
+    public TexasHoldemHand checkCardCombinationByRank(List<String> allRank,
+                                                      HashMap<String, Integer> cardRanks) {
 
-        boolean isFourKind = false;
-        boolean isFullHouse = false;
-        boolean isStraight = false;
-        boolean isThreeKind = false;
-        boolean isTwoPair = false;
-        boolean isPair = false;
-        HashMap<String, Integer> allRank = new HashMap<>(numberCardsByRankHand);
-        allRank.forEach((key, value) -> numberCardsByRankCommunity.merge(key, value, Integer::sum));
-//        allRank.entrySet().stream().sorted(Map.Entry.<String, Integer>comparingByValue().reversed());
+        HashMap<String, Integer> allRankMap = new HashMap<>();
+        allRank.forEach(s -> allRankMap.put(s, allRankMap.getOrDefault(s, 0) + 1));
 
-        for (String key : allRank.keySet()) {
-            if (allRank.get(key) == 4) {
-
-                isFourKind = true;
+        String fourRank = null;
+        String kicker = null;
+        for (Map.Entry<String, Integer> entry : allRankMap.entrySet()) {
+            if (entry.getValue() == 4) {
+                fourRank = entry.getKey();
+            } else if (kicker == null || cardRanks.get(entry.getKey()) > cardRanks.get(kicker)) {
+                kicker = entry.getKey();
             }
-            if (allRank.)
-
         }
+        if (fourRank != null) {
+            return new TexasHoldemHand("four-rank", new String[]{fourRank, kicker});
+        }
+
+        return null;
+    }
+
+    public TexasHoldemHand checkFullHouse(List<String> allRank,
+                                          HashMap<String, Integer> cardRanks) {
+        HashMap<String, Integer> allRankMap = new HashMap<>();
+        allRank.forEach(s -> allRankMap.put(s, allRankMap.getOrDefault(s, 0) + 1));
+
+        String threeRank = null;
+        String twoRank = null;
+
+        for (Map.Entry<String, Integer> entry : allRankMap.entrySet()) {
+            if (entry.getValue() == 3) {
+                if (threeRank == null || cardRanks.get(entry.getKey()) > cardRanks.get(threeRank)) {
+                    threeRank = entry.getKey();
+                }
+            }
+        }
+
+
     }
 
     @Test
