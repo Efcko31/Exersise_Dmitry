@@ -147,7 +147,7 @@ public class LinkedListByEfckoTypeInteger {
     }
 
     private void checkForIndexInRangeToAdd(int index) {
-        if (index < 0 || index > size) {
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException(String.format(MESSAGE, size));
         }
     }
