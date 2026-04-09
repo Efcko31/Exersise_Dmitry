@@ -1,7 +1,7 @@
 package ru.LinkedListByEfckoAllType.String;
 
 import org.junit.jupiter.api.Test;
-import ru.MyLinkedList.MyLinkedListString.LinkedListByEfckoTypeString;
+import ru.myLinkedList.myLinkedListString.LinkedListByEfckoTypeString;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

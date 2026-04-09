@@ -1,4 +1,4 @@
-package ru.Optional;
+package ru.optional;
 
 public class ConstantForOptionalTraining {
     public static final double PRICE_GORE_OT_UMA = 1500.00d;

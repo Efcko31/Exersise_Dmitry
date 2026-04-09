@@ -1,4 +1,4 @@
-package ru.Optional;
+package ru.optional;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package ru.MyLinkedList.MyLinkedListString;
+package ru.myLinkedList.myLinkedListString;
 
 import lombok.Getter;
 import lombok.Setter;

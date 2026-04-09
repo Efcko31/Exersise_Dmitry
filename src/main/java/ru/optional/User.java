@@ -1,4 +1,4 @@
-package ru.Optional;
+package ru.optional;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

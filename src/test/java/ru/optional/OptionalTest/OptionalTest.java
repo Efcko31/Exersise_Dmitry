@@ -1,12 +1,12 @@
-package ru.Optional.OptionalTest;
+package ru.optional.OptionalTest;
 
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static ru.Optional.Methods.getValidTicketNumber;
-import static ru.Optional.Methods.getValidTicketNumberConcert;
-import static ru.Optional.UsersOptional.values;
+import static ru.optional.Methods.getValidTicketNumber;
+import static ru.optional.Methods.getValidTicketNumberConcert;
+import static ru.optional.UsersOptional.values;
 
 public class OptionalTest {
     @Test

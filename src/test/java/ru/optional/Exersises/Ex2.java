@@ -1,4 +1,4 @@
-package ru.Optional.Exersises;
+package ru.optional.Exersises;
 
 import org.junit.jupiter.api.Test;
 

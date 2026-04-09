@@ -1,7 +1,7 @@
 package ru.LinkedListByEfckoAllType.Integer;
 
 import org.junit.jupiter.api.Test;
-import ru.MyLinkedList.MyLinkedListInteger.LinkedListByEfckoTypeInteger;
+import ru.myLinkedList.myLinkedListInteger.LinkedListByEfckoTypeInteger;
 
 import static org.junit.jupiter.api.Assertions.*;
 

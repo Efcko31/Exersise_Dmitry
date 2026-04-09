@@ -1,6 +1,5 @@
-package ru.MyArrayList;
+package ru.myArrayList;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.NoSuchElementException;

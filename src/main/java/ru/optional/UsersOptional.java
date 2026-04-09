@@ -1,11 +1,11 @@
-package ru.Optional;
+package ru.optional;
 
 import lombok.Getter;
 
 import java.util.List;
 
-import static ru.Optional.ConstantForOptionalTraining.PRICE_GORE_OT_UMA;
-import static ru.Optional.ConstantForOptionalTraining.PRICE_IRONIYA_SUDBY;
+import static ru.optional.ConstantForOptionalTraining.PRICE_GORE_OT_UMA;
+import static ru.optional.ConstantForOptionalTraining.PRICE_IRONIYA_SUDBY;
 
 @Getter
 public enum UsersOptional {

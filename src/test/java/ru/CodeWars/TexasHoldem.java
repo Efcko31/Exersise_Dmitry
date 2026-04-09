@@ -138,24 +138,22 @@ public class TexasHoldem {
         return null;
     }
 
-    public TexasHoldemHand checkFullHouse(List<String> allRank,
-                                          HashMap<String, Integer> cardRanks) {
-        HashMap<String, Integer> allRankMap = new HashMap<>();
-        allRank.forEach(s -> allRankMap.put(s, allRankMap.getOrDefault(s, 0) + 1));
-
-        String threeRank = null;
-        String twoRank = null;
-
-        for (Map.Entry<String, Integer> entry : allRankMap.entrySet()) {
-            if (entry.getValue() == 3) {
-                if (threeRank == null || cardRanks.get(entry.getKey()) > cardRanks.get(threeRank)) {
-                    threeRank = entry.getKey();
-                }
-            }
-        }
-
-
-    }
+//    public TexasHoldemHand checkFullHouse(List<String> allRank,
+//                                          HashMap<String, Integer> cardRanks) {
+//        HashMap<String, Integer> allRankMap = new HashMap<>();
+//        allRank.forEach(s -> allRankMap.put(s, allRankMap.getOrDefault(s, 0) + 1));
+//
+//        String threeRank = null;
+//        String twoRank = null;
+//
+//        for (Map.Entry<String, Integer> entry : allRankMap.entrySet()) {
+//            if (entry.getValue() == 3) {
+//                if (threeRank == null || cardRanks.get(entry.getKey()) > cardRanks.get(threeRank)) {
+//                    threeRank = entry.getKey();
+//                }
+//            }
+//        }
+//    }
 
     @Test
     void test1() {

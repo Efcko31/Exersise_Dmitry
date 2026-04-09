@@ -7,9 +7,10 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@Named
 public class ForTest {
     public static void main(String[] args)  {
+
+        System.out.println("Hello World".hashCode());
 //        String suit = "♦";
 //        String[] holeCards = new String[]{"K♠", "A♦"};
 //        String[] communityCards = new String[]{"J♣", "Q♥", "9♥", "2♥", "3♦"};
@@ -20,9 +21,9 @@ public class ForTest {
 //                Integer.parseInt(holeCards[1].replace(suit,"")));
 //        System.out.println(i);
 
-        ArrayList<String> test = new ArrayList<>(List.of("11", "5", "13", "2", "3"));
-        test.stream().sorted(Comparator.comparingInt(Integer::parseInt));
-        System.out.println(test);
+//        ArrayList<String> test = new ArrayList<>(List.of("11", "5", "13", "2", "3"));
+//        test.stream().sorted(Comparator.comparingInt(Integer::parseInt));
+//        System.out.println(test);
 //        String testfff = test.stream().map(Object::toString).collect(Collectors.joining(""));
 //        System.out.println(testfff);
 //        System.out.println(testfff.substring(4,8));

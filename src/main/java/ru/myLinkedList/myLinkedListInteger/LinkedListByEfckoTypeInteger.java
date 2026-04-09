@@ -1,4 +1,4 @@
-package ru.MyLinkedList.MyLinkedListInteger;
+package ru.myLinkedList.myLinkedListInteger;
 
 import lombok.Getter;
 import lombok.Setter;

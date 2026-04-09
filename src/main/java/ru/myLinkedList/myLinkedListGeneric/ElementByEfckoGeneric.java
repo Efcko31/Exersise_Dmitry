@@ -1,4 +1,4 @@
-package ru.MyLinkedList.MyLinkedListGeneric;
+package ru.myLinkedList.myLinkedListGeneric;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

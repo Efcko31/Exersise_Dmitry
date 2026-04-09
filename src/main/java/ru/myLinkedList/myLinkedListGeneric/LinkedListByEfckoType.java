@@ -1,4 +1,4 @@
-package ru.MyLinkedList.MyLinkedListGeneric;
+package ru.myLinkedList.myLinkedListGeneric;
 
 public interface LinkedListByEfckoType <T> {
     int size();
