@@ -84,7 +84,7 @@ public class MyHashMap<K, V> extends AbstractMap<K, V>
 
     @Override
     public V put(K key, V value) {
-        return null;
+        return putVal(hash(key), key, value, false, true);
     }
 
     @Override
@@ -100,7 +100,41 @@ public class MyHashMap<K, V> extends AbstractMap<K, V>
 
         if ((tab = table) == null || (n = tab.length) == 0)
             n = (tab = resize()).length;
-        if((p = tab[i = (n - 1) & hash]) == null)
+        if ((p = tab[i = (n - 1) & hash]) == null) {
+            tab[i] = new Node<>(hash, key, value, null);
+        } else {
+            Node<K, V> e;
+            K k;
+            if (p.hash == hash && ((k = p.key) == key || (key != null && key.equals(k)))) {
+                //срвниваем Хэши и значиние ключа по ссылки ИЛИ по значению
+                e = p;
+            } else {
+                for (int binCount = 0; ; ++binCount) { //проходим во всем узлам списка
+                    if ((e = p.next) == null) {
+                        p.next = new Node<>(hash, key, value, null);
+                        // if (binCount >=TREEIFY_THRESHOLD - 1)
+                        // treeifyBin(tab, hash);
+                        //break;
+                    }
+                    if (e.hash == hash && ((k = e.key) == key || (key != null && key.equals(k))))
+                        break;
+                    p = e;
+                }
+            }
+            if (e != null) {
+                V oldValue = e.value;
+                if (!onlyIfAbsent || oldValue == null) {
+                    e.value = value;
+                }
+                afterNodeAccess(e);
+                return oldValue;
+            }
+        }
+        ++modCount;
+        if (++size > threshold)
+            resize();
+        afterNodeInsertion(evict);
+        return null;
     }
 
     final Node<K, V>[] resize() {
@@ -142,7 +176,7 @@ public class MyHashMap<K, V> extends AbstractMap<K, V>
                     oldTab[j] = null;
                     if (e.next == null)
                         newTab[e.hash & (newCap - 1)] = e;
-                    //else if (e instanceof HashMap.TreeNode) todo Доделать с деревьями
+                        //else if (e instanceof HashMap.TreeNode) todo Доделать с деревьями
                         //((HashMap.TreeNode<K, V>) e).split(this, newTab, j, oldCap);
                     else { // preserve order
                         MyHashMap.Node<K, V> loHead = null, loTail = null;
@@ -179,5 +213,12 @@ public class MyHashMap<K, V> extends AbstractMap<K, V>
             }
         }
         return newTab;
+    }
+
+    //Вспомогательные методы...
+    void afterNodeAccess(Node<K, V> p) {
+    }
+
+    void afterNodeInsertion(boolean evict) {
     }
 }
