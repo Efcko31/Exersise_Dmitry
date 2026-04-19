@@ -3,8 +3,10 @@ package ru.myHashMap;
 import java.io.Serializable;
 import java.util.*;
 
-public class MyHashMap<K, V> extends AbstractMap<K, V>
-        implements Map<K, V>, Cloneable, Serializable {
+public class MyHashMap<K, V> extends AbstractMap<K, V> implements
+        Map<K, V>, Cloneable, Serializable {
+
+    //СДЕЛАНО БЕЗ TreeNode!
 
     static final int DEF_INITIAL_CAPACITY = 1 << 4; // ака 16
     static final int MAXIMUM_CAPACITY = 1 << 30;
@@ -65,7 +67,10 @@ public class MyHashMap<K, V> extends AbstractMap<K, V>
 
     //все transient потому что не надо сериализовывать это дело.
     transient Node<K, V>[] table; // Физическое хранилище данных. Размер - степень двойки.
-    transient Set<Map.Entry<K, V>> entrySet; // нужен для перебора, вызывает итератор.
+    transient Set<Map.Entry<K, V>> entrySet;
+    // нужен для перебора, вызывает итератор.
+    transient Set<K> keySet;
+    transient Collection<V> values;
     transient int size; // размер заполненных ячеек.
     transient int modCount; // количество изменений этого hashMap
     int threshold; // порог для увеличения размера (capacity * loadFactor). Capacity = 16, loadFactor = 0.75
@@ -84,8 +89,7 @@ public class MyHashMap<K, V> extends AbstractMap<K, V>
     public MyHashMap(int initialCapacity, float loadFactor) {
         if (initialCapacity < 0)
             throw new IllegalArgumentException("Начальная емкость меньше нуля: " + initialCapacity);
-        if (initialCapacity > MAXIMUM_CAPACITY)
-            initialCapacity = MAXIMUM_CAPACITY;
+        if (initialCapacity > MAXIMUM_CAPACITY) initialCapacity = MAXIMUM_CAPACITY;
         if (loadFactor <= 0 || Float.isNaN(loadFactor))
             throw new IllegalArgumentException("Неверный коэз загрузки: " + loadFactor);
 
@@ -103,6 +107,9 @@ public class MyHashMap<K, V> extends AbstractMap<K, V>
         return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
     }
 
+    public int size() {
+        return size;
+    }
 
     static final int hash(Object key) {
         int h;
@@ -117,7 +124,7 @@ public class MyHashMap<K, V> extends AbstractMap<K, V>
     @Override
     public Set<Entry<K, V>> entrySet() {
         Set<Entry<K, V>> es;
-        return (es = entrySet) == null ? (entrySet = new MyEntrySet()) : es;
+        return (es = entrySet) == null ? (entrySet = new EntrySet()) : es;
     }
 
     final V putVal(int hash, K key, V value, boolean onlyIfAbsent, boolean evict) {
@@ -126,10 +133,11 @@ public class MyHashMap<K, V> extends AbstractMap<K, V>
         int n;
         int i;
 
-        if ((tab = table) == null || (n = tab.length) == 0)
+        if ((tab = table) == null || (n = tab.length) == 0) {
             n = (tab = resize()).length;
+        }
         if ((p = tab[i = (n - 1) & hash]) == null) {
-            tab[i] = new Node<>(hash, key, value, null);
+            tab[i] = newNode(hash, key, value, null);
         } else {
             Node<K, V> e;
             K k;
@@ -144,7 +152,8 @@ public class MyHashMap<K, V> extends AbstractMap<K, V>
                         // treeifyBin(tab, hash);
                         break;
                     }
-                    if (e.hash == hash && ((k = e.key) == key || (key != null && key.equals(k))))
+                    if (e.hash == hash &&
+                            ((k = e.key) == key || (key != null && key.equals(k))))
                         break;
                     p = e;
                 }
@@ -159,8 +168,10 @@ public class MyHashMap<K, V> extends AbstractMap<K, V>
             }
         }
         ++modCount;
-        if (++size > threshold)
+        if (++size > threshold) {
+            System.out.println("Увеличиваем size до: " + size);
             resize();
+        }
         afterNodeInsertion(evict);
         return null;
     }
@@ -176,51 +187,44 @@ public class MyHashMap<K, V> extends AbstractMap<K, V>
         int n, hash;
         K k;
 
-        if ((tab = table) != null && (n = tab.length) > 0 &&
-                (first = tab[(n - 1) & (hash = hash(key))]) != null) {
-            if (first.hash == hash && ((k = first.key) == key || (key != null && key.equals(k))))
-                return first;
+        if ((tab = table) != null && (n = tab.length) > 0 && (first = tab[(n - 1) & (hash = hash(key))]) != null) {
+            if (first.hash == hash && ((k = first.key) == key || (key != null && key.equals(k)))) return first;
             if ((e = first.next) != null) {
                 //if (first instanceof HashMap.TreeNode)
                 //return ((HashMap.TreeNode<K,V>)first).getTreeNode(hash, key);
                 do {
-                    if (e.hash == hash &&
-                            ((k = e.key) == key || (key != null && key.equals(k))))
-                        return e;
+                    if (e.hash == hash && ((k = e.key) == key || (key != null && key.equals(k)))) return e;
                 } while ((e = e.next) != null);
             }
         }
         return null;
     }
 
-    public V remove(Object key) {
-        MyHashMap.Node<K, V> e;
-        return (e = removeNode(hash(key), key, null, false, true)) == null ?
-                null : e.value;
+    public boolean containsKey(Object key) {
+        return getNode(key) != null;
     }
 
-    final MyHashMap.Node<K, V> removeNode(int hash, Object key, Object value,
-                                          boolean matchValue, boolean movable) {
+    public V remove(Object key) {
+        MyHashMap.Node<K, V> e;
+        return (e = removeNode(hash(key), key, null, false, true)) == null ? null : e.value;
+    }
+
+    final MyHashMap.Node<K, V> removeNode(int hash, Object key, Object value, boolean matchValue, boolean movable) {
         MyHashMap.Node<K, V>[] tab;
         MyHashMap.Node<K, V> p;
         int n;
         int index;
-        if ((tab = table) != null && (n = tab.length) > 0 &&
-                (p = tab[index = (n - 1) & hash]) != null) {
+        if ((tab = table) != null && (n = tab.length) > 0 && (p = tab[index = (n - 1) & hash]) != null) {
             MyHashMap.Node<K, V> node = null, e;
             K k;
             V v;
-            if (p.hash == hash &&
-                    ((k = p.key) == key || (key != null && key.equals(k))))
-                node = p;
+            if (p.hash == hash && ((k = p.key) == key || (key != null && key.equals(k)))) node = p;
             else if ((e = p.next) != null) {
                 //if (p instanceof MyHashMap.TreeNode)
                 //   node = ((MyHashMap.TreeNode<K, V>) p).getTreeNode(hash, key);
                 // else {
                 do {
-                    if (e.hash == hash &&
-                            ((k = e.key) == key ||
-                                    (key != null && key.equals(k)))) {
+                    if (e.hash == hash && ((k = e.key) == key || (key != null && key.equals(k)))) {
                         node = e;
                         break;
                     }
@@ -228,15 +232,12 @@ public class MyHashMap<K, V> extends AbstractMap<K, V>
                 } while ((e = e.next) != null);
                 //}
             }
-            if (node != null && (!matchValue || (v = node.value) == value ||
-                    (value != null && value.equals(v)))) {
+            if (node != null && (!matchValue || (v = node.value) == value || (value != null && value.equals(v)))) {
                 // if (node instanceof HashMap.TreeNode)
                 //   ((MyHashMap.TreeNode<K, V>) node).removeTreeNode(this, tab, movable);
                 /*else*/
-                if (node == p)
-                    tab[index] = node.next;
-                else
-                    p.next = node.next;
+                if (node == p) tab[index] = node.next;
+                else p.next = node.next;
                 ++modCount;
                 --size;
                 afterNodeRemoval(node);
@@ -250,7 +251,7 @@ public class MyHashMap<K, V> extends AbstractMap<K, V>
         Node<K, V>[] oldTab = table;
         int oldCap = (oldTab == null) ? 0 : oldTab.length;
         int oldThr = threshold;
-        int newCap = 0;
+        int newCap;
         int newThr = 0;
 
         if (oldCap > 0) {
@@ -260,18 +261,17 @@ public class MyHashMap<K, V> extends AbstractMap<K, V>
                 return oldTab;
             } else if ((newCap = oldCap << 1) < MAXIMUM_CAPACITY && oldCap > DEF_INITIAL_CAPACITY) {
                 newThr = oldThr << 1; // удваивает порог (с емкостью)
-            } else if (oldThr > 0) {
-                newCap = oldThr;
-            } else {
-                newCap = DEF_INITIAL_CAPACITY;
-                newThr = (int) (DEF_INITIAL_CAPACITY * DEFAULT_LOAD_FACTOR);
             }
+        } else if (oldThr > 0) {
+            newCap = oldThr;
+        } else {
+            newCap = DEF_INITIAL_CAPACITY;
+            newThr = (int) (DEF_INITIAL_CAPACITY * DEFAULT_LOAD_FACTOR);
         }
 
         if (newThr == 0) {
             float ft = (float) newCap * loadFactor;
-            newThr = (newCap < MAXIMUM_CAPACITY && ft < (float) MAXIMUM_CAPACITY ?
-                    (int) ft : Integer.MAX_VALUE);
+            newThr = (newCap < MAXIMUM_CAPACITY && ft < (float) MAXIMUM_CAPACITY ? (int) ft : Integer.MAX_VALUE);
         }
 
         threshold = newThr;
@@ -296,16 +296,12 @@ public class MyHashMap<K, V> extends AbstractMap<K, V>
                         do { //здесь идет распределение в зависимости от ключевого бита
                             next = e.next;
                             if ((e.hash & oldCap) == 0) {
-                                if (loTail == null)
-                                    loHead = e;
-                                else
-                                    loTail.next = e;
+                                if (loTail == null) loHead = e;
+                                else loTail.next = e;
                                 loTail = e;
                             } else {
-                                if (hiTail == null)
-                                    hiHead = e;
-                                else
-                                    hiTail.next = e;
+                                if (hiTail == null) hiHead = e;
+                                else hiTail.next = e;
                                 hiTail = e;
                             }
                         } while ((e = next) != null);
@@ -324,6 +320,91 @@ public class MyHashMap<K, V> extends AbstractMap<K, V>
         return newTab;
     }
 
+
+    public void clear() {
+        MyHashMap.Node<K,V>[] tab;
+        modCount++;
+        if ((tab = table) != null && size > 0) {
+            size = 0;
+            for (int i = 0; i < tab.length; ++i)
+                tab[i] = null;
+        }
+    }
+    //              *** ИТЕРАТОРЫ ***
+
+    @Override
+    public Set<K> keySet() {
+        Set<K> ks = keySet;
+        if (ks == null) {
+            ks = new KeySet();
+            keySet = ks;
+        }
+        return ks;
+    }
+
+    final class KeySet extends AbstractSet<K> {
+        public final int size() { return size; }
+        public final void clear() {MyHashMap.this.clear();}
+        public final Iterator<K> iterator() {
+            return new KeyIterator();
+        }
+        public final boolean contains(Object o) { return containsKey(o); }
+        public final boolean remove(Object key) {
+            return removeNode(hash(key), key, null, false, true) != null;
+        }
+    }
+
+    final class KeyIterator extends HashIterator implements Iterator<K> {
+        public final K next() { return nextNode().key; }
+    } // ИТЕРАТОР по ключам
+
+    final class ValueIterator extends HashIterator implements Iterator<V> {
+        public final V next() { return nextNode().value; }
+    }// по значениями
+
+    final class EntryIterator extends HashIterator implements Iterator<Map.Entry<K,V>> {
+        public final Map.Entry<K,V> next() { return nextNode(); }
+    } // по парам
+
+    abstract class HashIterator {
+        Node<K,V> next;        // следующий элемент
+        Node<K,V> current;     // текущий элемент
+        int index;             // текущий индекс в таблице
+
+        HashIterator() {
+            Node<K,V>[] t = table;
+            int i = 0;
+            while (t != null && i < t.length && (next = t[i++]) == null);
+            index = i;
+        }
+
+        public final boolean hasNext() {
+            return next != null;
+        }
+
+        final Node<K,V> nextNode() {
+            Node<K,V>[] t = table;
+            Node<K,V> e = next;
+            if (e == null)
+                throw new NoSuchElementException();
+
+            // Ищем следующий узел
+            if ((next = (current = e).next) == null && t != null) {
+                // Переходим к следующей непустой корзине
+                while (index < t.length && (next = t[index++]) == null);
+            }
+            return e;
+        }
+
+        public final void remove() {
+            Node<K,V> p = current;
+            if (p == null)
+                throw new IllegalStateException();
+            current = null;
+            removeNode(p.hash, p.key, null, false, false);
+        }
+    }
+
     //Вспомогательные методы...
     void afterNodeAccess(Node<K, V> p) {
     }
@@ -335,15 +416,42 @@ public class MyHashMap<K, V> extends AbstractMap<K, V>
     }
 
     //todo просто заглушка пока что
-    final class MyEntrySet extends AbstractSet<Map.Entry<K, V>> {
-        @Override
-        public Iterator<Entry<K, V>> iterator() {
-            return null;
+    final class EntrySet extends AbstractSet<Map.Entry<K,V>> {
+        public final int size() { return size; }
+        public final void clear() { MyHashMap.this.clear(); }
+        public final Iterator<Map.Entry<K,V>> iterator() {
+            return new EntryIterator();
+        }
+        public final boolean contains(Object o) {
+            if (!(o instanceof Map.Entry<?, ?> e))
+                return false;
+            Object key = e.getKey();
+            MyHashMap.Node<K,V> candidate = getNode(key);
+            return candidate != null && candidate.equals(e);
         }
 
-        @Override
-        public int size() {
-            return 0;
+        public final boolean remove(Object o) {
+            if (o instanceof Map.Entry<?, ?> e) {
+                Object key = e.getKey();
+                Object value = e.getValue();
+                return removeNode(hash(key), key, value, true, true) != null;
+            }
+            return false;
         }
+
+        //public final Spliterator<Map.Entry<K,V>> spliterator()
+
+        //public final void forEach(Consumer<? super Map.Entry<K,V>> action)
+
+
     }
+
+    MyHashMap.Node<K, V> newNode(int hash, K key, V value, MyHashMap.Node<K, V> next) {
+        return new MyHashMap.Node<>(hash, key, value, next);
+    }
+
+
+
+
+
 }
