@@ -6,15 +6,17 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Rectangle extends Shape {
-    protected Integer[] a;
-    protected Integer[] b;
-    protected Integer[] c;
-public Rectangle(String color, Integer[] a, Integer[] b, Integer[] c) {
-    super(color);
-    this.a = a;
-    this.b = b;
-    this.c = c;
-}
+    private Coordinate a;
+    private Coordinate b;
+    private Coordinate c;
+
+    public Rectangle(String color, Coordinate a, Coordinate b, Coordinate c) {
+        super(color);
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+
     @Override
     public void draw() {
         System.out.printf("Рисует треугольник цвет: %s\n", color);

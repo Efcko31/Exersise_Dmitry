@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Student {
-    protected String firstName;
-    protected String lastName;
-    protected String group;
-    protected Double averageMark;
+    private String firstName;
+    private String lastName;
+    private String group;
+    private Double averageMark;
 
     private static final Integer SCHOLARSHIP_FOR_EXCELLENT_STUDENT_STUDIES = 2000;
     private static final Integer SCHOLARSHIP_FOR_THE_STUDENT_STUDIES = 1900;

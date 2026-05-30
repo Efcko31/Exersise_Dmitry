@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Weapon {
     protected String name;
-    protected int minDamage;
-    protected int maxDamage;
+    protected Integer minDamage;
+    protected Integer maxDamage;
+
 }

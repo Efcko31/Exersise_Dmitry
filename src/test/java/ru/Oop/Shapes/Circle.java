@@ -7,11 +7,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Circle extends Shape {
-    protected Double radius;
+    private Double radius;
+    private Coordinate center;
 
-    public Circle(String color, Double radius) {
+    public Circle(String color, Double radius, Coordinate center) {
         super(color);
         this.radius = radius;
+        this.center = center;
     }
 
     @Override

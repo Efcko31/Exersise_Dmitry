@@ -1,22 +1,22 @@
 package ru.Oop.Animals.Animal;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public abstract class Animal {
+    protected String breed;
     protected String name;
     protected String gender;
     protected Integer age;
     protected Integer weight;
     protected String color;
-    protected ArrayList<String> diet;
-    protected String description;
+    protected ArrayList<String>diet;
+    protected String note;
 
     public abstract String makeNoise();
 

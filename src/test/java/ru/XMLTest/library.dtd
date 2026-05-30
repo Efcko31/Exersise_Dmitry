@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!ELEMENT book EMPTY>
+<!ELEMENT shelf (book)>
+<!ELEMENT wardrobe (shelf+)>
+<!ELEMENT wardrobes (wardrobe+)>
+<!ELEMENT place (wardrobes)>
+<!ELEMENT floors (place+)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT library (name, floors)>
+
+<!ATTLIST book
+        id CDATA #REQUIRED
+        title
+                author
+

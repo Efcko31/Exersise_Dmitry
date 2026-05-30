@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<library>
+    <name>West-Big Library</name>
+    <floors>
+        <place floor="1" >
+            <wardrobes>
+                <wardrobe side="Left" number="1">
+                    <shelf>
+                        <book id="1" title="wer" author="GGG" genre="fantasy"/>
+                        <book id="2" title="dfg" author="fff" genre="fantasy"/>
+                        <book id="3" title="vbn" author="ttt" genre="fantasy"/>
+                    </shelf>
+                </wardrobe>
+                <wardrobe side="Left" number="2">
+                    <book id="1" title="qwe" author="GGG" genre="classic"/>
+                    <book id="2" title="asd" author="fff" genre="classic"/>
+                    <book id="3" title="zxc" author="ttt" genre="classic"/>
+                </wardrobe>
+            </wardrobes>
+        </place>
+    </floors>
+</library>
